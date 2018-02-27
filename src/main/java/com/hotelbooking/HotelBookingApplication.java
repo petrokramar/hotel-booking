@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -79,6 +79,8 @@ public class HotelBookingApplication implements CommandLineRunner{
         service2.setPrice(1000);
         hotelServiceRepository.save(service2);
 
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
         Booking booking1 = new Booking();
         booking1.setRoom(room1);
         booking1.setUser(user1);
@@ -86,8 +88,8 @@ public class HotelBookingApplication implements CommandLineRunner{
         services1.add(service1);
         services1.add(service2);
         booking1.setServices(services1);
-        booking1.setDateBegin(new Date());
-        booking1.setDateEnd(new Date());
+        booking1.setDateBegin(format.parse("25.02.2018"));
+        booking1.setDateEnd(format.parse("28.02.2018"));
         bookingRepository.save(booking1);
 
         Booking booking2 = new Booking();
@@ -96,8 +98,8 @@ public class HotelBookingApplication implements CommandLineRunner{
         List<HotelService> services2 = new ArrayList<>();
         services2.add(service1);
         booking2.setServices(services2);
-        booking2.setDateBegin(new Date());
-        booking2.setDateEnd(new Date());
+        booking2.setDateBegin(format.parse("28.02.2018"));
+        booking2.setDateEnd(format.parse("05.03.2018"));
         bookingRepository.save(booking2);
 	}
 }

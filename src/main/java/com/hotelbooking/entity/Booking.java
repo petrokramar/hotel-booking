@@ -1,10 +1,13 @@
 package com.hotelbooking.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

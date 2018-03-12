@@ -2,12 +2,10 @@ package com.hotelbooking.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "users")
+@Table(name = "users", schema = "BOOKING_HOTELS_SCHEMA")
 @Data
 public class User {
     @Id

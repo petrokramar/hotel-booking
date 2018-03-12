@@ -7,11 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(schema = "BOOKING_HOTELS_SCHEMA")
 @Data
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     @ManyToOne
     private Room room;
     @ManyToOne
@@ -20,7 +21,7 @@ public class Booking {
     private Date dateEnd;
     @ManyToMany
     @JoinTable(
-            name = "booking_service",
+            name = "booking_service", schema = "BOOKING_HOTELS_SCHEMA",
             joinColumns = { @JoinColumn(name = "booking_id") },
             inverseJoinColumns = { @JoinColumn(name = "service_id") })
     private List<HotelService> services;

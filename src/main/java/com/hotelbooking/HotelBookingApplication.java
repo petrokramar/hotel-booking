@@ -67,13 +67,13 @@ public class HotelBookingApplication implements CommandLineRunner{
         RoomCategory category1 = new RoomCategory();
         category1.setName("First");
         category1.setDescription("First category");
-        category1.setPrice(10000);
+//        category1.setPrice(10000);
         roomCategoryRepository.save(category1);
 
         RoomCategory category2 = new RoomCategory();
         category2.setName("Second");
         category2.setDescription("Second category");
-        category2.setPrice(8000);
+//        category2.setPrice(8000);
         roomCategoryRepository.save(category2);
 
         Room room1 = new Room();
@@ -88,12 +88,14 @@ public class HotelBookingApplication implements CommandLineRunner{
 
         HotelService service1 = new HotelService();
         service1.setName("Breakfast");
-        service1.setPrice(2000);
+        service1.setDescription("Breakfast");
+//        service1.setPrice(2000);
         hotelServiceRepository.save(service1);
 
         HotelService service2 = new HotelService();
         service2.setName("Cleaning room");
-        service2.setPrice(1000);
+        service2.setDescription("Cleaning room");
+        //        service2.setPrice(1000);
         hotelServiceRepository.save(service2);
 
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");

@@ -5,11 +5,12 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "hotels", schema = "BOOKING_HOTELS_SCHEMA")
 @Data
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     private String name;
     @ManyToOne
     private City city;

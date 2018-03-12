@@ -18,6 +18,9 @@ public class HotelBookingApplication implements CommandLineRunner{
 	UserRepository userRepository;
 
     @Inject
+    AuthorityRepository authorityRepository;
+
+    @Inject
     RoomCategoryRepository roomCategoryRepository;
 
     @Inject
@@ -36,16 +39,25 @@ public class HotelBookingApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
         User user1 = new User();
-        user1.setName("bob");
+        user1.setUsername("bob");
+        user1.setPassword("{noop}1");
+        user1.setEnabled(true);
         user1.setFirstName("Bob");
         user1.setLastName("Marley");
         userRepository.save(user1);
 
         User user2 = new User();
-        user2.setName("james");
+        user2.setUsername("james");
+        user2.setPassword("{noop}1");
+        user2.setEnabled(true);
         user2.setFirstName("James");
         user2.setLastName("Bond");
         userRepository.save(user2);
+
+        Authority authority1 = new Authority();
+        authority1.setUsername("bob");
+        authority1.setAuthority("ROLE_ADMIN");
+        authorityRepository.save(authority1);
 
         RoomCategory category1 = new RoomCategory();
         category1.setName("First");

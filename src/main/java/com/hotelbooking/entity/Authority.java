@@ -7,13 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "users")
+@Entity(name = "authorities")
 @Data
-public class User {
+public class Authority {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String username;
-    private String password;
-    private boolean enabled;
-    private String firstName;
-    private String lastName;
+    private String authority;
 }

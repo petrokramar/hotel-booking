@@ -16,5 +16,4 @@ public class HotelService {
     private String name;
     private String description;
     private int price;
-
 }

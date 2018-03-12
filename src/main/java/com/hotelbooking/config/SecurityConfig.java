@@ -25,23 +25,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//
+//        http.authorizeRequests()
+////                .antMatchers("/").hasRole("EMPLOYEE")
+////                .antMatchers("/leaders/**").hasRole("MANAGER")
+//                .antMatchers("/rooms/**").hasRole("ADMIN")
+//                .and()
+//                .formLogin()
+////                .loginPage("/showMyLoginPage")
+////                .loginProcessingUrl("/authenticateTheUser")
+//                .permitAll();
+////                .and()
+////                .logout().permitAll()
+////                .and()
+////                .exceptionHandling().accessDeniedPage("/access-denied");
+
+//    }
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll().and()
+                .authorizeRequests().antMatchers("/console/**").permitAll();
 
-        http.authorizeRequests()
-//                .antMatchers("/").hasRole("EMPLOYEE")
-//                .antMatchers("/leaders/**").hasRole("MANAGER")
-                .antMatchers("/rooms/**").hasRole("ADMIN")
-                .and()
-                .formLogin()
-//                .loginPage("/showMyLoginPage")
-//                .loginProcessingUrl("/authenticateTheUser")
-                .permitAll();
-//                .and()
-//                .logout().permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/access-denied");
-
+        httpSecurity.csrf().disable();
+        httpSecurity.headers().frameOptions().disable();
     }
 
 }

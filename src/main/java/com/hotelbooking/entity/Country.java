@@ -6,13 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Room {
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private int number;
-    @ManyToOne
-    private Hotel hotel;
-    @ManyToOne
-    private RoomCategory roomCategory;
+    private String name;
 }

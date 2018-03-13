@@ -16,7 +16,7 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping(value = "/countries", produces = "application/json")
-    public ResponseEntity<List<Country>> getBooking() {
+    public ResponseEntity<List<Country>> getAllCountries() {
         List<Country> countries = countryService.getAllCountries();
         return ResponseEntity.ok(countries);
     }

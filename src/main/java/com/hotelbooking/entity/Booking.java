@@ -21,7 +21,7 @@ public class Booking {
     private Date dateEnd;
     @ManyToMany
     @JoinTable(
-            name = "booking_service", schema = "BOOKING_HOTELS_SCHEMA",
+            name = "booking_services", schema = "BOOKING_HOTELS_SCHEMA",
             joinColumns = { @JoinColumn(name = "booking_id") },
             inverseJoinColumns = { @JoinColumn(name = "service_id") })
     private List<HotelService> services;

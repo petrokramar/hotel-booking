@@ -15,7 +15,7 @@ public class RoomServiceImpl implements RoomService{
     private RoomRepository roomRepository;
 
     @Override
-    public List<Room> getRooms() {
+    public List<Room> getAllRooms() {
         List<Room> rooms = (List<Room>) roomRepository.findAll();
         return rooms;
     }

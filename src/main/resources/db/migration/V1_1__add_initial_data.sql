@@ -32,14 +32,24 @@ INSERT INTO cities(id, name, country_id)
 VALUES('2', 'Avsallar', '2');
 INSERT INTO cities(id, name, country_id)
 VALUES('3', 'Port el Cantaoui', '3');
--- ALTER SEQUENCE cities_id_seq RESTART WITH 4;
+INSERT INTO cities(id, name, country_id)
+VALUES('4', 'Kemer', '2');
+INSERT INTO cities(id, name, country_id)
+VALUES('5', 'Marmaris', '2');
+INSERT INTO cities(id, name, country_id)
+VALUES('6', 'Alania', '2');
+INSERT INTO cities(id, name, country_id)
+VALUES('7', 'Belek', '2');
+INSERT INTO cities(id, name, country_id)
+VALUES('8', 'Side', '2');
+-- ALTER SEQUENCE cities_id_seq RESTART WITH 9;
 
 INSERT INTO hotels(id, name, city_id)
-VALUES('1', 'Egypt hotel 1', '1');
+VALUES('1', 'Hurhgada hotel 1', '1');
 INSERT INTO hotels(id, name, city_id)
-VALUES('2', 'Turkey hotel 1', '2');
+VALUES('2', 'Avsallar hotel 1', '2');
 INSERT INTO hotels(id, name, city_id)
-VALUES('3', 'Tunisia hotel 1', '3');
+VALUES('3', 'Port el Cantaoui hotel 1', '3');
 -- ALTER SEQUENCE hotels_id_seq RESTART WITH 4;
 
 INSERT INTO rooms(id, number, hotel_id, room_category_id)

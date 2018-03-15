@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "hotel_services", schema = "BOOKING_HOTELS_SCHEMA")
 @Data
-public class HotelService {
+public class AdditionalService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

@@ -34,5 +34,4 @@ public class HotelController {
         Hotel hotel = hotelService.getHotel(Integer.parseInt(id));
         return ResponseEntity.ok(hotel);
     }
-
 }

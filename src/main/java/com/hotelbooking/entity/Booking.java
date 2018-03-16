@@ -24,5 +24,5 @@ public class Booking {
             name = "booking_services", schema = "BOOKING_HOTELS_SCHEMA",
             joinColumns = { @JoinColumn(name = "booking_id") },
             inverseJoinColumns = { @JoinColumn(name = "service_id") })
-    private List<AdditionalService> additionalServices;
+    private List<HotelService> hotelServices;
 }

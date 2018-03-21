@@ -1,5 +1,6 @@
 package com.hotelbooking.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 public class User {
     @Id
     private String username;
+    @JsonIgnore
     private String password;
     private boolean enabled;
     private String firstName;

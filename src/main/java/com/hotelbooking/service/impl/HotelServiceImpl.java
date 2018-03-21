@@ -30,7 +30,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Hotel saveHotel(HotelRequest request) {
         Hotel hotel = new Hotel();
-        hotel.setId(request.getId());
+        hotel.setId(Integer.parseInt(request.getId()));
         hotel.setName(request.getName());
         hotel.setCity(cityRepository.findOne(Integer.parseInt(request.getCityId())));
         return hotelRepository.save(hotel);

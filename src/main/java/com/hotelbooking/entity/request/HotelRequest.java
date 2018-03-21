@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class HotelRequest {
 
     @NotEmpty
-    private int id;
+    private String id;
 
     @NotEmpty
     private String name;

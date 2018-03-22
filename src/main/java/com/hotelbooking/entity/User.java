@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "users")
 @Table(name = "users", schema = "BOOKING_HOTELS_SCHEMA")
@@ -16,4 +17,6 @@ public class User {
     private boolean enabled;
     private String firstName;
     private String lastName;
+    @OneToMany(mappedBy = "username")
+    private Set<Authority> roles;
 }

@@ -1,14 +1,22 @@
 INSERT INTO users(username, password, enabled, first_name, last_name)
-VALUES('bob', '{noop}1', 'true', 'Bob', 'Marley');
+VALUES('BobMarley', '{noop}1', 'true', 'Bob', 'Marley');
 INSERT INTO users(username, password, enabled, first_name, last_name)
-VALUES('james', '{noop}1', 'true', 'James', 'Bond');
+VALUES('JamesBond', '{noop}1', 'true', 'James', 'Bond');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('JohnLennon', '{noop}1', 'false', 'John', 'Lennon');
 
 INSERT INTO authorities(username, authority)
-VALUES('bob', 'ROLE_ADMIN');
+VALUES('BobMarley', 'ROLE_ADMIN');
 INSERT INTO authorities(username, authority)
-VALUES('bob', 'ROLE_USER');
+VALUES('BobMarley', 'ROLE_MANAGER');
 INSERT INTO authorities(username, authority)
-VALUES('james', 'ROLE_USER');
+VALUES('BobMarley', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('JamesBond', 'ROLE_MANAGER');
+INSERT INTO authorities(username, authority)
+VALUES('JamesBond', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('JohnLennon', 'ROLE_USER');
 
 INSERT INTO room_categories(id, name, description)
 VALUES('1', 'First', 'First category');
@@ -65,9 +73,9 @@ INSERT INTO hotel_services(id, name, description)
 VALUES('2', 'Cleaning room', 'Cleaning room');
 
 INSERT INTO booking(id, room_id, user_username, date_begin, date_end)
-VALUES('1', '1', 'bob', '2018-02-25', '2018-02-28');
+VALUES('1', '1', 'BobMarley', '2018-02-25', '2018-02-28');
 INSERT INTO booking(id, room_id, user_username, date_begin, date_end)
-VALUES('2', '2', 'james', '2018-02-28', '2018-03-05');
+VALUES('2', '2', 'JamesBond', '2018-02-28', '2018-03-05');
 
 INSERT INTO booking_services(booking_id, service_id)
 VALUES('1', '1');

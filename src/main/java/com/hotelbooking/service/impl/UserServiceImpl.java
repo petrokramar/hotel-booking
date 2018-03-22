@@ -19,4 +19,10 @@ public class UserServiceImpl implements UserService{
         List<User> users = (List<User>) userRepository.findAll();
         return users;
     }
+
+    @Override
+    public User getUser(String username) {
+        User user = userRepository.findOne(username);
+        return user;
+    }
 }

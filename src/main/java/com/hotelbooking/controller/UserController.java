@@ -5,6 +5,7 @@ import com.hotelbooking.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +25,9 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping(value = "/{username}")
+    public ResponseEntity<User> getRoomCategory(@PathVariable String username) {
+        User user = userService.getUser(username);
+        return ResponseEntity.ok(user);
+    }
 }

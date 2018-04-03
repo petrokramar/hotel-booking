@@ -62,9 +62,8 @@ public class CountryServiceTest {
     public void getCountry() {
 
         // given
-        CountryRequest request = new CountryRequest("1", "Turkey");
         Country expectedCountry = new Country();
-        expectedCountry.setId(1);
+        expectedCountry.setId(ID_ONE);
         expectedCountry.setName("Turkey");
         given(countryRepository.findOne(ID_ONE)).willReturn(expectedCountry);
 

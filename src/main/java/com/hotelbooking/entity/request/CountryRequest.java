@@ -5,17 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 public class CountryRequest {
 
-    @NotEmpty
-    private String id;
+    @NotNull
+    private int id;
 
     @NotEmpty
     private String name;
 
     @JsonCreator
-    public CountryRequest(@JsonProperty("id") String id, @JsonProperty("name") String name) {
+    public CountryRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }

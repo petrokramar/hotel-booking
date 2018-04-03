@@ -35,11 +35,11 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public Room saveRoom(RoomRequest request) {
         Room room = new Room();
-        room.setId(Integer.parseInt(request.getId()));
-        room.setNumber(Integer.parseInt(request.getNumber()));
-        Hotel hotel = hotelRepository.findOne(Integer.parseInt(request.getHotelId()));
+        room.setId(request.getId());
+        room.setNumber(request.getNumber());
+        Hotel hotel = hotelRepository.findOne(request.getHotelId());
         room.setHotel(hotel);
-        RoomCategory roomCategory = roomCategoryRepository.findOne(Integer.parseInt(request.getRoomCategoryId()));
+        RoomCategory roomCategory = roomCategoryRepository.findOne(request.getRoomCategoryId());
         room.setRoomCategory(roomCategory);
         return roomRepository.save(room);
     }

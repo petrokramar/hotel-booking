@@ -134,7 +134,7 @@ public class RoomServiceTest {
     public void saveRoom() {
 
         // given
-        RoomRequest request = new RoomRequest("1", "1", "1", "1");
+        RoomRequest request = new RoomRequest(ID_ONE, ID_ONE, ID_ONE, ID_ONE);
         Country country = new Country();
         country.setId(ID_ONE);
         country.setName("Turkey");

@@ -28,7 +28,7 @@ public class CountryServiceImpl implements CountryService{
     @Override
     public Country saveCountry(CountryRequest request) {
         Country country = new Country();
-        country.setId(Integer.parseInt(request.getId()));
+        country.setId(request.getId());
         country.setName(request.getName());
         return countryRepository.save(country);
     }

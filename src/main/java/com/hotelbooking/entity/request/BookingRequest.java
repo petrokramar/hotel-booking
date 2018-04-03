@@ -7,6 +7,7 @@ import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,11 @@ public class BookingRequest {
     private List<Integer> hotelServiceIds;
 
     @JsonCreator
-    public BookingRequest(@JsonProperty("hotelServiceIds") List<Integer> hotelServiceIds) {
+    public BookingRequest(@JsonProperty(value = "id", required = true) int id,
+                          @JsonProperty(value = "roomId", required = true) int roomId,
+                          @JsonProperty("username") String username,
+                          @JsonProperty("dateBegin") Date dateBegin, @JsonProperty("dateEnd") Date dateEnd,
+                          @JsonProperty("hotelServiceIds") List<Integer> hotelServiceIds) {
         this.id = id;
         this.roomId = roomId;
         this.username = username;

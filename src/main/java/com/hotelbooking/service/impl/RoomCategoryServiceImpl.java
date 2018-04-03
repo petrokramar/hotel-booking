@@ -29,7 +29,7 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
     @Override
     public RoomCategory saveRoomCategory(RoomCategoryRequest request) {
         RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(Integer.parseInt(request.getId()));
+        roomCategory.setId(request.getId());
         roomCategory.setName(request.getName());
         roomCategory.setDescription(request.getDescription());
         return roomCategoryRepository.save(roomCategory);

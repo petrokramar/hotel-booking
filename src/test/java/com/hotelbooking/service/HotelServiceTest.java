@@ -104,7 +104,7 @@ public class HotelServiceTest {
     public void saveHotel() {
 
         // given
-        HotelRequest request = new HotelRequest("1", "Hotel name 1", "1");
+        HotelRequest request = new HotelRequest(ID_ONE, "Hotel name 1", ID_ONE);
         Country country = new Country();
         country.setId(ID_ONE);
         country.setName("Turkey");

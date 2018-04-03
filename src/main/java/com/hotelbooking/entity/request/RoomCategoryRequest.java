@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 public class RoomCategoryRequest {
 
-    @NotEmpty
-    private String id;
+    @NotNull
+    private int id;
 
     @NotEmpty
     private String name;
@@ -18,7 +20,7 @@ public class RoomCategoryRequest {
     private String description;
 
     @JsonCreator
-    public RoomCategoryRequest(@JsonProperty("id") String id, @JsonProperty("name") String name,
+    public RoomCategoryRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name,
                                @JsonProperty("description") String description) {
         this.id = id;
         this.name = name;

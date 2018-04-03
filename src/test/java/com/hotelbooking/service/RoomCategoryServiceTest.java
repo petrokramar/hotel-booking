@@ -85,7 +85,7 @@ public class RoomCategoryServiceTest {
     public void saveRoomCategory() {
 
         // given
-        RoomCategoryRequest request = new RoomCategoryRequest("1", "Room category 1",
+        RoomCategoryRequest request = new RoomCategoryRequest(ID_ONE, "Room category 1",
                 "Room category 1 description");
         RoomCategory expectedRoomCategory = new RoomCategory();
         expectedRoomCategory.setId(ID_ONE);

@@ -80,7 +80,7 @@ public class CountryServiceTest {
     public void saveCountry() {
 
         // given
-        CountryRequest request = new CountryRequest("1", "Turkey");
+        CountryRequest request = new CountryRequest(ID_ONE, "Turkey");
         Country expectedCountry = new Country();
         expectedCountry.setId(ID_ONE);
         expectedCountry.setName("Turkey");

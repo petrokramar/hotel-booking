@@ -94,7 +94,7 @@ public class CityServiceTest {
     public void saveCity() {
 
         // given
-        CityRequest request = new CityRequest("1", "Kemer", "1");
+        CityRequest request = new CityRequest(ID_ONE, "Kemer", ID_ONE);
         Country country = new Country();
         country.setId(ID_ONE);
         country.setName("Turkey");

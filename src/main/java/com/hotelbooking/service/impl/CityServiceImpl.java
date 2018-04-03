@@ -30,9 +30,9 @@ public class CityServiceImpl implements CityService{
     @Override
     public City saveCity(CityRequest request) {
         City city = new City();
-        city.setId(Integer.parseInt(request.getId()));
+        city.setId(request.getId());
         city.setName(request.getName());
-        city.setCountry(countryRepository.findOne(Integer.parseInt(request.getCountryId())));
+        city.setCountry(countryRepository.findOne(request.getCountryId()));
         return cityRepository.save(city);
     }
 }

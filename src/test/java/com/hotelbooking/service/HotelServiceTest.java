@@ -76,6 +76,7 @@ public class HotelServiceTest {
 
     @Test
     public void getHotel() {
+
         // given
         Country country = new Country();
         country.setId(ID_ONE);
@@ -101,6 +102,7 @@ public class HotelServiceTest {
 
     @Test
     public void saveHotel() {
+
         // given
         HotelRequest request = new HotelRequest("1", "Hotel name 1", "1");
         Country country = new Country();

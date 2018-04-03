@@ -3,11 +3,9 @@ package com.hotelbooking.service;
 import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.request.CityRequest;
-import com.hotelbooking.entity.request.CountryRequest;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.CountryRepository;
 import com.hotelbooking.service.impl.CityServiceImpl;
-import com.hotelbooking.service.impl.CountryServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +14,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class CityServiceTest {
 

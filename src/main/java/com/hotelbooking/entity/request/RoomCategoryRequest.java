@@ -1,6 +1,7 @@
 package com.hotelbooking.entity.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,7 +18,8 @@ public class RoomCategoryRequest {
     private String description;
 
     @JsonCreator
-    public RoomCategoryRequest() {
+    public RoomCategoryRequest(@JsonProperty("id") String id, @JsonProperty("name") String name,
+                               @JsonProperty("description") String description) {
         this.id = id;
         this.name = name;
         this.description = description;

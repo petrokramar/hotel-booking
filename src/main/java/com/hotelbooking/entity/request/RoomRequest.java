@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -22,14 +23,19 @@ public class RoomRequest {
     @NotNull
     private int roomCategoryId;
 
+    @Min(value = 1)
+    private int price;
+
     @JsonCreator
     public RoomRequest(@JsonProperty(value = "id", required = true) int id,
                        @JsonProperty(value = "number", required = true) int number,
                        @JsonProperty(value = "hotelId", required = true) int hotelId,
-                       @JsonProperty(value = "roomCategoryId", required = true) int roomCategoryId) {
+                       @JsonProperty(value = "roomCategoryId", required = true) int roomCategoryId,
+                       @JsonProperty(value = "price", required = true) int price) {
         this.id = id;
         this.number = number;
         this.hotelId = hotelId;
         this.roomCategoryId = roomCategoryId;
+        this.price = price;
     }
 }

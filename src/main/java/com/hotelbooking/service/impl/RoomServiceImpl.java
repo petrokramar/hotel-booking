@@ -41,6 +41,7 @@ public class RoomServiceImpl implements RoomService{
         room.setHotel(hotel);
         RoomCategory roomCategory = roomCategoryRepository.findOne(request.getRoomCategoryId());
         room.setRoomCategory(roomCategory);
+        room.setPrice(request.getPrice());
         return roomRepository.save(room);
     }
 }

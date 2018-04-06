@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.rooms
   id SERIAL PRIMARY KEY,
   number integer NOT NULL,
   hotel_id integer references hotels(id),
-  room_category_id integer REFERENCES room_categories(id)
+  room_category_id integer REFERENCES room_categories(id),
+  price integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.hotel_services

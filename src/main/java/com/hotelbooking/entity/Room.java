@@ -16,4 +16,5 @@ public class Room {
     private Hotel hotel;
     @ManyToOne
     private RoomCategory roomCategory;
+    private int price;
 }

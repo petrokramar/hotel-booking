@@ -60,12 +60,12 @@ INSERT INTO hotels(id, name, city_id, category)
 VALUES('3', 'Port el Cantaoui hotel 1', '3', 'THREE_STARS');
 -- ALTER SEQUENCE hotels_id_seq RESTART WITH 4;
 
-INSERT INTO rooms(id, number, hotel_id, room_category_id, price)
-VALUES('1', '101', '1', '1', '300');
-INSERT INTO rooms(id, number, hotel_id, room_category_id, price)
-VALUES('2', '201', '2', '2', '200');
-INSERT INTO rooms(id, number, hotel_id, room_category_id, price)
-VALUES('3', '301', '3', '3', '100');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('1', '101', '1', '1', '300', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('2', '201', '2', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('3', '301', '3', '3', '100', '3');
 
 INSERT INTO hotel_services(id, name, description)
 VALUES('1', 'Breakfast', 'Breakfast');

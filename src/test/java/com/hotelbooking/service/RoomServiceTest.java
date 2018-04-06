@@ -27,6 +27,7 @@ public class RoomServiceTest {
     private final int ROOM_NUMBER_TWO = 2;
     private final int ROOM_NUMBER_THREE = 3;
     private final int ROOM_PRICE = 100;
+    private final int ROOM_NUMBER_OF_PERSONS = 2;
     private HotelRepository hotelRepository;
     private RoomCategoryRepository roomCategoryRepository;
     private RoomRepository roomRepository;
@@ -68,6 +69,7 @@ public class RoomServiceTest {
         roomOne.setHotel(hotel);
         roomOne.setRoomCategory(roomCategory);
         roomOne.setPrice(ROOM_PRICE);
+        roomOne.setPersons(ROOM_NUMBER_OF_PERSONS);
         expectedRooms.add(roomOne);
         Room roomTwo = new Room();
         roomTwo.setId(ID_TWO);
@@ -75,6 +77,7 @@ public class RoomServiceTest {
         roomTwo.setHotel(hotel);
         roomTwo.setRoomCategory(roomCategory);
         roomTwo.setPrice(ROOM_PRICE);
+        roomTwo.setPersons(ROOM_NUMBER_OF_PERSONS);
         expectedRooms.add(roomTwo);
         Room roomThree = new Room();
         roomThree.setId(ID_THREE);
@@ -82,6 +85,7 @@ public class RoomServiceTest {
         roomThree.setHotel(hotel);
         roomThree.setRoomCategory(roomCategory);
         roomThree.setPrice(ROOM_PRICE);
+        roomThree.setPersons(ROOM_NUMBER_OF_PERSONS);
         expectedRooms.add(roomThree);
         given(roomRepository.findAll()).willReturn(expectedRooms);
 
@@ -120,6 +124,7 @@ public class RoomServiceTest {
         expectedRoom.setHotel(hotel);
         expectedRoom.setRoomCategory(roomCategory);
         expectedRoom.setPrice(ROOM_PRICE);
+        expectedRoom.setPersons(ROOM_NUMBER_OF_PERSONS);
         given(roomRepository.findOne(ID_ONE)).willReturn(expectedRoom);
 
         //when
@@ -135,7 +140,7 @@ public class RoomServiceTest {
     public void saveRoom() {
 
         // given
-        RoomRequest request = new RoomRequest(ID_ONE, ID_ONE, ID_ONE, ID_ONE, ROOM_PRICE);
+        RoomRequest request = new RoomRequest(ID_ONE, ID_ONE, ID_ONE, ID_ONE, ROOM_PRICE, ROOM_NUMBER_OF_PERSONS);
         Country country = new Country();
         country.setId(ID_ONE);
         country.setName("Turkey");
@@ -158,6 +163,7 @@ public class RoomServiceTest {
         expectedRoom.setHotel(hotel);
         expectedRoom.setRoomCategory(roomCategory);
         expectedRoom.setPrice(ROOM_PRICE);
+        expectedRoom.setPersons(ROOM_NUMBER_OF_PERSONS);
         given(hotelRepository.findOne(ID_ONE)).willReturn(hotel);
         given(roomCategoryRepository.findOne(ID_ONE)).willReturn(roomCategory);
         given(roomRepository.save(expectedRoom)).willReturn(expectedRoom);

@@ -26,16 +26,21 @@ public class RoomRequest {
     @Min(value = 1)
     private int price;
 
+    @Min(value = 1)
+    private int persons;
+
     @JsonCreator
     public RoomRequest(@JsonProperty(value = "id", required = true) int id,
                        @JsonProperty(value = "number", required = true) int number,
                        @JsonProperty(value = "hotelId", required = true) int hotelId,
                        @JsonProperty(value = "roomCategoryId", required = true) int roomCategoryId,
-                       @JsonProperty(value = "price", required = true) int price) {
+                       @JsonProperty(value = "price", required = true) int price,
+                       @JsonProperty(value = "persons", required = true) int persons){
         this.id = id;
         this.number = number;
         this.hotelId = hotelId;
         this.roomCategoryId = roomCategoryId;
         this.price = price;
+        this.persons = persons;
     }
 }

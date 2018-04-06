@@ -52,7 +52,8 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.rooms
   number integer NOT NULL,
   hotel_id integer references hotels(id),
   room_category_id integer REFERENCES room_categories(id),
-  price integer NOT NULL
+  price integer NOT NULL,
+  persons integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.hotel_services

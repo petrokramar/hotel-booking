@@ -43,7 +43,6 @@ public class RoomServiceTest {
         roomService = new RoomServiceImpl(roomRepository, hotelRepository, roomCategoryRepository);
     }
 
-
     @Test
     public void getAllRooms() {
 
@@ -92,7 +91,6 @@ public class RoomServiceTest {
         assertEquals(expectedRooms, actualRooms);
         verify(roomRepository).findAll();
         verifyNoMoreInteractions(roomRepository);
-
     }
 
     @Test

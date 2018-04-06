@@ -6,7 +6,7 @@ import com.hotelbooking.entity.Room;
 import com.hotelbooking.entity.User;
 import com.hotelbooking.entity.request.BookingRequest;
 import com.hotelbooking.repository.BookingRepository;
-import com.hotelbooking.repository.HotelServiceRepository;
+import com.hotelbooking.repository.HotelOptionRepository;
 import com.hotelbooking.repository.RoomRepository;
 import com.hotelbooking.repository.UserRepository;
 import com.hotelbooking.service.BookingService;
@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +22,7 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepository bookingRepository;
     private UserRepository userRepository;
     private RoomRepository roomRepository;
-    private HotelServiceRepository hotelServiceRepository;
+    private HotelOptionRepository hotelOptionRepository;
 
     @Override
     public List<Booking> getBooking() {
@@ -49,7 +48,7 @@ public class BookingServiceImpl implements BookingService {
 //        List <Integer> hotelServicesIds =
 //                request.getHotelServiceIds().stream().map(Integer::parseInt).collect(Collectors.toList());
         List<HotelService> hotelServices =
-                (List<HotelService>) hotelServiceRepository.findAll(request.getHotelServiceIds());
+                (List<HotelService>) hotelOptionRepository.findAll(request.getHotelServiceIds());
         booking.setHotelServices(hotelServices);
         return bookingRepository.save(booking);
     }

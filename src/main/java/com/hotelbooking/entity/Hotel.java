@@ -14,4 +14,6 @@ public class Hotel {
     private String name;
     @ManyToOne
     private City city;
+    @Enumerated(EnumType.STRING)
+    private HotelCategory category;
 }

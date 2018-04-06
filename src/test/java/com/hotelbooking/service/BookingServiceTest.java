@@ -56,6 +56,7 @@ public class BookingServiceTest {
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");
         hotel.setCity(city);
+        hotel.setCategory(HotelCategory.FIVE_STARS);
         RoomCategory roomCategory = new RoomCategory();
         roomCategory.setId(ID_ONE);
         roomCategory.setName("Room category 1");

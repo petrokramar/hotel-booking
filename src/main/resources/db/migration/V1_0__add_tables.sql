@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.hotels
 (
   id SERIAL PRIMARY KEY,
   name varchar(50) NOT NULL,
-  city_id integer REFERENCES cities(id)
+  city_id integer REFERENCES cities(id),
+  category varchar(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.room_categories

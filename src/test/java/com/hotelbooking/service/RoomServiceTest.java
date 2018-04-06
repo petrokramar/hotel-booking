@@ -1,10 +1,6 @@
 package com.hotelbooking.service;
 
-import com.hotelbooking.entity.City;
-import com.hotelbooking.entity.Country;
-import com.hotelbooking.entity.Hotel;
-import com.hotelbooking.entity.Room;
-import com.hotelbooking.entity.RoomCategory;
+import com.hotelbooking.entity.*;
 import com.hotelbooking.entity.request.RoomRequest;
 import com.hotelbooking.repository.HotelRepository;
 import com.hotelbooking.repository.RoomCategoryRepository;
@@ -58,6 +54,7 @@ public class RoomServiceTest {
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");
         hotel.setCity(city);
+        hotel.setCategory(HotelCategory.FIVE_STARS);
         RoomCategory roomCategory = new RoomCategory();
         roomCategory.setId(ID_ONE);
         roomCategory.setName("Room category 1");
@@ -108,6 +105,7 @@ public class RoomServiceTest {
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");
         hotel.setCity(city);
+        hotel.setCategory(HotelCategory.FIVE_STARS);
         RoomCategory roomCategory = new RoomCategory();
         roomCategory.setId(ID_ONE);
         roomCategory.setName("Room category 1");
@@ -144,6 +142,7 @@ public class RoomServiceTest {
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");
         hotel.setCity(city);
+        hotel.setCategory(HotelCategory.FIVE_STARS);
         RoomCategory roomCategory = new RoomCategory();
         roomCategory.setId(ID_ONE);
         roomCategory.setName("Room category 1");

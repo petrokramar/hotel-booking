@@ -3,6 +3,7 @@ package com.hotelbooking.service;
 import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.Hotel;
+import com.hotelbooking.entity.HotelCategory;
 import com.hotelbooking.entity.request.HotelRequest;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.HotelRepository;
@@ -52,16 +53,19 @@ public class HotelServiceTest {
         hotelOne.setId(ID_ONE);
         hotelOne.setName("Hotel name 1");
         hotelOne.setCity(city);
+        hotelOne.setCategory(HotelCategory.THREE_STARS);
         expectedHotels.add(hotelOne);
         Hotel hotelTwo = new Hotel();
         hotelTwo.setId(ID_TWO);
         hotelTwo.setName("Hotel name 2");
         hotelTwo.setCity(city);
+        hotelOne.setCategory(HotelCategory.FOUR_STARS);
         expectedHotels.add(hotelTwo);
         Hotel hotelThree = new Hotel();
         hotelThree.setId(ID_THREE);
         hotelThree.setName("Hotel name 3");
         hotelThree.setCity(city);
+        hotelOne.setCategory(HotelCategory.FIVE_STARS);
         expectedHotels.add(hotelThree);
         given(hotelRepository.findAll()).willReturn(expectedHotels);
 
@@ -89,6 +93,7 @@ public class HotelServiceTest {
         expectedHotel.setId(ID_ONE);
         expectedHotel.setName("Hotel name 1");
         expectedHotel.setCity(city);
+        expectedHotel.setCategory(HotelCategory.FOUR_STARS);
         given(hotelRepository.findOne(ID_ONE)).willReturn(expectedHotel);
 
         //when
@@ -104,7 +109,7 @@ public class HotelServiceTest {
     public void saveHotel() {
 
         // given
-        HotelRequest request = new HotelRequest(ID_ONE, "Hotel name 1", ID_ONE);
+        HotelRequest request = new HotelRequest(ID_ONE, "Hotel name 1", ID_ONE,"FIVE_STARS");
         Country country = new Country();
         country.setId(ID_ONE);
         country.setName("Turkey");
@@ -116,6 +121,7 @@ public class HotelServiceTest {
         expectedHotel.setId(ID_ONE);
         expectedHotel.setName("Hotel name 1");
         expectedHotel.setCity(city);
+        expectedHotel.setCategory(HotelCategory.FIVE_STARS);
         given(cityRepository.findOne(ID_ONE)).willReturn(city);
         given(hotelRepository.save(expectedHotel)).willReturn(expectedHotel);
 

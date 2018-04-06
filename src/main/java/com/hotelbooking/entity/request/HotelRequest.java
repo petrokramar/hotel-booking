@@ -19,11 +19,16 @@ public class HotelRequest {
     @NotNull
     private int cityId;
 
+    @NotEmpty
+    private String category;
+
     @JsonCreator
     public HotelRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name,
-                        @JsonProperty(value = "cityId", required = true) int cityId) {
+                        @JsonProperty(value = "cityId", required = true) int cityId,
+                        @JsonProperty(value = "category", required = true) String category) {
         this.id = id;
         this.name = name;
         this.cityId = cityId;
+        this.category = category;
     }
 }

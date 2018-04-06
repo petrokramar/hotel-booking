@@ -1,6 +1,7 @@
 package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.Hotel;
+import com.hotelbooking.entity.HotelCategory;
 import com.hotelbooking.entity.request.HotelRequest;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.HotelRepository;
@@ -33,6 +34,7 @@ public class HotelServiceImpl implements HotelService {
         hotel.setId(request.getId());
         hotel.setName(request.getName());
         hotel.setCity(cityRepository.findOne(request.getCityId()));
+        hotel.setCategory(HotelCategory.valueOf(request.getCategory()));
         return hotelRepository.save(hotel);
     }
 }

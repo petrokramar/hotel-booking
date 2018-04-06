@@ -52,12 +52,12 @@ INSERT INTO cities(id, name, country_id)
 VALUES('8', 'Side', '2');
 -- ALTER SEQUENCE cities_id_seq RESTART WITH 9;
 
-INSERT INTO hotels(id, name, city_id)
-VALUES('1', 'Hurhgada hotel 1', '1');
-INSERT INTO hotels(id, name, city_id)
-VALUES('2', 'Avsallar hotel 1', '2');
-INSERT INTO hotels(id, name, city_id)
-VALUES('3', 'Port el Cantaoui hotel 1', '3');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('1', 'Hurhgada hotel 1', '1', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('2', 'Avsallar hotel 1', '2', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('3', 'Port el Cantaoui hotel 1', '3', 'THREE_STARS');
 -- ALTER SEQUENCE hotels_id_seq RESTART WITH 4;
 
 INSERT INTO rooms(id, number, hotel_id, room_category_id)

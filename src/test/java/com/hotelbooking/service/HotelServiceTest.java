@@ -41,10 +41,7 @@ public class HotelServiceTest {
 
         // given
         Country country = new Country(ID_ONE, "Country name");
-        City city = new City();
-        city.setId(ID_ONE);
-        city.setName("Kemer");
-        city.setCountry(country);
+        City city = new City(ID_ONE, "City name", country);
 
         List<Hotel> expectedHotels = new ArrayList<>();
         Hotel hotelOne = new Hotel();
@@ -81,10 +78,7 @@ public class HotelServiceTest {
 
         // given
         Country country = new Country(ID_ONE, "Country name");
-        City city = new City();
-        city.setId(ID_ONE);
-        city.setName("Kemer");
-        city.setCountry(country);
+        City city = new City(ID_ONE, "City name", country);
         Hotel expectedHotel = new Hotel();
         expectedHotel.setId(ID_ONE);
         expectedHotel.setName("Hotel name 1");
@@ -107,10 +101,7 @@ public class HotelServiceTest {
         // given
         HotelRequest request = new HotelRequest(ID_ONE, "Hotel name 1", ID_ONE,"FIVE_STARS");
         Country country = new Country(ID_ONE, "Country name");
-        City city = new City();
-        city.setId(ID_ONE);
-        city.setName("Kemer");
-        city.setCountry(country);
+        City city = new City(ID_ONE, "City name", country);
         Hotel expectedHotel = new Hotel();
         expectedHotel.setId(ID_ONE);
         expectedHotel.setName("Hotel name 1");

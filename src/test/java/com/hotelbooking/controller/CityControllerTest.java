@@ -1,9 +1,10 @@
 package com.hotelbooking.controller;
 
 import com.hotelbooking.config.SecurityConfig;
+import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Country;
-import com.hotelbooking.entity.request.CountryRequest;
-import com.hotelbooking.service.CountryService;
+import com.hotelbooking.entity.request.CityRequest;
+import com.hotelbooking.service.CityService;
 import net.javacrumbs.jsonunit.core.Option;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,75 +30,57 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CountryController.class)
+@WebMvcTest(CityController.class)
 @Import(SecurityConfig.class)
-public class CountryControllerTest {
+public class CityControllerTest{
 
-    private final String COUNTRIES_URL = "/countries";
+    private final String CITIES_URL = "/cities";
     private final int  ID_ONE = 1;
     private final int  ID_TWO = 2;
     private final int  ID_THREE = 3;
 
     @MockBean
-    private CountryService countryService;
+    private CityService cityService;
 
     @Inject
     private MockMvc mockMvc;
 
     @Test
-    public void getAllCountries() throws Exception {
+    public void getAllCities() throws Exception {
 
         // given
-        List<Country> countries = new ArrayList<>();
-        countries.add(new Country(ID_ONE, "Country one name"));
-        countries.add(new Country(ID_TWO, "Country two name"));
-        countries.add(new Country(ID_THREE, "Country three name"));
-        given(countryService.getAllCountries()).willReturn(countries);
+        Country country = new Country(ID_ONE, "Country name");
+        List<City> cities = new ArrayList<>();
+        cities.add(new City(ID_ONE, "City one name", country));
+        cities.add(new City(ID_TWO, "City two name", country));
+        cities.add(new City(ID_THREE, "City three name", country));
+        given(cityService.getAllCities()).willReturn(cities);
 
         // when
-        String result = mockMvc.perform(get(COUNTRIES_URL)
+        String result = mockMvc.perform(get(CITIES_URL)
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
 
         // then
-        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(countries);
-        verify(countryService).getAllCountries();
-        verifyNoMoreInteractions(countryService);
+        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(cities);
+        verify(cityService).getAllCities();
+        verifyNoMoreInteractions(cityService);
     }
 
     @Test
-    public void getCountry() throws Exception {
+    public void saveCity() throws Exception {
 
         // given
         Country country = new Country(ID_ONE, "Country name");
-        given(countryService.getCountry(ID_ONE)).willReturn(country);
+        City city = new City(ID_TWO, "City name", country);
+        CityRequest request = new CityRequest(ID_TWO, "City name", ID_ONE);
+        given(cityService.saveCity(request)).willReturn(city);
+        String requestJson = "{\"id\":\"2\",\"name\":\"City name\",\"countryId\":\"1\"}";
 
         // when
-        String result = mockMvc.perform(get(COUNTRIES_URL.concat("/").concat("1"))
-                .contentType(APPLICATION_JSON_UTF8))
-                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk())
-                .andReturn().getResponse().getContentAsString();
-
-        // then
-        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(country);
-        verify(countryService).getCountry(ID_ONE);
-        verifyNoMoreInteractions(countryService);
-    }
-
-    @Test
-    public void saveCountry() throws Exception {
-
-        // given
-        Country country = new Country(ID_ONE, "Country name");
-        CountryRequest request = new CountryRequest(ID_ONE, "Country name");
-        given(countryService.saveCountry(request)).willReturn(country);
-        String requestJson = "{\"id\":\"1\",\"name\":\"Country name\"}";
-
-        // when
-        String result = mockMvc.perform(post(COUNTRIES_URL)
+        String result = mockMvc.perform(post(CITIES_URL)
                 .content(requestJson)
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
@@ -104,8 +88,29 @@ public class CountryControllerTest {
                 .andReturn().getResponse().getContentAsString();
 
         // then
-        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(country);
-        verify(countryService).saveCountry(request);
-        verifyNoMoreInteractions(countryService);
+        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(city);
+        verify(cityService).saveCity(request);
+        verifyNoMoreInteractions(cityService);
+    }
+
+    @Test
+    public void getCity() throws Exception {
+
+        // given
+        Country country = new Country(ID_ONE, "Country name");
+        City city = new City(ID_ONE, "City name", country);
+        given(cityService.getCity(ID_ONE)).willReturn(city);
+
+        // when
+        String result = mockMvc.perform(get(CITIES_URL.concat("/").concat("1"))
+                .contentType(APPLICATION_JSON_UTF8))
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString();
+
+        // then
+        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(city);
+        verify(cityService).getCity(ID_ONE);
+        verifyNoMoreInteractions(cityService);
     }
 }

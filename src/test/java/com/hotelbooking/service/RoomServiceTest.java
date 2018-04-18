@@ -46,10 +46,7 @@ public class RoomServiceTest {
 
         // given
         Country country = new Country(ID_ONE, "Country name");
-        City city = new City();
-        city.setId(ID_ONE);
-        city.setName("Kemer");
-        city.setCountry(country);
+        City city = new City(ID_ONE, "City name", country);
         Hotel hotel = new Hotel();
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");
@@ -101,10 +98,7 @@ public class RoomServiceTest {
 
         // given
         Country country = new Country(ID_ONE, "Country name");
-        City city = new City();
-        city.setId(ID_ONE);
-        city.setName("Kemer");
-        city.setCountry(country);
+        City city = new City(ID_ONE, "City name", country);
         Hotel hotel = new Hotel();
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");
@@ -138,10 +132,7 @@ public class RoomServiceTest {
         // given
         RoomRequest request = new RoomRequest(ID_ONE, ID_ONE, ID_ONE, ID_ONE, ROOM_PRICE, ROOM_NUMBER_OF_PERSONS);
         Country country = new Country(ID_ONE, "Country name");
-        City city = new City();
-        city.setId(ID_ONE);
-        city.setName("Kemer");
-        city.setCountry(country);
+        City city = new City(ID_ONE, "City name", country);
         Hotel hotel = new Hotel();
         hotel.setId(ID_ONE);
         hotel.setName("Hotel name 1");

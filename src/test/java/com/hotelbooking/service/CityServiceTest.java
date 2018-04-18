@@ -40,20 +40,11 @@ public class CityServiceTest {
         // given
         Country country = new Country(ID_ONE, "Country name");
         List<City> expectedCities = new ArrayList<>();
-        City cityOne = new City();
-        cityOne.setId(ID_ONE);
-        cityOne.setName("Kemer");
-        cityOne.setCountry(country);
+        City cityOne = new City(ID_ONE, "City one name", country);
         expectedCities.add(cityOne);
-        City cityTwo = new City();
-        cityTwo.setId(ID_TWO);
-        cityTwo.setName("Bodrum");
-        cityTwo.setCountry(country);
+        City cityTwo = new City(ID_TWO, "City two name", country);
         expectedCities.add(cityTwo);
-        City cityThree = new City();
-        cityThree.setId(ID_THREE);
-        cityThree.setName("Marmaris");
-        cityThree.setCountry(country);
+        City cityThree = new City(ID_THREE, "City three name", country);
         expectedCities.add(cityThree);
         given(cityRepository.findAllByOrderByName()).willReturn(expectedCities);
 
@@ -71,10 +62,7 @@ public class CityServiceTest {
 
         // given
         Country country = new Country(ID_ONE, "Country name");
-        City expectedCity = new City();
-        expectedCity.setId(ID_ONE);
-        expectedCity.setName("Kemer");
-        expectedCity.setCountry(country);
+        City expectedCity = new City(ID_ONE, "City name", country);
         given(cityRepository.findOne(ID_ONE)).willReturn(expectedCity);
 
         //when
@@ -90,13 +78,10 @@ public class CityServiceTest {
     public void saveCity() {
 
         // given
-        CityRequest request = new CityRequest(ID_ONE, "Kemer", ID_ONE);
-        Country country = new Country(ID_ONE, "Country name");
-        City expectedCity = new City();
-        expectedCity.setId(ID_ONE);
-        expectedCity.setName("Kemer");
-        expectedCity.setCountry(country);
-        given(countryRepository.findOne(ID_ONE)).willReturn(country);
+        CityRequest request = new CityRequest(ID_ONE, "City name", ID_TWO);
+        Country country = new Country(ID_TWO, "Country name");
+        City expectedCity = new City(ID_ONE, "City name", country);
+        given(countryRepository.findOne(ID_TWO)).willReturn(country);
         given(cityRepository.save(expectedCity)).willReturn(expectedCity);
 
         //when
@@ -104,7 +89,7 @@ public class CityServiceTest {
 
         //then
         assertEquals(expectedCity, actualCity);
-        verify(countryRepository).findOne(ID_ONE);
+        verify(countryRepository).findOne(ID_TWO);
         verifyNoMoreInteractions(countryRepository);
         verify(cityRepository).save(expectedCity);
         verifyNoMoreInteractions(cityRepository);

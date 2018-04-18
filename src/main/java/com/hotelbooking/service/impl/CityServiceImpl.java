@@ -1,6 +1,7 @@
 package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.City;
+import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.request.CityRequest;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.CountryRepository;
@@ -29,10 +30,9 @@ public class CityServiceImpl implements CityService{
 
     @Override
     public City saveCity(CityRequest request) {
-        City city = new City();
-        city.setId(request.getId());
-        city.setName(request.getName());
-        city.setCountry(countryRepository.findOne(request.getCountryId()));
+
+        Country country = countryRepository.findOne(request.getCountryId());
+        City city = new City(request.getId(), request.getName(), country);
         return cityRepository.save(city);
     }
 }

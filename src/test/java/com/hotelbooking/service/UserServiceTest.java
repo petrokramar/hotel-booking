@@ -20,9 +20,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class UserServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int ROLE_ONE_ID = 1;
+    private final int ROLE_TWO_ID = 2;
+    private final int ROLE_THREE_ID = 3;
     private UserRepository userRepository;
     private UserService userService;
 
@@ -40,7 +40,7 @@ public class UserServiceTest {
 
         Set<Authority> rolesUserOne = new HashSet<>();
         Authority roleOne = new Authority();
-        roleOne.setId(ID_ONE);
+        roleOne.setId(ROLE_ONE_ID);
         roleOne.setAuthority("ROLE_ADMIN");
         roleOne.setUsername("user1");
         rolesUserOne.add(roleOne);
@@ -55,7 +55,7 @@ public class UserServiceTest {
 
         Set<Authority> rolesUserTwo = new HashSet<>();
         Authority roleTwo = new Authority();
-        roleTwo.setId(ID_TWO);
+        roleTwo.setId(ROLE_TWO_ID);
         roleTwo.setAuthority("ROLE_USER");
         roleTwo.setUsername("user2");
         rolesUserTwo.add(roleTwo);
@@ -70,7 +70,7 @@ public class UserServiceTest {
 
         Set<Authority> rolesUserThree = new HashSet<>();
         Authority roleThree = new Authority();
-        roleThree.setId(ID_THREE);
+        roleThree.setId(ROLE_THREE_ID);
         roleThree.setAuthority("ROLE_USER");
         roleThree.setUsername("user3");
         rolesUserThree.add(roleThree);
@@ -100,12 +100,12 @@ public class UserServiceTest {
         // given
         Set<Authority> roles = new HashSet<>();
         Authority roleOne = new Authority();
-        roleOne.setId(ID_ONE);
+        roleOne.setId(ROLE_ONE_ID);
         roleOne.setAuthority("ROLE_ADMIN");
         roleOne.setUsername("user1");
         roles.add(roleOne);
         Authority roleTwo = new Authority();
-        roleTwo.setId(ID_TWO);
+        roleTwo.setId(ROLE_TWO_ID);
         roleTwo.setAuthority("ROLE_USER");
         roleTwo.setUsername("user1");
         roles.add(roleTwo);

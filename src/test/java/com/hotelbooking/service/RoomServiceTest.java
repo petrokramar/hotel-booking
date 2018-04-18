@@ -20,9 +20,13 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class RoomServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int ROOM_ONE_ID = 1;
+    private final int ROOM_TWO_ID = 2;
+    private final int ROOM_THREE_ID = 3;
+    private final int COUNTRY_ID = 4;
+    private final int CITY_ID = 5;
+    private final int HOTEL_ID = 6;
+    private final int ROOM_CATEGORY_ID = 7;
     private final int ROOM_NUMBER_ONE = 1;
     private final int ROOM_NUMBER_TWO = 2;
     private final int ROOM_NUMBER_THREE = 3;
@@ -45,21 +49,17 @@ public class RoomServiceTest {
     public void getAllRooms() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
-        Hotel hotel = new Hotel();
-        hotel.setId(ID_ONE);
-        hotel.setName("Hotel name 1");
-        hotel.setCity(city);
-        hotel.setCategory(HotelCategory.FIVE_STARS);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
+        Hotel hotel = new Hotel(HOTEL_ID, "Hotel name 1" , city , HotelCategory.THREE_STARS);
         RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ID_ONE);
+        roomCategory.setId(ROOM_CATEGORY_ID);
         roomCategory.setName("Room category 1");
         roomCategory.setDescription("Room category 1 description");
 
         List<Room> expectedRooms = new ArrayList<>();
         Room roomOne = new Room();
-        roomOne.setId(ID_ONE);
+        roomOne.setId(ROOM_ONE_ID);
         roomOne.setNumber(ROOM_NUMBER_ONE);
         roomOne.setHotel(hotel);
         roomOne.setRoomCategory(roomCategory);
@@ -67,7 +67,7 @@ public class RoomServiceTest {
         roomOne.setPersons(ROOM_NUMBER_OF_PERSONS);
         expectedRooms.add(roomOne);
         Room roomTwo = new Room();
-        roomTwo.setId(ID_TWO);
+        roomTwo.setId(ROOM_TWO_ID);
         roomTwo.setNumber(ROOM_NUMBER_TWO);
         roomTwo.setHotel(hotel);
         roomTwo.setRoomCategory(roomCategory);
@@ -75,7 +75,7 @@ public class RoomServiceTest {
         roomTwo.setPersons(ROOM_NUMBER_OF_PERSONS);
         expectedRooms.add(roomTwo);
         Room roomThree = new Room();
-        roomThree.setId(ID_THREE);
+        roomThree.setId(ROOM_THREE_ID);
         roomThree.setNumber(ROOM_NUMBER_THREE);
         roomThree.setHotel(hotel);
         roomThree.setRoomCategory(roomCategory);
@@ -97,32 +97,28 @@ public class RoomServiceTest {
     public void getRoom() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
-        Hotel hotel = new Hotel();
-        hotel.setId(ID_ONE);
-        hotel.setName("Hotel name 1");
-        hotel.setCity(city);
-        hotel.setCategory(HotelCategory.FIVE_STARS);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
+        Hotel hotel = new Hotel(HOTEL_ID, "Hotel name" , city , HotelCategory.THREE_STARS);
         RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ID_ONE);
-        roomCategory.setName("Room category 1");
-        roomCategory.setDescription("Room category 1 description");
+        roomCategory.setId(ROOM_CATEGORY_ID);
+        roomCategory.setName("Room category name");
+        roomCategory.setDescription("Room category description");
         Room expectedRoom = new Room();
-        expectedRoom.setId(ID_ONE);
+        expectedRoom.setId(ROOM_ONE_ID);
         expectedRoom.setNumber(ROOM_NUMBER_ONE);
         expectedRoom.setHotel(hotel);
         expectedRoom.setRoomCategory(roomCategory);
         expectedRoom.setPrice(ROOM_PRICE);
         expectedRoom.setPersons(ROOM_NUMBER_OF_PERSONS);
-        given(roomRepository.findOne(ID_ONE)).willReturn(expectedRoom);
+        given(roomRepository.findOne(ROOM_ONE_ID)).willReturn(expectedRoom);
 
         //when
-        Room actualRoom = roomService.getRoom(ID_ONE);
+        Room actualRoom = roomService.getRoom(ROOM_ONE_ID);
 
         //then
         assertEquals(expectedRoom, actualRoom);
-        verify(roomRepository).findOne(ID_ONE);
+        verify(roomRepository).findOne(ROOM_ONE_ID);
         verifyNoMoreInteractions(roomRepository);
     }
 
@@ -130,27 +126,24 @@ public class RoomServiceTest {
     public void saveRoom() {
 
         // given
-        RoomRequest request = new RoomRequest(ID_ONE, ID_ONE, ID_ONE, ID_ONE, ROOM_PRICE, ROOM_NUMBER_OF_PERSONS);
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
-        Hotel hotel = new Hotel();
-        hotel.setId(ID_ONE);
-        hotel.setName("Hotel name 1");
-        hotel.setCity(city);
-        hotel.setCategory(HotelCategory.FIVE_STARS);
+        RoomRequest request = new RoomRequest(ROOM_ONE_ID, ROOM_NUMBER_ONE, HOTEL_ID, ROOM_CATEGORY_ID, ROOM_PRICE,
+                ROOM_NUMBER_OF_PERSONS);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
+        Hotel hotel = new Hotel(HOTEL_ID, "Hotel name", city , HotelCategory.THREE_STARS);
         RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ID_ONE);
+        roomCategory.setId(ROOM_CATEGORY_ID);
         roomCategory.setName("Room category 1");
         roomCategory.setDescription("Room category 1 description");
         Room expectedRoom = new Room();
-        expectedRoom.setId(ID_ONE);
+        expectedRoom.setId(ROOM_ONE_ID);
         expectedRoom.setNumber(ROOM_NUMBER_ONE);
         expectedRoom.setHotel(hotel);
         expectedRoom.setRoomCategory(roomCategory);
         expectedRoom.setPrice(ROOM_PRICE);
         expectedRoom.setPersons(ROOM_NUMBER_OF_PERSONS);
-        given(hotelRepository.findOne(ID_ONE)).willReturn(hotel);
-        given(roomCategoryRepository.findOne(ID_ONE)).willReturn(roomCategory);
+        given(hotelRepository.findOne(HOTEL_ID)).willReturn(hotel);
+        given(roomCategoryRepository.findOne(ROOM_CATEGORY_ID)).willReturn(roomCategory);
         given(roomRepository.save(expectedRoom)).willReturn(expectedRoom);
 
         //when
@@ -158,9 +151,9 @@ public class RoomServiceTest {
 
         //then
         assertEquals(expectedRoom, actualRoom);
-        verify(hotelRepository).findOne(ID_ONE);
+        verify(hotelRepository).findOne(HOTEL_ID);
         verifyNoMoreInteractions(hotelRepository);
-        verify(roomCategoryRepository).findOne(ID_ONE);
+        verify(roomCategoryRepository).findOne(ROOM_CATEGORY_ID);
         verifyNoMoreInteractions(roomCategoryRepository);
         verify(roomRepository).save(expectedRoom);
         verifyNoMoreInteractions(roomRepository);

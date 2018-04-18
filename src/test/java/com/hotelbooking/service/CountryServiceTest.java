@@ -18,9 +18,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class CountryServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int COUNTRY_ONE_ID = 1;
+    private final int COUNTRY_TWO_ID = 2;
+    private final int COUNTRY_THREE_ID = 3;
     private CountryRepository countryRepository;
     private CountryService countryService;
 
@@ -35,11 +35,11 @@ public class CountryServiceTest {
 
         // given
         List<Country> expectedCountries = new ArrayList<>();
-        Country countryOne = new Country(ID_ONE, "Country one name");
+        Country countryOne = new Country(COUNTRY_ONE_ID, "Country one name");
         expectedCountries.add(countryOne);
-        Country countryTwo = new Country(ID_TWO, "Country two name");
+        Country countryTwo = new Country(COUNTRY_TWO_ID, "Country two name");
         expectedCountries.add(countryTwo);
-        Country countryThree = new Country(ID_ONE, "Country three name");
+        Country countryThree = new Country(COUNTRY_THREE_ID, "Country three name");
         expectedCountries.add(countryThree);
         given(countryRepository.findAllByOrderByName()).willReturn(expectedCountries);
 
@@ -56,15 +56,15 @@ public class CountryServiceTest {
     public void getCountry() {
 
         // given
-        Country expectedCountry = new Country(ID_ONE, "Country name");
-        given(countryRepository.findOne(ID_ONE)).willReturn(expectedCountry);
+        Country expectedCountry = new Country(COUNTRY_ONE_ID, "Country name");
+        given(countryRepository.findOne(COUNTRY_ONE_ID)).willReturn(expectedCountry);
 
         //when
-        Country actualCountry = countryService.getCountry(ID_ONE);
+        Country actualCountry = countryService.getCountry(COUNTRY_ONE_ID);
 
         //then
         assertEquals(expectedCountry, actualCountry);
-        verify(countryRepository).findOne(ID_ONE);
+        verify(countryRepository).findOne(COUNTRY_ONE_ID);
         verifyNoMoreInteractions(countryRepository);
     }
 
@@ -72,7 +72,7 @@ public class CountryServiceTest {
     public void saveCountry() {
 
         // given
-        CountryRequest request = new CountryRequest(ID_ONE, "Country name");
+        CountryRequest request = new CountryRequest(COUNTRY_ONE_ID, "Country name");
         Country expectedCountry = new Country(request.getId(), request.getName());
         given(countryRepository.save(expectedCountry)).willReturn(expectedCountry);
 

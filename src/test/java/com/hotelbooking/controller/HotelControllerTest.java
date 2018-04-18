@@ -3,8 +3,10 @@ package com.hotelbooking.controller;
 import com.hotelbooking.config.SecurityConfig;
 import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Country;
-import com.hotelbooking.entity.request.CityRequest;
-import com.hotelbooking.service.CityService;
+import com.hotelbooking.entity.Hotel;
+import com.hotelbooking.entity.HotelCategory;
+import com.hotelbooking.entity.request.HotelRequest;
+import com.hotelbooking.service.HotelService;
 import net.javacrumbs.jsonunit.core.Option;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,58 +32,62 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CityController.class)
+@WebMvcTest(HotelController.class)
 @Import(SecurityConfig.class)
-public class CityControllerTest{
+public class HotelControllerTest{
 
-    private final String CITIES_URL = "/cities";
-    private final int CITY_ONE_ID = 1;
-    private final int CITY_TWO_ID = 2;
-    private final int CITY_THREE_ID = 3;
+    private final String HOTELS_URL = "/hotels";
+    private final int HOTEL_ONE_ID = 1;
+    private final int HOTEL_TWO_ID = 2;
+    private final int HOTEL_THREE_ID = 3;
     private final int COUNTRY_ID = 4;
+    private final int CITY_ID = 5;
 
     @MockBean
-    private CityService cityService;
+    private HotelService hotelService;
 
     @Inject
     private MockMvc mockMvc;
 
     @Test
-    public void getAllCities() throws Exception {
+    public void getAllHotels() throws Exception {
 
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
-        List<City> cities = new ArrayList<>();
-        cities.add(new City(CITY_ONE_ID, "City one name", country));
-        cities.add(new City(CITY_TWO_ID, "City two name", country));
-        cities.add(new City(CITY_THREE_ID, "City three name", country));
-        given(cityService.getAllCities()).willReturn(cities);
+        City city = new City(CITY_ID, "City one name", country);
+        List<Hotel> hotels = new ArrayList<>();
+        hotels.add(new Hotel(HOTEL_ONE_ID, "Hotel one name", city, HotelCategory.THREE_STARS));
+        hotels.add(new Hotel(HOTEL_TWO_ID, "Hotel two name",  city, HotelCategory.FOUR_STARS));
+        hotels.add(new Hotel(HOTEL_THREE_ID, "Hotel three name", city, HotelCategory.FIVE_STARS));
+        given(hotelService.getAllHotels()).willReturn(hotels);
 
         // when
-        String result = mockMvc.perform(get(CITIES_URL)
+        String result = mockMvc.perform(get(HOTELS_URL)
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
 
         // then
-        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(cities);
-        verify(cityService).getAllCities();
-        verifyNoMoreInteractions(cityService);
+        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(hotels);
+        verify(hotelService).getAllHotels();
+        verifyNoMoreInteractions(hotelService);
     }
 
     @Test
-    public void saveCity() throws Exception {
+    public void saveHotel() throws Exception {
 
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
-        City city = new City(CITY_ONE_ID, "City name", country);
-        CityRequest request = new CityRequest(CITY_ONE_ID, "City name", COUNTRY_ID);
-        given(cityService.saveCity(request)).willReturn(city);
-        String requestJson = "{\"id\":\"1\",\"name\":\"City name\",\"countryId\":\"4\"}";
+        City city = new City(CITY_ID, "City name", country);
+        Hotel hotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.THREE_STARS);
+        HotelRequest request = new HotelRequest(HOTEL_ONE_ID, "Hotel name", CITY_ID,
+                HotelCategory.THREE_STARS.name());
+        given(hotelService.saveHotel(request)).willReturn(hotel);
+        String requestJson = "{\"id\":\"1\",\"name\":\"Hotel name\",\"cityId\":\"5\",\"category\":\"THREE_STARS\"}";
 
         // when
-        String result = mockMvc.perform(post(CITIES_URL)
+        String result = mockMvc.perform(post(HOTELS_URL)
                 .content(requestJson)
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
@@ -89,29 +95,30 @@ public class CityControllerTest{
                 .andReturn().getResponse().getContentAsString();
 
         // then
-        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(city);
-        verify(cityService).saveCity(request);
-        verifyNoMoreInteractions(cityService);
+        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(hotel);
+        verify(hotelService).saveHotel(request);
+        verifyNoMoreInteractions(hotelService);
     }
 
     @Test
-    public void getCity() throws Exception {
+    public void getHotel() throws Exception {
 
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
-        City city = new City(CITY_ONE_ID, "City name", country);
-        given(cityService.getCity(CITY_ONE_ID)).willReturn(city);
+        City city = new City(CITY_ID, "City name", country);
+        Hotel hotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.THREE_STARS);
+        given(hotelService.getHotel(HOTEL_ONE_ID)).willReturn(hotel);
 
         // when
-        String result = mockMvc.perform(get(CITIES_URL.concat("/").concat("1"))
+        String result = mockMvc.perform(get(HOTELS_URL.concat("/").concat("1"))
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
 
         // then
-        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(city);
-        verify(cityService).getCity(CITY_ONE_ID);
-        verifyNoMoreInteractions(cityService);
+        assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(hotel);
+        verify(hotelService).getHotel(HOTEL_ONE_ID);
+        verifyNoMoreInteractions(hotelService);
     }
 }

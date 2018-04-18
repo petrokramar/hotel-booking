@@ -1,5 +1,6 @@
 package com.hotelbooking.service.impl;
 
+import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Hotel;
 import com.hotelbooking.entity.HotelCategory;
 import com.hotelbooking.entity.request.HotelRequest;
@@ -30,11 +31,10 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Hotel saveHotel(HotelRequest request) {
-        Hotel hotel = new Hotel();
-        hotel.setId(request.getId());
-        hotel.setName(request.getName());
-        hotel.setCity(cityRepository.findOne(request.getCityId()));
-        hotel.setCategory(HotelCategory.valueOf(request.getCategory()));
+
+        City city = cityRepository.findOne(request.getCityId());
+        HotelCategory  hotelCategory = HotelCategory.valueOf(request.getCategory());
+        Hotel hotel = new Hotel(request.getId(), request.getName(), city , hotelCategory);
         return hotelRepository.save(hotel);
     }
 }

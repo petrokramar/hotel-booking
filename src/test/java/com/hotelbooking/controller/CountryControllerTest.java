@@ -33,9 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CountryControllerTest {
 
     private final String COUNTRIES_URL = "/countries";
-    private final int  ID_ONE = 1;
-    private final int  ID_TWO = 2;
-    private final int  ID_THREE = 3;
+    private final int COUNTRY_ONE_ID = 1;
+    private final int COUNTRY_TWO_ID = 2;
+    private final int COUNTRY_THREE_ID = 3;
 
     @MockBean
     private CountryService countryService;
@@ -48,9 +48,9 @@ public class CountryControllerTest {
 
         // given
         List<Country> countries = new ArrayList<>();
-        countries.add(new Country(ID_ONE, "Country one name"));
-        countries.add(new Country(ID_TWO, "Country two name"));
-        countries.add(new Country(ID_THREE, "Country three name"));
+        countries.add(new Country(COUNTRY_ONE_ID, "Country one name"));
+        countries.add(new Country(COUNTRY_TWO_ID, "Country two name"));
+        countries.add(new Country(COUNTRY_THREE_ID, "Country three name"));
         given(countryService.getAllCountries()).willReturn(countries);
 
         // when
@@ -70,8 +70,8 @@ public class CountryControllerTest {
     public void getCountry() throws Exception {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        given(countryService.getCountry(ID_ONE)).willReturn(country);
+        Country country = new Country(COUNTRY_ONE_ID, "Country name");
+        given(countryService.getCountry(COUNTRY_ONE_ID)).willReturn(country);
 
         // when
         String result = mockMvc.perform(get(COUNTRIES_URL.concat("/").concat("1"))
@@ -82,7 +82,7 @@ public class CountryControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(country);
-        verify(countryService).getCountry(ID_ONE);
+        verify(countryService).getCountry(COUNTRY_ONE_ID);
         verifyNoMoreInteractions(countryService);
     }
 
@@ -90,8 +90,8 @@ public class CountryControllerTest {
     public void saveCountry() throws Exception {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        CountryRequest request = new CountryRequest(ID_ONE, "Country name");
+        Country country = new Country(COUNTRY_ONE_ID, "Country name");
+        CountryRequest request = new CountryRequest(COUNTRY_ONE_ID, "Country name");
         given(countryService.saveCountry(request)).willReturn(country);
         String requestJson = "{\"id\":\"1\",\"name\":\"Country name\"}";
 

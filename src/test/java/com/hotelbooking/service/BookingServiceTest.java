@@ -19,12 +19,14 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class BookingServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int BOOKING_ONE_ID = 1;
+    private final int COUNTRY_ID = 2;
+    private final int CITY_ID = 3;
+    private final int HOTEL_ID = 4;
+    private final int ROOM_ID = 5;
+    private final int ROOM_CATEGORY_ID = 6;
+    private final int ROLE_ID = 7;
     private final int ROOM_NUMBER_ONE = 1;
-    private final int ROOM_NUMBER_TWO = 2;
-    private final int ROOM_NUMBER_THREE = 3;
     private BookingRepository bookingRepository;
     private UserRepository userRepository;
     private RoomRepository roomRepository;
@@ -45,21 +47,17 @@ public class BookingServiceTest {
     public void getBooking() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
-        Hotel hotel = new Hotel();
-        hotel.setId(ID_ONE);
-        hotel.setName("Hotel name 1");
-        hotel.setCity(city);
-        hotel.setCategory(HotelCategory.FIVE_STARS);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
+        Hotel hotel = new Hotel(HOTEL_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
         RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ID_ONE);
+        roomCategory.setId(ROOM_CATEGORY_ID);
         roomCategory.setName("Room category 1");
         roomCategory.setDescription("Room category 1 description");
 
         Set<Authority> rolesUserOne = new HashSet<>();
         Authority roleOne = new Authority();
-        roleOne.setId(ID_ONE);
+        roleOne.setId(ROLE_ID);
         roleOne.setAuthority("ROLE_ADMIN");
         roleOne.setUsername("user1");
         rolesUserOne.add(roleOne);
@@ -72,7 +70,7 @@ public class BookingServiceTest {
         userOne.setEnabled(true);
 
         Room roomOne = new Room();
-        roomOne.setId(ID_ONE);
+        roomOne.setId(ROOM_ID);
         roomOne.setNumber(ROOM_NUMBER_ONE);
         roomOne.setHotel(hotel);
         roomOne.setRoomCategory(roomCategory);
@@ -80,7 +78,7 @@ public class BookingServiceTest {
         List<Booking> expectedBooking = new ArrayList<>();
 
         Booking bookingOne = new Booking();
-        bookingOne.setId(ID_ONE);
+        bookingOne.setId(BOOKING_ONE_ID);
         bookingOne.setUser(userOne);
         bookingOne.setRoom(roomOne);
         bookingOne.setDateBegin(new Date());

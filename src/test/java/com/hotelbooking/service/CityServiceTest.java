@@ -20,9 +20,10 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class CityServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int CITY_ONE_ID = 1;
+    private final int CITY_TWO_ID = 2;
+    private final int CITY_THREE_ID = 3;
+    private final int COUNTRY_ID = 4;
     private CountryRepository countryRepository;
     private CityRepository cityRepository;
     private CityService cityService;
@@ -38,13 +39,13 @@ public class CityServiceTest {
     public void getAllCities() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
+        Country country = new Country(COUNTRY_ID, "Country name");
         List<City> expectedCities = new ArrayList<>();
-        City cityOne = new City(ID_ONE, "City one name", country);
+        City cityOne = new City(CITY_ONE_ID, "City one name", country);
         expectedCities.add(cityOne);
-        City cityTwo = new City(ID_TWO, "City two name", country);
+        City cityTwo = new City(CITY_TWO_ID, "City two name", country);
         expectedCities.add(cityTwo);
-        City cityThree = new City(ID_THREE, "City three name", country);
+        City cityThree = new City(CITY_THREE_ID, "City three name", country);
         expectedCities.add(cityThree);
         given(cityRepository.findAllByOrderByName()).willReturn(expectedCities);
 
@@ -61,16 +62,16 @@ public class CityServiceTest {
     public void getCity() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        City expectedCity = new City(ID_ONE, "City name", country);
-        given(cityRepository.findOne(ID_ONE)).willReturn(expectedCity);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City expectedCity = new City(CITY_ONE_ID, "City name", country);
+        given(cityRepository.findOne(CITY_ONE_ID)).willReturn(expectedCity);
 
         //when
-        City actualCity = cityService.getCity(ID_ONE);
+        City actualCity = cityService.getCity(CITY_ONE_ID);
 
         //then
         assertEquals(expectedCity, actualCity);
-        verify(cityRepository).findOne(ID_ONE);
+        verify(cityRepository).findOne(CITY_ONE_ID);
         verifyNoMoreInteractions(cityRepository);
     }
 
@@ -78,10 +79,10 @@ public class CityServiceTest {
     public void saveCity() {
 
         // given
-        CityRequest request = new CityRequest(ID_ONE, "City name", ID_TWO);
-        Country country = new Country(ID_TWO, "Country name");
-        City expectedCity = new City(ID_ONE, "City name", country);
-        given(countryRepository.findOne(ID_TWO)).willReturn(country);
+        CityRequest request = new CityRequest(CITY_ONE_ID, "City name", COUNTRY_ID);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City expectedCity = new City(CITY_ONE_ID, "City name", country);
+        given(countryRepository.findOne(COUNTRY_ID)).willReturn(country);
         given(cityRepository.save(expectedCity)).willReturn(expectedCity);
 
         //when
@@ -89,7 +90,7 @@ public class CityServiceTest {
 
         //then
         assertEquals(expectedCity, actualCity);
-        verify(countryRepository).findOne(ID_TWO);
+        verify(countryRepository).findOne(COUNTRY_ID);
         verifyNoMoreInteractions(countryRepository);
         verify(cityRepository).save(expectedCity);
         verifyNoMoreInteractions(cityRepository);

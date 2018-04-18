@@ -22,9 +22,11 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class HotelServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int HOTEL_ONE_ID = 1;
+    private final int HOTEL_TWO_ID = 2;
+    private final int HOTEL_THREE_ID = 3;
+    private final int COUNTRY_ID = 4;
+    private final int CITY_ID = 5;
     private HotelRepository hotelRepository;
     private CityRepository cityRepository;
     private HotelService hotelService;
@@ -40,27 +42,15 @@ public class HotelServiceTest {
     public void getAllHotels() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
 
         List<Hotel> expectedHotels = new ArrayList<>();
-        Hotel hotelOne = new Hotel();
-        hotelOne.setId(ID_ONE);
-        hotelOne.setName("Hotel name 1");
-        hotelOne.setCity(city);
-        hotelOne.setCategory(HotelCategory.THREE_STARS);
+        Hotel hotelOne = new Hotel(HOTEL_ONE_ID, "Hotel name 1", city, HotelCategory.THREE_STARS);
         expectedHotels.add(hotelOne);
-        Hotel hotelTwo = new Hotel();
-        hotelTwo.setId(ID_TWO);
-        hotelTwo.setName("Hotel name 2");
-        hotelTwo.setCity(city);
-        hotelOne.setCategory(HotelCategory.FOUR_STARS);
+        Hotel hotelTwo = new Hotel(HOTEL_TWO_ID, "Hotel name 2", city, HotelCategory.FOUR_STARS);
         expectedHotels.add(hotelTwo);
-        Hotel hotelThree = new Hotel();
-        hotelThree.setId(ID_THREE);
-        hotelThree.setName("Hotel name 3");
-        hotelThree.setCity(city);
-        hotelOne.setCategory(HotelCategory.FIVE_STARS);
+        Hotel hotelThree = new Hotel(HOTEL_THREE_ID, "Hotel name 3", city, HotelCategory.FIVE_STARS);
         expectedHotels.add(hotelThree);
         given(hotelRepository.findAll()).willReturn(expectedHotels);
 
@@ -77,21 +67,17 @@ public class HotelServiceTest {
     public void getHotel() {
 
         // given
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
-        Hotel expectedHotel = new Hotel();
-        expectedHotel.setId(ID_ONE);
-        expectedHotel.setName("Hotel name 1");
-        expectedHotel.setCity(city);
-        expectedHotel.setCategory(HotelCategory.FOUR_STARS);
-        given(hotelRepository.findOne(ID_ONE)).willReturn(expectedHotel);
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
+        Hotel expectedHotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
+        given(hotelRepository.findOne(HOTEL_ONE_ID)).willReturn(expectedHotel);
 
         //when
-        Hotel actualHotel = hotelService.getHotel(ID_ONE);
+        Hotel actualHotel = hotelService.getHotel(HOTEL_ONE_ID);
 
         //then
         assertEquals(expectedHotel, actualHotel);
-        verify(hotelRepository).findOne(ID_ONE);
+        verify(hotelRepository).findOne(HOTEL_ONE_ID);
         verifyNoMoreInteractions(hotelRepository);
     }
 
@@ -99,15 +85,11 @@ public class HotelServiceTest {
     public void saveHotel() {
 
         // given
-        HotelRequest request = new HotelRequest(ID_ONE, "Hotel name 1", ID_ONE,"FIVE_STARS");
-        Country country = new Country(ID_ONE, "Country name");
-        City city = new City(ID_ONE, "City name", country);
-        Hotel expectedHotel = new Hotel();
-        expectedHotel.setId(ID_ONE);
-        expectedHotel.setName("Hotel name 1");
-        expectedHotel.setCity(city);
-        expectedHotel.setCategory(HotelCategory.FIVE_STARS);
-        given(cityRepository.findOne(ID_ONE)).willReturn(city);
+        HotelRequest request = new HotelRequest(HOTEL_ONE_ID, "Hotel name", CITY_ID,"FIVE_STARS");
+        Country country = new Country(COUNTRY_ID, "Country name");
+        City city = new City(CITY_ID, "City name", country);
+        Hotel expectedHotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
+        given(cityRepository.findOne(CITY_ID)).willReturn(city);
         given(hotelRepository.save(expectedHotel)).willReturn(expectedHotel);
 
         //when
@@ -115,7 +97,7 @@ public class HotelServiceTest {
 
         //then
         assertEquals(expectedHotel, actualHotel);
-        verify(cityRepository).findOne(ID_ONE);
+        verify(cityRepository).findOne(CITY_ID);
         verifyNoMoreInteractions(cityRepository);
         verify(hotelRepository).save(expectedHotel);
         verifyNoMoreInteractions(hotelRepository);

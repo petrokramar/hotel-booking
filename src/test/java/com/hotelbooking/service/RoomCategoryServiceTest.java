@@ -18,9 +18,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class RoomCategoryServiceTest {
 
-    private final int ID_ONE = 1;
-    private final int ID_TWO = 2;
-    private final int ID_THREE = 3;
+    private final int ROOM_CATEGORY_ONE_ID = 1;
+    private final int ROOM_CATEGORY_TWO_ID = 2;
+    private final int ROOM_CATEGORY_THREE_ID = 3;
     private RoomCategoryRepository roomCategoryRepository;
     private RoomCategoryService roomCategoryService;
 
@@ -37,19 +37,19 @@ public class RoomCategoryServiceTest {
         // given
         List<RoomCategory> expectedRoomCategories = new ArrayList<>();
         RoomCategory roomCategoryOne = new RoomCategory();
-        roomCategoryOne.setId(ID_ONE);
-        roomCategoryOne.setName("Room category 1");
-        roomCategoryOne.setDescription("Room category 1 description");
+        roomCategoryOne.setId(ROOM_CATEGORY_ONE_ID);
+        roomCategoryOne.setName("Room category name 1");
+        roomCategoryOne.setDescription("Room category description 1");
         expectedRoomCategories.add(roomCategoryOne);
         RoomCategory roomCategoryTwo = new RoomCategory();
-        roomCategoryTwo.setId(ID_TWO);
-        roomCategoryTwo.setName("Room category 2");
-        roomCategoryTwo.setDescription("Room category 2 description");
+        roomCategoryTwo.setId(ROOM_CATEGORY_TWO_ID);
+        roomCategoryTwo.setName("Room category name 2");
+        roomCategoryTwo.setDescription("Room category description 2");
         expectedRoomCategories.add(roomCategoryTwo);
         RoomCategory roomCategoryThree = new RoomCategory();
-        roomCategoryThree.setId(ID_THREE);
-        roomCategoryThree.setName("Room category 3");
-        roomCategoryThree.setDescription("Room category 3 description");
+        roomCategoryThree.setId(ROOM_CATEGORY_THREE_ID);
+        roomCategoryThree.setName("Room category name 3");
+        roomCategoryThree.setDescription("Room category description 3");
         expectedRoomCategories.add(roomCategoryThree);
         given(roomCategoryRepository.findAllByOrderByName()).willReturn(expectedRoomCategories);
 
@@ -67,17 +67,17 @@ public class RoomCategoryServiceTest {
 
         // given
         RoomCategory expectedRoomCategory = new RoomCategory();
-        expectedRoomCategory.setId(ID_ONE);
-        expectedRoomCategory.setName("Room category 1");
-        expectedRoomCategory.setDescription("Room category 1 description");
-        given(roomCategoryRepository.findOne(ID_ONE)).willReturn(expectedRoomCategory);
+        expectedRoomCategory.setId(ROOM_CATEGORY_ONE_ID);
+        expectedRoomCategory.setName("Room category name");
+        expectedRoomCategory.setDescription("Room category description");
+        given(roomCategoryRepository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(expectedRoomCategory);
 
         //when
-        RoomCategory actualRoomCategory = roomCategoryService.getRoomCategory(ID_ONE);
+        RoomCategory actualRoomCategory = roomCategoryService.getRoomCategory(ROOM_CATEGORY_ONE_ID);
 
         //then
         assertEquals(expectedRoomCategory, actualRoomCategory);
-        verify(roomCategoryRepository).findOne(ID_ONE);
+        verify(roomCategoryRepository).findOne(ROOM_CATEGORY_ONE_ID);
         verifyNoMoreInteractions(roomCategoryRepository);
     }
 
@@ -85,12 +85,12 @@ public class RoomCategoryServiceTest {
     public void saveRoomCategory() {
 
         // given
-        RoomCategoryRequest request = new RoomCategoryRequest(ID_ONE, "Room category 1",
-                "Room category 1 description");
+        RoomCategoryRequest request = new RoomCategoryRequest(ROOM_CATEGORY_ONE_ID, "Room category name",
+                "Room category description");
         RoomCategory expectedRoomCategory = new RoomCategory();
-        expectedRoomCategory.setId(ID_ONE);
-        expectedRoomCategory.setName("Room category 1");
-        expectedRoomCategory.setDescription("Room category 1 description");
+        expectedRoomCategory.setId(ROOM_CATEGORY_ONE_ID);
+        expectedRoomCategory.setName("Room category name");
+        expectedRoomCategory.setDescription("Room category description");
         given(roomCategoryRepository.save(expectedRoomCategory)).willReturn(expectedRoomCategory);
 
         //when

@@ -45,9 +45,7 @@ public class BookingServiceTest {
     public void getBooking() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");

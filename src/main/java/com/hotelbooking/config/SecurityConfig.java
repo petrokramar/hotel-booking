@@ -13,17 +13,17 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Inject
-    private DataSource dataSource;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        // use jdbc authentication ... oh yeah!!!
-
-        auth.jdbcAuthentication().dataSource(dataSource);
-
-    }
+//    @Inject
+//    private DataSource dataSource;
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//
+//        // use jdbc authentication ... oh yeah!!!
+//
+//        auth.jdbcAuthentication().dataSource(dataSource);
+//
+//    }
 
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {

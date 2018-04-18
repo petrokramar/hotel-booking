@@ -35,17 +35,11 @@ public class CountryServiceTest {
 
         // given
         List<Country> expectedCountries = new ArrayList<>();
-        Country countryOne = new Country();
-        countryOne.setId(ID_ONE);
-        countryOne.setName("Turkey");
+        Country countryOne = new Country(ID_ONE, "Country one name");
         expectedCountries.add(countryOne);
-        Country countryTwo = new Country();
-        countryTwo.setId(ID_TWO);
-        countryTwo.setName("Egypt");
+        Country countryTwo = new Country(ID_TWO, "Country two name");
         expectedCountries.add(countryTwo);
-        Country countryThree = new Country();
-        countryThree.setId(ID_THREE);
-        countryThree.setName("Tunisia");
+        Country countryThree = new Country(ID_ONE, "Country three name");
         expectedCountries.add(countryThree);
         given(countryRepository.findAllByOrderByName()).willReturn(expectedCountries);
 
@@ -62,9 +56,7 @@ public class CountryServiceTest {
     public void getCountry() {
 
         // given
-        Country expectedCountry = new Country();
-        expectedCountry.setId(ID_ONE);
-        expectedCountry.setName("Turkey");
+        Country expectedCountry = new Country(ID_ONE, "Country name");
         given(countryRepository.findOne(ID_ONE)).willReturn(expectedCountry);
 
         //when
@@ -80,10 +72,8 @@ public class CountryServiceTest {
     public void saveCountry() {
 
         // given
-        CountryRequest request = new CountryRequest(ID_ONE, "Turkey");
-        Country expectedCountry = new Country();
-        expectedCountry.setId(ID_ONE);
-        expectedCountry.setName("Turkey");
+        CountryRequest request = new CountryRequest(ID_ONE, "Country name");
+        Country expectedCountry = new Country(request.getId(), request.getName());
         given(countryRepository.save(expectedCountry)).willReturn(expectedCountry);
 
         //when

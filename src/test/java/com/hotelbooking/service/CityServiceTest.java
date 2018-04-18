@@ -38,9 +38,7 @@ public class CityServiceTest {
     public void getAllCities() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         List<City> expectedCities = new ArrayList<>();
         City cityOne = new City();
         cityOne.setId(ID_ONE);
@@ -72,9 +70,7 @@ public class CityServiceTest {
     public void getCity() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City expectedCity = new City();
         expectedCity.setId(ID_ONE);
         expectedCity.setName("Kemer");
@@ -95,9 +91,7 @@ public class CityServiceTest {
 
         // given
         CityRequest request = new CityRequest(ID_ONE, "Kemer", ID_ONE);
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City expectedCity = new City();
         expectedCity.setId(ID_ONE);
         expectedCity.setName("Kemer");

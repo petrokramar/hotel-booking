@@ -3,6 +3,7 @@ package com.hotelbooking.entity.request;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
+@EqualsAndHashCode
 public class BookingRequest {
 
     @NotNull

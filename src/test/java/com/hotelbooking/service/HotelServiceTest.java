@@ -40,9 +40,7 @@ public class HotelServiceTest {
     public void getAllHotels() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");
@@ -82,9 +80,7 @@ public class HotelServiceTest {
     public void getHotel() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");
@@ -110,9 +106,7 @@ public class HotelServiceTest {
 
         // given
         HotelRequest request = new HotelRequest(ID_ONE, "Hotel name 1", ID_ONE,"FIVE_STARS");
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");

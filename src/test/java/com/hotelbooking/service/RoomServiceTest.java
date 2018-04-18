@@ -45,9 +45,7 @@ public class RoomServiceTest {
     public void getAllRooms() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");
@@ -102,9 +100,7 @@ public class RoomServiceTest {
     public void getRoom() {
 
         // given
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");
@@ -141,9 +137,7 @@ public class RoomServiceTest {
 
         // given
         RoomRequest request = new RoomRequest(ID_ONE, ID_ONE, ID_ONE, ID_ONE, ROOM_PRICE, ROOM_NUMBER_OF_PERSONS);
-        Country country = new Country();
-        country.setId(ID_ONE);
-        country.setName("Turkey");
+        Country country = new Country(ID_ONE, "Country name");
         City city = new City();
         city.setId(ID_ONE);
         city.setName("Kemer");

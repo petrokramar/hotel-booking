@@ -52,10 +52,8 @@ public class RoomServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel hotel = new Hotel(HOTEL_ID, "Hotel name 1" , city , HotelCategory.THREE_STARS);
-        RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ROOM_CATEGORY_ID);
-        roomCategory.setName("Room category 1");
-        roomCategory.setDescription("Room category 1 description");
+        RoomCategory roomCategory = new RoomCategory(ROOM_CATEGORY_ID, "Room category name",
+                "Room category description" );
 
         List<Room> expectedRooms = new ArrayList<>();
         Room roomOne = new Room();
@@ -100,10 +98,8 @@ public class RoomServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel hotel = new Hotel(HOTEL_ID, "Hotel name" , city , HotelCategory.THREE_STARS);
-        RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ROOM_CATEGORY_ID);
-        roomCategory.setName("Room category name");
-        roomCategory.setDescription("Room category description");
+        RoomCategory roomCategory = new RoomCategory(ROOM_CATEGORY_ID, "Room category name",
+                "Room category description" );
         Room expectedRoom = new Room();
         expectedRoom.setId(ROOM_ONE_ID);
         expectedRoom.setNumber(ROOM_NUMBER_ONE);
@@ -131,10 +127,8 @@ public class RoomServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel hotel = new Hotel(HOTEL_ID, "Hotel name", city , HotelCategory.THREE_STARS);
-        RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ROOM_CATEGORY_ID);
-        roomCategory.setName("Room category 1");
-        roomCategory.setDescription("Room category 1 description");
+        RoomCategory roomCategory = new RoomCategory(ROOM_CATEGORY_ID, "Room category name",
+                "Room category description" );
         Room expectedRoom = new Room();
         expectedRoom.setId(ROOM_ONE_ID);
         expectedRoom.setNumber(ROOM_NUMBER_ONE);

@@ -36,20 +36,14 @@ public class RoomCategoryServiceTest {
 
         // given
         List<RoomCategory> expectedRoomCategories = new ArrayList<>();
-        RoomCategory roomCategoryOne = new RoomCategory();
-        roomCategoryOne.setId(ROOM_CATEGORY_ONE_ID);
-        roomCategoryOne.setName("Room category name 1");
-        roomCategoryOne.setDescription("Room category description 1");
+        RoomCategory roomCategoryOne = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category one name",
+                "Room category one description" );
         expectedRoomCategories.add(roomCategoryOne);
-        RoomCategory roomCategoryTwo = new RoomCategory();
-        roomCategoryTwo.setId(ROOM_CATEGORY_TWO_ID);
-        roomCategoryTwo.setName("Room category name 2");
-        roomCategoryTwo.setDescription("Room category description 2");
+        RoomCategory roomCategoryTwo = new RoomCategory(ROOM_CATEGORY_TWO_ID, "Room category two name",
+                "Room category two description" );
         expectedRoomCategories.add(roomCategoryTwo);
-        RoomCategory roomCategoryThree = new RoomCategory();
-        roomCategoryThree.setId(ROOM_CATEGORY_THREE_ID);
-        roomCategoryThree.setName("Room category name 3");
-        roomCategoryThree.setDescription("Room category description 3");
+        RoomCategory roomCategoryThree = new RoomCategory(ROOM_CATEGORY_THREE_ID, "Room category three name",
+                "Room category three description" );
         expectedRoomCategories.add(roomCategoryThree);
         given(roomCategoryRepository.findAllByOrderByName()).willReturn(expectedRoomCategories);
 
@@ -66,10 +60,8 @@ public class RoomCategoryServiceTest {
     public void getRoomCategory() {
 
         // given
-        RoomCategory expectedRoomCategory = new RoomCategory();
-        expectedRoomCategory.setId(ROOM_CATEGORY_ONE_ID);
-        expectedRoomCategory.setName("Room category name");
-        expectedRoomCategory.setDescription("Room category description");
+        RoomCategory expectedRoomCategory = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category name",
+                "Room category description" );
         given(roomCategoryRepository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(expectedRoomCategory);
 
         //when
@@ -87,10 +79,8 @@ public class RoomCategoryServiceTest {
         // given
         RoomCategoryRequest request = new RoomCategoryRequest(ROOM_CATEGORY_ONE_ID, "Room category name",
                 "Room category description");
-        RoomCategory expectedRoomCategory = new RoomCategory();
-        expectedRoomCategory.setId(ROOM_CATEGORY_ONE_ID);
-        expectedRoomCategory.setName("Room category name");
-        expectedRoomCategory.setDescription("Room category description");
+        RoomCategory expectedRoomCategory = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category name",
+                "Room category description" );
         given(roomCategoryRepository.save(expectedRoomCategory)).willReturn(expectedRoomCategory);
 
         //when

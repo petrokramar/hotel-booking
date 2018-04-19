@@ -50,10 +50,8 @@ public class BookingServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel hotel = new Hotel(HOTEL_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
-        RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(ROOM_CATEGORY_ID);
-        roomCategory.setName("Room category 1");
-        roomCategory.setDescription("Room category 1 description");
+        RoomCategory roomCategory = new RoomCategory(ROOM_CATEGORY_ID, "Room category name",
+                "Room category description" );
 
         Set<Authority> rolesUserOne = new HashSet<>();
         Authority roleOne = new Authority();

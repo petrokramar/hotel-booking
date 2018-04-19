@@ -18,7 +18,7 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 
     @Override
     public List<RoomCategory> getAllRoomCategories() {
-        return (List<RoomCategory>) roomCategoryRepository.findAllByOrderByName();
+        return roomCategoryRepository.findAllByOrderByName();
     }
 
     @Override
@@ -28,11 +28,7 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 
     @Override
     public RoomCategory saveRoomCategory(RoomCategoryRequest request) {
-        RoomCategory roomCategory = new RoomCategory();
-        roomCategory.setId(request.getId());
-        roomCategory.setName(request.getName());
-        roomCategory.setDescription(request.getDescription());
+        RoomCategory roomCategory = new RoomCategory(request.getId(), request.getName(), request.getDescription());
         return roomCategoryRepository.save(roomCategory);
     }
-
 }

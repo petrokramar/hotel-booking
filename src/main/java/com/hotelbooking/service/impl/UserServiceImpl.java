@@ -1,6 +1,7 @@
 package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.User;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.UserRepository;
 import com.hotelbooking.service.UserService;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUser(String username) {
         User user = userRepository.findOne(username);
+        if (user == null) {
+            throw new DataNotFoundException(String.format("User username= %s not found", username));
+        }
         return user;
     }
 }

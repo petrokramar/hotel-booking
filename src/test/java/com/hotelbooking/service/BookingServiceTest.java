@@ -1,6 +1,7 @@
 package com.hotelbooking.service;
 
 import com.hotelbooking.entity.*;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.BookingRepository;
 import com.hotelbooking.repository.HotelOptionRepository;
 import com.hotelbooking.repository.RoomRepository;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -86,6 +88,18 @@ public class BookingServiceTest {
 
     @Test
     public void getBooking() {
+    }
+
+    @Test(expected = DataNotFoundException.class)
+    public void getBookingNotFound() {
+
+        // given
+        given(bookingRepository.findOne(BOOKING_ONE_ID)).willReturn(null);
+
+        //when
+        Booking booking = bookingService.getBooking(BOOKING_ONE_ID);
+
+        fail();
     }
 
     @Test

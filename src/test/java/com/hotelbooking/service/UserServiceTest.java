@@ -2,6 +2,7 @@ package com.hotelbooking.service;
 
 import com.hotelbooking.entity.Authority;
 import com.hotelbooking.entity.User;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.UserRepository;
 import com.hotelbooking.service.impl.UserServiceImpl;
 import org.junit.Before;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -92,5 +94,17 @@ public class UserServiceTest {
         assertEquals(expectedUser, actualUser);
         verify(userRepository).findOne("user1");
         verifyNoMoreInteractions(userRepository);
+    }
+
+    @Test(expected = DataNotFoundException.class)
+    public void getUserNotFound() {
+
+        // given
+        given(userRepository.findOne("username")).willReturn(null);
+
+        //when
+        User user = userService.getUser("username");
+
+        fail();
     }
 }

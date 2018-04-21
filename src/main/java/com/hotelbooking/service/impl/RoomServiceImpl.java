@@ -4,6 +4,7 @@ import com.hotelbooking.entity.Hotel;
 import com.hotelbooking.entity.Room;
 import com.hotelbooking.entity.RoomCategory;
 import com.hotelbooking.entity.request.RoomRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.HotelRepository;
 import com.hotelbooking.repository.RoomCategoryRepository;
 import com.hotelbooking.repository.RoomRepository;
@@ -29,7 +30,11 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public Room getRoom(int id) {
-        return roomRepository.findOne(id);
+        Room room = roomRepository.findOne(id);
+        if (room == null) {
+            throw new DataNotFoundException(String.format("Room id= %s not found", id));
+        }
+        return room;
     }
 
     @Override

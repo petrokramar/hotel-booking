@@ -5,6 +5,7 @@ import com.hotelbooking.entity.HotelService;
 import com.hotelbooking.entity.Room;
 import com.hotelbooking.entity.User;
 import com.hotelbooking.entity.request.BookingRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.BookingRepository;
 import com.hotelbooking.repository.HotelOptionRepository;
 import com.hotelbooking.repository.RoomRepository;
@@ -32,7 +33,11 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking getBooking(int id) {
-        return bookingRepository.findOne(id);
+        Booking booking = bookingRepository.findOne(id);
+        if (booking == null) {
+            throw new DataNotFoundException(String.format("Booking id= %s not found", id));
+        }
+        return booking;
     }
 
     @Override

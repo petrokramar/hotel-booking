@@ -3,6 +3,7 @@ package com.hotelbooking.service.impl;
 import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.request.CityRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.CountryRepository;
 import com.hotelbooking.service.CityService;
@@ -25,7 +26,11 @@ public class CityServiceImpl implements CityService{
 
     @Override
     public City getCity(int id) {
-        return cityRepository.findOne(id);
+        City city = cityRepository.findOne(id);
+        if (city == null) {
+            throw new DataNotFoundException(String.format("City id= %s not found", id));
+        }
+        return city;
     }
 
     @Override

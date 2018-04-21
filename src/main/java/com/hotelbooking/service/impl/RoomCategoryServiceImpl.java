@@ -2,6 +2,7 @@ package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.RoomCategory;
 import com.hotelbooking.entity.request.RoomCategoryRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.RoomCategoryRepository;
 import com.hotelbooking.service.RoomCategoryService;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,11 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 
     @Override
     public RoomCategory getRoomCategory(int id) {
-        return roomCategoryRepository.findOne(id);
+        RoomCategory roomCategory = roomCategoryRepository.findOne(id);
+        if (roomCategory == null) {
+            throw new DataNotFoundException(String.format("Room category id= %s not found", id));
+        }
+        return roomCategory;
     }
 
     @Override

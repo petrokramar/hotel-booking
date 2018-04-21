@@ -5,6 +5,7 @@ import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.Hotel;
 import com.hotelbooking.entity.HotelCategory;
 import com.hotelbooking.entity.request.HotelRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.HotelRepository;
 import com.hotelbooking.service.impl.HotelServiceImpl;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -79,6 +81,18 @@ public class HotelServiceTest {
         assertEquals(expectedHotel, actualHotel);
         verify(hotelRepository).findOne(HOTEL_ONE_ID);
         verifyNoMoreInteractions(hotelRepository);
+    }
+
+    @Test(expected = DataNotFoundException.class)
+    public void getHotelNotFound() {
+
+        // given
+        given(hotelRepository.findOne(HOTEL_ONE_ID)).willReturn(null);
+
+        //when
+        Hotel hotel = hotelService.getHotel(HOTEL_ONE_ID);
+
+        fail();
     }
 
     @Test

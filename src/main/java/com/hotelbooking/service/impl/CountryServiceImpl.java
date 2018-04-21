@@ -2,6 +2,7 @@ package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.request.CountryRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CountryRepository;
 import com.hotelbooking.service.CountryService;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,11 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     public Country getCountry(int id) {
-        return countryRepository.findOne(id);
+        Country country = countryRepository.findOne(id);
+        if (country == null) {
+            throw new DataNotFoundException(String.format("Country id= %s not found", id));
+        }
+        return country;
     }
 
     @Override

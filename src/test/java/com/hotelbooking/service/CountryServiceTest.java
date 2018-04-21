@@ -2,6 +2,7 @@ package com.hotelbooking.service;
 
 import com.hotelbooking.entity.Country;
 import com.hotelbooking.entity.request.CountryRequest;
+import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CountryRepository;
 import com.hotelbooking.service.impl.CountryServiceImpl;
 import org.junit.Before;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -66,6 +68,18 @@ public class CountryServiceTest {
         assertEquals(expectedCountry, actualCountry);
         verify(countryRepository).findOne(COUNTRY_ONE_ID);
         verifyNoMoreInteractions(countryRepository);
+    }
+
+    @Test(expected = DataNotFoundException.class)
+    public void getCountryNotFound() {
+
+        // given
+        given(countryRepository.findOne(COUNTRY_ONE_ID)).willReturn(null);
+
+        //when
+        Country country = countryService.getCountry(COUNTRY_ONE_ID);
+
+        fail();
     }
 
     @Test

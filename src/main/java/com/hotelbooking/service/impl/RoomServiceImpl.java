@@ -34,15 +34,10 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public Room saveRoom(RoomRequest request) {
-        Room room = new Room();
-        room.setId(request.getId());
-        room.setNumber(request.getNumber());
         Hotel hotel = hotelRepository.findOne(request.getHotelId());
-        room.setHotel(hotel);
         RoomCategory roomCategory = roomCategoryRepository.findOne(request.getRoomCategoryId());
-        room.setRoomCategory(roomCategory);
-        room.setPrice(request.getPrice());
-        room.setPersons(request.getPersons());
+        Room room = new Room(request.getId(), request.getNumber(), hotel, roomCategory, request.getPrice(),
+                request.getPersons());
         return roomRepository.save(room);
     }
 }

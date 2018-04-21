@@ -26,7 +26,9 @@ public class BookingServiceTest {
     private final int ROOM_ID = 5;
     private final int ROOM_CATEGORY_ID = 6;
     private final int ROLE_ID = 7;
-    private final int ROOM_NUMBER_ONE = 1;
+    private final int ROOM_ONE_NUMBER = 11;
+    private final int ROOM_ONE_PRICE = 100;
+    private final int ROOM_ONE_NUMBER_OF_PERSONS = 2;
     private BookingRepository bookingRepository;
     private UserRepository userRepository;
     private RoomRepository roomRepository;
@@ -67,11 +69,8 @@ public class BookingServiceTest {
         userOne.setRoles(rolesUserOne);
         userOne.setEnabled(true);
 
-        Room roomOne = new Room();
-        roomOne.setId(ROOM_ID);
-        roomOne.setNumber(ROOM_NUMBER_ONE);
-        roomOne.setHotel(hotel);
-        roomOne.setRoomCategory(roomCategory);
+        Room roomOne = new Room(ROOM_ID, ROOM_ONE_NUMBER, hotel, roomCategory, ROOM_ONE_PRICE,
+                ROOM_ONE_NUMBER_OF_PERSONS);
 
         List<Booking> expectedBooking = new ArrayList<>();
 

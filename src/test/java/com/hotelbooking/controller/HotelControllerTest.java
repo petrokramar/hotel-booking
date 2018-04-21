@@ -54,7 +54,7 @@ public class HotelControllerTest{
 
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
-        City city = new City(CITY_ID, "City one name", country);
+        City city = new City(CITY_ID, "City name", country);
         List<Hotel> hotels = new ArrayList<>();
         hotels.add(new Hotel(HOTEL_ONE_ID, "Hotel one name", city, HotelCategory.THREE_STARS));
         hotels.add(new Hotel(HOTEL_TWO_ID, "Hotel two name",  city, HotelCategory.FOUR_STARS));

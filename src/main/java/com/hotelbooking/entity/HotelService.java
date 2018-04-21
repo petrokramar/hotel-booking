@@ -1,12 +1,23 @@
 package com.hotelbooking.entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "hotel_services", schema = "BOOKING_HOTELS_SCHEMA")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@EqualsAndHashCode
+
 public class HotelService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

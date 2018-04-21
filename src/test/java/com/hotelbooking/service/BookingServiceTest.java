@@ -29,6 +29,8 @@ public class BookingServiceTest {
     private final int ROOM_ONE_NUMBER = 11;
     private final int ROOM_ONE_PRICE = 100;
     private final int ROOM_ONE_NUMBER_OF_PERSONS = 2;
+    private final boolean USER_ENABLED = true;
+
     private BookingRepository bookingRepository;
     private UserRepository userRepository;
     private RoomRepository roomRepository;
@@ -56,31 +58,15 @@ public class BookingServiceTest {
                 "Room category description" );
 
         Set<Authority> rolesUserOne = new HashSet<>();
-        Authority roleOne = new Authority();
-        roleOne.setId(ROLE_ID);
-        roleOne.setAuthority("ROLE_ADMIN");
-        roleOne.setUsername("user1");
+        Authority roleOne = new Authority(ROLE_ID, "username", "ROLE_ADMIN");
         rolesUserOne.add(roleOne);
-        User userOne = new User();
-        userOne.setFirstName("First name user 1");
-        userOne.setLastName("Last name user 1");
-        userOne.setUsername("user1");
-        userOne.setPassword("password1");
-        userOne.setRoles(rolesUserOne);
-        userOne.setEnabled(true);
-
+        User userOne = new User("username", "password", USER_ENABLED,
+                "First name","Last name", rolesUserOne);
         Room roomOne = new Room(ROOM_ID, ROOM_ONE_NUMBER, hotel, roomCategory, ROOM_ONE_PRICE,
                 ROOM_ONE_NUMBER_OF_PERSONS);
 
         List<Booking> expectedBooking = new ArrayList<>();
-
-        Booking bookingOne = new Booking();
-        bookingOne.setId(BOOKING_ONE_ID);
-        bookingOne.setUser(userOne);
-        bookingOne.setRoom(roomOne);
-        bookingOne.setDateBegin(new Date());
-        bookingOne.setDateEnd(new Date());
-//        bookingOne.setHotelServices();
+        Booking bookingOne = new Booking(BOOKING_ONE_ID, roomOne, userOne, new Date(), new Date(), null);
         expectedBooking.add(bookingOne);
         given(bookingRepository.findAll()).willReturn(expectedBooking);
 
@@ -93,7 +79,6 @@ public class BookingServiceTest {
 
         verify(bookingRepository).findAll();
         verifyNoMoreInteractions(bookingRepository);
-
     }
 
     @Test

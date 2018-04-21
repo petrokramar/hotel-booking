@@ -37,19 +37,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking saveBooking(BookingRequest request) {
-        Booking booking = new Booking();
-        booking.setId(request.getId());
         User user = userRepository.findOne(request.getUsername());
-        booking.setUser(user);
         Room room = roomRepository.findOne(request.getRoomId());
-        booking.setRoom(room);
-        booking.setDateBegin(request.getDateBegin());
-        booking.setDateEnd(request.getDateEnd());
-//        List <Integer> hotelServicesIds =
-//                request.getHotelServiceIds().stream().map(Integer::parseInt).collect(Collectors.toList());
         List<HotelService> hotelServices =
                 (List<HotelService>) hotelOptionRepository.findAll(request.getHotelServiceIds());
-        booking.setHotelServices(hotelServices);
+        Booking booking = new Booking(request.getId(), room, user, request.getDateBegin(), request.getDateEnd(),
+                hotelServices);
         return bookingRepository.save(booking);
     }
 }

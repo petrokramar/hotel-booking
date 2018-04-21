@@ -20,13 +20,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping()
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
     @GetMapping(value = "/{username}")
-    public ResponseEntity<User> getRoomCategory(@PathVariable String username) {
+    public ResponseEntity<User> getUser(@PathVariable String username) {
         User user = userService.getUser(username);
         return ResponseEntity.ok(user);
     }

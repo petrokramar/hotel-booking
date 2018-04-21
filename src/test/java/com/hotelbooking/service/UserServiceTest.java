@@ -23,6 +23,8 @@ public class UserServiceTest {
     private final int ROLE_ONE_ID = 1;
     private final int ROLE_TWO_ID = 2;
     private final int ROLE_THREE_ID = 3;
+    private final boolean USER_ENABLED = true;
+    private final boolean USER_NOT_ENABLED = false;
     private UserRepository userRepository;
     private UserService userService;
 
@@ -39,48 +41,24 @@ public class UserServiceTest {
         List<User> expectedUsers = new ArrayList<>();
 
         Set<Authority> rolesUserOne = new HashSet<>();
-        Authority roleOne = new Authority();
-        roleOne.setId(ROLE_ONE_ID);
-        roleOne.setAuthority("ROLE_ADMIN");
-        roleOne.setUsername("user1");
+        Authority roleOne = new Authority(ROLE_ONE_ID, "userOne", "ROLE_ADMIN");
         rolesUserOne.add(roleOne);
-        User userOne = new User();
-        userOne.setFirstName("First name user 1");
-        userOne.setLastName("Last name user 1");
-        userOne.setUsername("user1");
-        userOne.setPassword("password1");
-        userOne.setRoles(rolesUserOne);
-        userOne.setEnabled(true);
+        User userOne = new User("userOne", "password userOne", USER_ENABLED,
+                "First name userOne","Last name userOne", rolesUserOne);
         expectedUsers.add(userOne);
 
         Set<Authority> rolesUserTwo = new HashSet<>();
-        Authority roleTwo = new Authority();
-        roleTwo.setId(ROLE_TWO_ID);
-        roleTwo.setAuthority("ROLE_USER");
-        roleTwo.setUsername("user2");
+        Authority roleTwo = new Authority(ROLE_TWO_ID, "userTwo", "ROLE_USER");
         rolesUserTwo.add(roleTwo);
-        User userTwo = new User();
-        userTwo.setFirstName("First name user 2");
-        userTwo.setLastName("Last name user 2");
-        userTwo.setUsername("user2");
-        userTwo.setPassword("password2");
-        userTwo.setRoles(rolesUserTwo);
-        userTwo.setEnabled(true);
+        User userTwo = new User("userTwo", "password userTwo", USER_ENABLED,
+                "First name userTwo","Last name userTwo", rolesUserTwo);
         expectedUsers.add(userTwo);
 
         Set<Authority> rolesUserThree = new HashSet<>();
-        Authority roleThree = new Authority();
-        roleThree.setId(ROLE_THREE_ID);
-        roleThree.setAuthority("ROLE_USER");
-        roleThree.setUsername("user3");
+        Authority roleThree = new Authority(ROLE_THREE_ID, "userThree", "ROLE_USER");
         rolesUserThree.add(roleThree);
-        User userThree = new User();
-        userThree.setFirstName("First name user 3");
-        userThree.setLastName("Last name user 3");
-        userThree.setUsername("user3");
-        userThree.setPassword("password3");
-        userThree.setRoles(rolesUserThree);
-        userThree.setEnabled(false);
+        User userThree = new User("userThree", "password userThree", USER_NOT_ENABLED,
+                "First name userThree","Last name userThree", rolesUserThree);
         expectedUsers.add(userThree);
 
         given(userRepository.findAll()).willReturn(expectedUsers);
@@ -99,23 +77,12 @@ public class UserServiceTest {
 
         // given
         Set<Authority> roles = new HashSet<>();
-        Authority roleOne = new Authority();
-        roleOne.setId(ROLE_ONE_ID);
-        roleOne.setAuthority("ROLE_ADMIN");
-        roleOne.setUsername("user1");
+        Authority roleOne = new Authority(ROLE_ONE_ID, "username", "ROLE_ADMIN");
         roles.add(roleOne);
-        Authority roleTwo = new Authority();
-        roleTwo.setId(ROLE_TWO_ID);
-        roleTwo.setAuthority("ROLE_USER");
-        roleTwo.setUsername("user1");
+        Authority roleTwo = new Authority(ROLE_ONE_ID, "username", "ROLE_USER");
         roles.add(roleTwo);
-        User expectedUser = new User();
-        expectedUser.setFirstName("First name user 1");
-        expectedUser.setLastName("Last name user 1");
-        expectedUser.setUsername("user1");
-        expectedUser.setPassword("password1");
-        expectedUser.setRoles(roles);
-        expectedUser.setEnabled(true);
+        User expectedUser = new User("username", "password", USER_ENABLED,
+                "First name","Last name", roles);
         given(userRepository.findOne("user1")).willReturn(expectedUser);
 
         //when

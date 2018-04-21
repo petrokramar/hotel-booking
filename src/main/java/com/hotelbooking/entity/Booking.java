@@ -33,6 +33,8 @@ public class Booking {
     private Room room;
     @ManyToOne
     private User user;
+    private int totalSum;
+    private int persons;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateBegin;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")

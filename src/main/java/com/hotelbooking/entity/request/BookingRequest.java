@@ -25,6 +25,12 @@ public class BookingRequest {
     private String username;
 
     @NotNull
+    private int totalSum;
+
+    @NotNull
+    private int persons;
+
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateBegin;
 

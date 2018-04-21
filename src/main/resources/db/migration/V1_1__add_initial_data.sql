@@ -72,10 +72,10 @@ VALUES('1', 'Breakfast', 'Breakfast');
 INSERT INTO hotel_services(id, name, description)
 VALUES('2', 'Cleaning room', 'Cleaning room');
 
-INSERT INTO booking(id, room_id, user_username, date_begin, date_end)
-VALUES('1', '1', 'BobMarley', '2018-02-25', '2018-02-28');
-INSERT INTO booking(id, room_id, user_username, date_begin, date_end)
-VALUES('2', '2', 'JamesBond', '2018-02-28', '2018-03-05');
+INSERT INTO booking(id, room_id, user_username, total_sum, persons, date_begin, date_end)
+VALUES('1', '1', 'BobMarley', '300', '1', '2018-02-25', '2018-02-28');
+INSERT INTO booking(id, room_id, user_username, total_sum, persons,  date_begin, date_end)
+VALUES('2', '2', 'JamesBond', '200', '2', '2018-02-28', '2018-03-05');
 
 INSERT INTO booking_services(booking_id, service_id)
 VALUES('1', '1');

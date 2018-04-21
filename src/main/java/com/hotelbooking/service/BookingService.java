@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BookingService {
 
-    List<Booking> getBooking();
+    List<Booking> getAllBooking();
 
     Booking getBooking(int id);
 

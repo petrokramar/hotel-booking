@@ -68,6 +68,8 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.booking
   id SERIAL PRIMARY KEY,
   room_id integer REFERENCES rooms(id),
   user_username varchar(50) REFERENCES users(username),
+  total_sum integer NOT NULL,
+  persons integer NOT NULL,
   date_begin TIMESTAMP NOT NULL,
   date_end TIMESTAMP NOT NULL
 );

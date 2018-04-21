@@ -25,7 +25,7 @@ public class BookingServiceImpl implements BookingService {
     private HotelOptionRepository hotelOptionRepository;
 
     @Override
-    public List<Booking> getBooking() {
+    public List<Booking> getAllBooking() {
         List<Booking> booking = (List<Booking>) bookingRepository.findAll();
         return booking;
     }
@@ -41,8 +41,8 @@ public class BookingServiceImpl implements BookingService {
         Room room = roomRepository.findOne(request.getRoomId());
         List<HotelService> hotelServices =
                 (List<HotelService>) hotelOptionRepository.findAll(request.getHotelServiceIds());
-        Booking booking = new Booking(request.getId(), room, user, request.getDateBegin(), request.getDateEnd(),
-                hotelServices);
+        Booking booking = new Booking(request.getId(), room, user, request.getTotalSum(), request.getPersons(),
+                request.getDateBegin(), request.getDateEnd(), hotelServices);
         return bookingRepository.save(booking);
     }
 }

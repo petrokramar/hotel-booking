@@ -30,6 +30,8 @@ public class BookingServiceTest {
     private final int ROOM_ONE_PRICE = 100;
     private final int ROOM_ONE_NUMBER_OF_PERSONS = 2;
     private final boolean USER_ENABLED = true;
+    private final int BOOKING_ONE_TOTAL = 100;
+    private final int BOOKING_ONE_NUMBER_OF_PERSONS = 2;
 
     private BookingRepository bookingRepository;
     private UserRepository userRepository;
@@ -48,7 +50,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void getBooking() {
+    public void getAllBooking() {
 
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
@@ -66,12 +68,13 @@ public class BookingServiceTest {
                 ROOM_ONE_NUMBER_OF_PERSONS);
 
         List<Booking> expectedBooking = new ArrayList<>();
-        Booking bookingOne = new Booking(BOOKING_ONE_ID, roomOne, userOne, new Date(), new Date(), null);
+        Booking bookingOne = new Booking(BOOKING_ONE_ID, roomOne, userOne, BOOKING_ONE_TOTAL,
+                BOOKING_ONE_NUMBER_OF_PERSONS, new Date(), new Date(), null);
         expectedBooking.add(bookingOne);
         given(bookingRepository.findAll()).willReturn(expectedBooking);
 
         //when
-        List<Booking> actualBooking = bookingService.getBooking();
+        List<Booking> actualBooking = bookingService.getAllBooking();
 
         //then
         assertEquals(expectedBooking, actualBooking);
@@ -82,7 +85,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void getBooking1() {
+    public void getBooking() {
     }
 
     @Test

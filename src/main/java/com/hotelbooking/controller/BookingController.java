@@ -18,8 +18,8 @@ public class BookingController {
     private BookingService bookingService;
 
     @GetMapping()
-    public ResponseEntity<List<Booking>> getBooking() {
-        List<Booking> booking = bookingService.getBooking();
+    public ResponseEntity<List<Booking>> getAllBooking() {
+        List<Booking> booking = bookingService.getAllBooking();
         return ResponseEntity.ok(booking);
     }
 

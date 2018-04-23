@@ -19,7 +19,8 @@ public class CountryRequest {
     private String name;
 
     @JsonCreator
-    public CountryRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name) {
+    public CountryRequest(@JsonProperty(value = "id", required = true) int id,
+                          @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }

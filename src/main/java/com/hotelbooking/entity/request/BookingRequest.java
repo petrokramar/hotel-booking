@@ -38,20 +38,20 @@ public class BookingRequest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateEnd;
 
-    @NotEmpty
-    private List<Integer> hotelServiceIds;
-
     @JsonCreator
     public BookingRequest(@JsonProperty(value = "id", required = true) int id,
                           @JsonProperty(value = "roomId", required = true) int roomId,
                           @JsonProperty("username") String username,
-                          @JsonProperty("dateBegin") Date dateBegin, @JsonProperty("dateEnd") Date dateEnd,
-                          @JsonProperty("hotelServiceIds") List<Integer> hotelServiceIds) {
+                          @JsonProperty(value = "totalSum", required = true) int totalSum,
+                          @JsonProperty(value = "persons", required = true) int persons,
+                          @JsonProperty("dateBegin") Date dateBegin,
+                          @JsonProperty("dateEnd") Date dateEnd) {
         this.id = id;
         this.roomId = roomId;
         this.username = username;
+        this.totalSum = totalSum;
+        this.persons = persons;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-        this.hotelServiceIds = hotelServiceIds;
     }
 }

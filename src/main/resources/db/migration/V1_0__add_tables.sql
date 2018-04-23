@@ -56,13 +56,6 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.rooms
   persons integer NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.hotel_services
-(
-  id SERIAL PRIMARY KEY,
-  name varchar(50) NOT NULL,
-  description varchar(50) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.booking
 (
   id SERIAL PRIMARY KEY,
@@ -72,11 +65,4 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.booking
   persons integer NOT NULL,
   date_begin TIMESTAMP NOT NULL,
   date_end TIMESTAMP NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.booking_services
-(
---   id SERIAL PRIMARY KEY,
-  booking_id integer REFERENCES booking(id),
-  service_id integer REFERENCES hotel_services(id)
 );

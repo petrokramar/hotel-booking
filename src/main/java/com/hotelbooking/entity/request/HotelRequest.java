@@ -25,7 +25,8 @@ public class HotelRequest {
     private String category;
 
     @JsonCreator
-    public HotelRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name,
+    public HotelRequest(@JsonProperty(value = "id", required = true) int id,
+                        @JsonProperty("name") String name,
                         @JsonProperty(value = "cityId", required = true) int cityId,
                         @JsonProperty(value = "category", required = true) String category) {
         this.id = id;

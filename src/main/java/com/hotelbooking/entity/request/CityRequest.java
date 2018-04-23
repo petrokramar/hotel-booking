@@ -22,7 +22,8 @@ public class CityRequest {
     private int countryId;
 
     @JsonCreator
-    public CityRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name,
+    public CityRequest(@JsonProperty(value = "id", required = true) int id,
+                       @JsonProperty("name") String name,
                        @JsonProperty(value = "countryId", required = true) int countryId) {
         this.id = id;
         this.name = name;

@@ -39,10 +39,4 @@ public class Booking {
     private Date dateBegin;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateEnd;
-    @ManyToMany
-    @JoinTable(
-            name = "booking_services", schema = "BOOKING_HOTELS_SCHEMA",
-            joinColumns = { @JoinColumn(name = "booking_id") },
-            inverseJoinColumns = { @JoinColumn(name = "service_id") })
-    private List<HotelService> hotelServices;
 }

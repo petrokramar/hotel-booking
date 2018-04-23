@@ -22,7 +22,8 @@ public class RoomCategoryRequest {
     private String description;
 
     @JsonCreator
-    public RoomCategoryRequest(@JsonProperty(value = "id", required = true) int id, @JsonProperty("name") String name,
+    public RoomCategoryRequest(@JsonProperty(value = "id", required = true) int id,
+                               @JsonProperty("name") String name,
                                @JsonProperty("description") String description) {
         this.id = id;
         this.name = name;

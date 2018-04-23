@@ -16,6 +16,8 @@ import com.hotelbooking.service.impl.BookingServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -88,7 +90,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void getBooking() {
+    public void getBooking() throws Exception {
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
@@ -102,8 +104,12 @@ public class BookingServiceTest {
                 "First name","Last name", roles);
         Room roomOne = new Room(ROOM_ID, ROOM_ONE_NUMBER, hotel, roomCategory, ROOM_ONE_PRICE,
                 ROOM_ONE_NUMBER_OF_PERSONS);
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date dateBegin = format.parse("01-04-2018");
+        Date dateEnd = format.parse("10-04-2018");
         Booking expectedBooking = new Booking(BOOKING_ONE_ID, roomOne, user, BOOKING_ONE_TOTAL_SUM,
-                BOOKING_ONE_NUMBER_OF_PERSONS, new Date(), new Date());
+                BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
         given(bookingRepository.findOne(BOOKING_ONE_ID)).willReturn(expectedBooking);
 
         //when
@@ -128,11 +134,12 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void saveBooking() {
+    public void saveBooking() throws Exception{
         // given
-        //TODO Set dateBegin and DateEnd
-        Date dateBegin = new Date();
-        Date dateEnd = new Date();
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date dateBegin = format.parse("01-04-2018");
+        Date dateEnd = format.parse("10-04-2018");
         BookingRequest request = new BookingRequest(BOOKING_ONE_ID, ROOM_ID, "username", BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
         Country country = new Country(COUNTRY_ID, "Country name");

@@ -11,6 +11,8 @@ public interface CountryService {
 
     List<Country> getCountriesPage(int page, int size);
 
+    Long countAllCountries();
+
     Country getCountry(int id);
 
     Country saveCountry(CountryRequest country);

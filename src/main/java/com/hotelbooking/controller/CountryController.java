@@ -30,6 +30,12 @@ public class CountryController {
         return ResponseEntity.ok(countries);
     }
 
+    @GetMapping(value = "/count")
+    public ResponseEntity<Long> countAllCountries() {
+        Long total = countryService.countAllCountries();
+        return ResponseEntity.ok(total);
+    }
+
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Country> saveCountry(@Valid @RequestBody CountryRequest request) {
         Country country = countryService.saveCountry(request);

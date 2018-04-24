@@ -11,5 +11,5 @@ public interface CountryRepository  extends CrudRepository<Country, Integer> {
 
     List<Country> findAllByOrderByName();
 
-    Page<Country> findAllByOrderByName(Pageable pageable);
+    Page<Country> findAll(Pageable pageable);
 }

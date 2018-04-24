@@ -23,6 +23,13 @@ public class CountryController {
         return ResponseEntity.ok(countries);
     }
 
+    @GetMapping(params = {"page", "size"})
+    public ResponseEntity<List<Country>> getCountriesPage(@RequestParam( "page" ) int page,
+                                                          @RequestParam( "size" ) int size) {
+        List<Country> countries = countryService.getCountriesPage(page, size);
+        return ResponseEntity.ok(countries);
+    }
+
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Country> saveCountry(@Valid @RequestBody CountryRequest request) {
         Country country = countryService.saveCountry(request);

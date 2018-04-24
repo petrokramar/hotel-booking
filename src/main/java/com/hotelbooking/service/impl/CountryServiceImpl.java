@@ -6,6 +6,9 @@ import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CountryRepository;
 import com.hotelbooking.service.CountryService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +22,15 @@ public class CountryServiceImpl implements CountryService{
     @Override
     public List<Country> getAllCountries() {
         return countryRepository.findAllByOrderByName();
+    }
+
+    @Override
+    public List<Country> getCountriesPage(int page, int size) {
+        Page< Country > resultPage = countryRepository.findAllByOrderByName(new PageRequest(page, size));
+        if(page >= resultPage.getTotalPages()) {
+            throw new DataNotFoundException(String.format("Countries page = %s size = %s not found", page, size));
+        }
+        return resultPage.getContent();
     }
 
     @Override

@@ -6,8 +6,9 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Setter
+@Getter
 public class ApiError {
-    //TODO Change LocalDateTime to String
+    //TODO Change LocalDateTime to String or delete
     private LocalDateTime date;
     private int status;
     private String error;

@@ -32,6 +32,60 @@ INSERT INTO countries(id, name)
 VALUES('2', 'Turkey');
 INSERT INTO countries(id, name)
 VALUES('3', 'Tunisia');
+INSERT INTO countries(id, name)
+VALUES('4', 'Country 4');
+INSERT INTO countries(id, name)
+VALUES('5', 'Country 5');
+INSERT INTO countries(id, name)
+VALUES('6', 'Country 6');
+INSERT INTO countries(id, name)
+VALUES('7', 'Country 7');
+INSERT INTO countries(id, name)
+VALUES('8', 'Country 8');
+INSERT INTO countries(id, name)
+VALUES('9', 'Country 9');
+INSERT INTO countries(id, name)
+VALUES('10', 'Country 10');
+INSERT INTO countries(id, name)
+VALUES('11', 'Country 11');
+INSERT INTO countries(id, name)
+VALUES('12', 'Country 12');
+INSERT INTO countries(id, name)
+VALUES('13', 'Country 13');
+INSERT INTO countries(id, name)
+VALUES('14', 'Country 14');
+INSERT INTO countries(id, name)
+VALUES('15', 'Country 15');
+INSERT INTO countries(id, name)
+VALUES('16', 'Country 16');
+INSERT INTO countries(id, name)
+VALUES('17', 'Country 17');
+INSERT INTO countries(id, name)
+VALUES('18', 'Country 18');
+INSERT INTO countries(id, name)
+VALUES('19', 'Country 19');
+INSERT INTO countries(id, name)
+VALUES('20', 'Country 20');
+INSERT INTO countries(id, name)
+VALUES('21', 'Country 21');
+INSERT INTO countries(id, name)
+VALUES('22', 'Country 22');
+INSERT INTO countries(id, name)
+VALUES('23', 'Country 23');
+INSERT INTO countries(id, name)
+VALUES('24', 'Country 24');
+INSERT INTO countries(id, name)
+VALUES('25', 'Country 25');
+INSERT INTO countries(id, name)
+VALUES('26', 'Country 26');
+INSERT INTO countries(id, name)
+VALUES('27', 'Country 27');
+INSERT INTO countries(id, name)
+VALUES('28', 'Country 28');
+INSERT INTO countries(id, name)
+VALUES('29', 'Country 29');
+INSERT INTO countries(id, name)
+VALUES('30', 'Country 30');
 -- ALTER SEQUENCE countris_id_seq RESTART WITH 4;
 
 INSERT INTO cities(id, name, country_id)

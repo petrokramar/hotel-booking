@@ -27,13 +27,14 @@ public class CountryServiceImpl implements CountryService{
     }
 
     @Override
-    public CountryListDTO getCountriesPage(String filter, int page, int size) {
+    public CountryListDTO getCountriesPage(String filter, String sortOrder, int page, int size) {
+        Sort.Direction sortDirection = Sort.Direction.ASC;
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            sortDirection = Sort.Direction.DESC;
+        }
         Page< Country > resultPage = countryRepository.findAllByNameIgnoreCaseContaining(filter,
-                new PageRequest(page, size, Sort.Direction.ASC, "name"));
+        new PageRequest(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
-//        if(page >= resultPage.getTotalPages()) {
-//            throw new DataNotFoundException(String.format("Countries page = %s size = %s not found", page, size));
-//        }
         List<Country> countries = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
         return new CountryListDTO(countries, totalElements);

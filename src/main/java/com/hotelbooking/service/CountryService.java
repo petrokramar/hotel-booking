@@ -10,7 +10,7 @@ public interface CountryService {
 
     List<Country> getAllCountries();
 
-    CountryListDTO getCountriesPage(String filter, int page, int size);
+    CountryListDTO getCountriesPage(String filter, String sortOrder, int page, int size);
 
     Long countAllCountries();
 

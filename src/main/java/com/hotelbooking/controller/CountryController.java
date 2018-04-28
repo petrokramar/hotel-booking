@@ -24,11 +24,12 @@ public class CountryController {
         return ResponseEntity.ok(countries);
     }
 
-    @GetMapping(params = {"filter", "page", "size"})
+    @GetMapping(params = {"filter", "sortOrder", "page", "size"})
     public ResponseEntity<CountryListDTO> getCountriesPage(@RequestParam( "filter" ) String filter,
+                                                           @RequestParam( "sortOrder" ) String sortOrder,
                                                            @RequestParam( "page" ) int page,
                                                            @RequestParam( "size" ) int size) {
-        CountryListDTO countries = countryService.getCountriesPage(filter, page, size);
+        CountryListDTO countries = countryService.getCountriesPage(filter, sortOrder, page, size);
         return ResponseEntity.ok(countries);
     }
 

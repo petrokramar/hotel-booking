@@ -1,6 +1,7 @@
 package com.hotelbooking.service;
 
 import com.hotelbooking.entity.Country;
+import com.hotelbooking.entity.dto.CountryListDTO;
 import com.hotelbooking.entity.request.CountryRequest;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface CountryService {
 
     List<Country> getAllCountries();
 
-    List<Country> getCountriesPage(int page, int size);
+    CountryListDTO getCountriesPage(String filter, int page, int size);
 
     Long countAllCountries();
 

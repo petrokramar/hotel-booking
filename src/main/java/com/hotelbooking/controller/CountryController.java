@@ -1,6 +1,7 @@
 package com.hotelbooking.controller;
 
 import com.hotelbooking.entity.Country;
+import com.hotelbooking.entity.dto.CountryListDTO;
 import com.hotelbooking.entity.request.CountryRequest;
 import com.hotelbooking.service.CountryService;
 import lombok.AllArgsConstructor;
@@ -23,10 +24,11 @@ public class CountryController {
         return ResponseEntity.ok(countries);
     }
 
-    @GetMapping(params = {"page", "size"})
-    public ResponseEntity<List<Country>> getCountriesPage(@RequestParam( "page" ) int page,
-                                                          @RequestParam( "size" ) int size) {
-        List<Country> countries = countryService.getCountriesPage(page, size);
+    @GetMapping(params = {"filter", "page", "size"})
+    public ResponseEntity<CountryListDTO> getCountriesPage(@RequestParam( "filter" ) String filter,
+                                                           @RequestParam( "page" ) int page,
+                                                           @RequestParam( "size" ) int size) {
+        CountryListDTO countries = countryService.getCountriesPage(filter, page, size);
         return ResponseEntity.ok(countries);
     }
 

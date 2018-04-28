@@ -1,6 +1,7 @@
 package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.Country;
+import com.hotelbooking.entity.dto.CountryListDTO;
 import com.hotelbooking.entity.request.CountryRequest;
 import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CountryRepository;
@@ -26,13 +27,16 @@ public class CountryServiceImpl implements CountryService{
     }
 
     @Override
-    public List<Country> getCountriesPage(int page, int size) {
-        Page< Country > resultPage = countryRepository.findAll(new PageRequest(page, size,
-                Sort.Direction.ASC, "name"));
-        if(page >= resultPage.getTotalPages()) {
-            throw new DataNotFoundException(String.format("Countries page = %s size = %s not found", page, size));
-        }
-        return resultPage.getContent();
+    public CountryListDTO getCountriesPage(String filter, int page, int size) {
+        Page< Country > resultPage = countryRepository.findAllByNameIgnoreCaseContaining(filter,
+                new PageRequest(page, size, Sort.Direction.ASC, "name"));
+        resultPage.getTotalElements();
+//        if(page >= resultPage.getTotalPages()) {
+//            throw new DataNotFoundException(String.format("Countries page = %s size = %s not found", page, size));
+//        }
+        List<Country> countries = resultPage.getContent();
+        long totalElements = resultPage.getTotalElements();
+        return new CountryListDTO(countries, totalElements);
     }
 
     @Override

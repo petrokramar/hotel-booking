@@ -156,6 +156,60 @@ INSERT INTO hotels(id, name, city_id, category)
 VALUES('2', 'Avsallar hotel 1', '2', 'FOUR_STARS');
 INSERT INTO hotels(id, name, city_id, category)
 VALUES('3', 'Port el Cantaoui hotel 1', '3', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('4', 'City 4 Hotel 4', '4', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('5', 'City 5 Hotel 5', '5', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('6', 'City 6 Hotel 6', '6', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('7', 'City 7 Hotel 7', '7', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('8', 'City 8 Hotel 8', '8', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('9', 'City 9 Hotel 9', '9', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('10', 'City 10 Hotel 10', '10', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('11', 'City 11 Hotel 11', '11', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('12', 'City 12 Hotel 12', '12', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('13', 'City 13 Hotel 13', '13', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('14', 'City 14 Hotel 14', '14', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('15', 'City 15 Hotel 15', '15', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('16', 'City 16 Hotel 16', '16', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('17', 'City 17 Hotel 17', '17', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('18', 'City 18 Hotel 18', '18', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('19', 'City 19 Hotel 19', '19', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('20', 'City 20 Hotel 20', '20', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('21', 'City 21 Hotel 21', '21', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('22', 'City 22 Hotel 22', '22', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('23', 'City 23 Hotel 23', '23', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('24', 'City 24 Hotel 24', '24', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('25', 'City 25 Hotel 25', '25', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('26', 'City 26 Hotel 26', '26', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('27', 'City 27 Hotel 27', '27', 'THREE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('28', 'City 28 Hotel 28', '28', 'FIVE_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('29', 'City 29 Hotel 29', '29', 'FOUR_STARS');
+INSERT INTO hotels(id, name, city_id, category)
+VALUES('30', 'City 30 Hotel 30', '30', 'THREE_STARS');
 -- ALTER SEQUENCE hotels_id_seq RESTART WITH 4;
 
 INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)

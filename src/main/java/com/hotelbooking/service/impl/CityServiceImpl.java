@@ -2,12 +2,16 @@ package com.hotelbooking.service.impl;
 
 import com.hotelbooking.entity.City;
 import com.hotelbooking.entity.Country;
+import com.hotelbooking.entity.dto.CityListDTO;
 import com.hotelbooking.entity.request.CityRequest;
 import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.CityRepository;
 import com.hotelbooking.repository.CountryRepository;
 import com.hotelbooking.service.CityService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +26,20 @@ public class CityServiceImpl implements CityService{
     @Override
     public List<City> getAllCities() {
         return cityRepository.findAllByOrderByName();
+    }
+
+    @Override
+    public CityListDTO getCitiesPage(String filter, String sortOrder, int page, int size) {
+        Sort.Direction sortDirection = Sort.Direction.ASC;
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            sortDirection = Sort.Direction.DESC;
+        }
+        Page< City > resultPage = cityRepository.findCityPage(filter,
+                new PageRequest(page, size, sortDirection, "name"));
+        resultPage.getTotalElements();
+        List<City> cities = resultPage.getContent();
+        long totalElements = resultPage.getTotalElements();
+        return new CityListDTO(cities, totalElements);
     }
 
     @Override

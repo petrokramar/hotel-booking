@@ -104,6 +104,50 @@ INSERT INTO cities(id, name, country_id)
 VALUES('7', 'Belek', '2');
 INSERT INTO cities(id, name, country_id)
 VALUES('8', 'Side', '2');
+INSERT INTO cities(id, name, country_id)
+VALUES('9', 'City 9', '9');
+INSERT INTO cities(id, name, country_id)
+VALUES('10', 'City 10', '10');
+INSERT INTO cities(id, name, country_id)
+VALUES('11', 'City 11', '11');
+INSERT INTO cities(id, name, country_id)
+VALUES('12', 'City 12', '12');
+INSERT INTO cities(id, name, country_id)
+VALUES('13', 'City 13', '13');
+INSERT INTO cities(id, name, country_id)
+VALUES('14', 'City 14', '14');
+INSERT INTO cities(id, name, country_id)
+VALUES('15', 'City 15', '15');
+INSERT INTO cities(id, name, country_id)
+VALUES('16', 'City 16', '16');
+INSERT INTO cities(id, name, country_id)
+VALUES('17', 'City 17', '17');
+INSERT INTO cities(id, name, country_id)
+VALUES('18', 'City 18', '18');
+INSERT INTO cities(id, name, country_id)
+VALUES('19', 'City 19', '19');
+INSERT INTO cities(id, name, country_id)
+VALUES('20', 'City 20', '20');
+INSERT INTO cities(id, name, country_id)
+VALUES('21', 'City 21', '21');
+INSERT INTO cities(id, name, country_id)
+VALUES('22', 'City 22', '22');
+INSERT INTO cities(id, name, country_id)
+VALUES('23', 'City 23', '23');
+INSERT INTO cities(id, name, country_id)
+VALUES('24', 'City 24', '24');
+INSERT INTO cities(id, name, country_id)
+VALUES('25', 'City 25', '25');
+INSERT INTO cities(id, name, country_id)
+VALUES('26', 'City 26', '26');
+INSERT INTO cities(id, name, country_id)
+VALUES('27', 'City 27', '27');
+INSERT INTO cities(id, name, country_id)
+VALUES('28', 'City 28', '28');
+INSERT INTO cities(id, name, country_id)
+VALUES('29', 'City 29', '29');
+INSERT INTO cities(id, name, country_id)
+VALUES('30', 'City 30', '30');
 -- ALTER SEQUENCE cities_id_seq RESTART WITH 9;
 
 INSERT INTO hotels(id, name, city_id, category)

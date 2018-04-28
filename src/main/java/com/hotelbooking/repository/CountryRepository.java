@@ -15,5 +15,5 @@ public interface CountryRepository  extends CrudRepository<Country, Integer> {
     List<Country> findAllByOrderByName();
 
     @Query("Select c from Country c where lower(c.name) like lower(concat('%', :filter,'%'))")
-    Page<Country> findAllByNameIgnoreCaseContaining(@Param(value = "filter") String filter, Pageable pageable);
+    Page<Country> findCountryPage(@Param(value = "filter") String filter, Pageable pageable);
 }

@@ -1,6 +1,7 @@
 package com.hotelbooking.controller;
 
 import com.hotelbooking.entity.City;
+import com.hotelbooking.entity.dto.CityListDTO;
 import com.hotelbooking.entity.request.CityRequest;
 import com.hotelbooking.service.CityService;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,15 @@ public class CityController {
     public ResponseEntity<List<City>> getAllCities() {
         List<City> countries = cityService.getAllCities();
         return ResponseEntity.ok(countries);
+    }
+
+    @GetMapping(params = {"filter", "sortOrder", "page", "size"})
+    public ResponseEntity<CityListDTO> getCitiesPage(@RequestParam( "filter" ) String filter,
+                                                     @RequestParam( "sortOrder" ) String sortOrder,
+                                                     @RequestParam( "page" ) int page,
+                                                     @RequestParam( "size" ) int size) {
+        CityListDTO cities = cityService.getCitiesPage(filter, sortOrder, page, size);
+        return ResponseEntity.ok(cities);
     }
 
     @PostMapping(consumes = "application/json")

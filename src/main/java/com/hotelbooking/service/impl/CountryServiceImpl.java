@@ -9,7 +9,6 @@ import com.hotelbooking.service.CountryService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class CountryServiceImpl implements CountryService{
         if ("desc".equalsIgnoreCase(sortOrder)) {
             sortDirection = Sort.Direction.DESC;
         }
-        Page< Country > resultPage = countryRepository.findAllByNameIgnoreCaseContaining(filter,
+        Page< Country > resultPage = countryRepository.findCountryPage(filter,
         new PageRequest(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
         List<Country> countries = resultPage.getContent();

@@ -121,7 +121,7 @@ public class BookingControllerTest {
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
         given(bookingService.saveBooking(request)).willReturn(booking);
         String requestJson = "{\"id\":\"1\",\"roomId\":\"5\",\"username\":\"username\",\"totalSum\":\"100\"," +
-                "\"persons\":\"2\",\"dateBegin\":\"01-04-2018\",\"dateEnd\":\"10-04-2018\"}";
+                "\"persons\":\"2\",\"checkIn\":\"01-04-2018\",\"checkOut\":\"10-04-2018\"}";
 
         // when
         String result = mockMvc.perform(post(BOOKING_URL)

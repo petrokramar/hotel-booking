@@ -63,6 +63,6 @@ CREATE TABLE IF NOT EXISTS BOOKING_HOTELS_SCHEMA.booking
   user_username varchar(50) REFERENCES users(username),
   total_sum integer NOT NULL,
   persons integer NOT NULL,
-  date_begin TIMESTAMP NOT NULL,
-  date_end TIMESTAMP NOT NULL
+  check_in TIMESTAMP NOT NULL,
+  check_out TIMESTAMP NOT NULL
 );

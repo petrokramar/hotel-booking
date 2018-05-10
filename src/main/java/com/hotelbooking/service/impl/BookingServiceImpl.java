@@ -42,7 +42,7 @@ public class BookingServiceImpl implements BookingService {
         User user = userRepository.findOne(request.getUsername());
         Room room = roomRepository.findOne(request.getRoomId());
         Booking booking = new Booking(request.getId(), room, user, request.getTotalSum(), request.getPersons(),
-                request.getDateBegin(), request.getDateEnd());
+                request.getCheckIn(), request.getCheckOut());
         return bookingRepository.save(booking);
     }
 }

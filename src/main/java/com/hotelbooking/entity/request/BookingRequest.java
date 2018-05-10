@@ -33,11 +33,11 @@ public class BookingRequest {
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date dateBegin;
+    private Date checkIn;
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date dateEnd;
+    private Date checkOut;
 
     @JsonCreator
     public BookingRequest(@JsonProperty(value = "id", required = true) int id,
@@ -45,14 +45,14 @@ public class BookingRequest {
                           @JsonProperty("username") String username,
                           @JsonProperty(value = "totalSum", required = true) int totalSum,
                           @JsonProperty(value = "persons", required = true) int persons,
-                          @JsonProperty("dateBegin") Date dateBegin,
-                          @JsonProperty("dateEnd") Date dateEnd) {
+                          @JsonProperty("checkIn") Date checkIn,
+                          @JsonProperty("checkOut") Date checkOut) {
         this.id = id;
         this.roomId = roomId;
         this.username = username;
         this.totalSum = totalSum;
         this.persons = persons;
-        this.dateBegin = dateBegin;
-        this.dateEnd = dateEnd;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 }

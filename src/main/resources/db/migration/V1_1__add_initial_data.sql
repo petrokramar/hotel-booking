@@ -219,7 +219,7 @@ VALUES('2', '201', '2', '2', '200', '2');
 INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
 VALUES('3', '301', '3', '3', '100', '3');
 
-INSERT INTO booking(id, room_id, user_username, total_sum, persons, date_begin, date_end)
+INSERT INTO booking(id, room_id, user_username, total_sum, persons, check_in, check_out)
 VALUES('1', '1', 'BobMarley', '300', '1', '2018-02-25', '2018-02-28');
-INSERT INTO booking(id, room_id, user_username, total_sum, persons,  date_begin, date_end)
+INSERT INTO booking(id, room_id, user_username, total_sum, persons, check_in, check_out)
 VALUES('2', '2', 'JamesBond', '200', '2', '2018-02-28', '2018-03-05');

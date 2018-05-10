@@ -36,7 +36,7 @@ public class Booking {
     private int totalSum;
     private int persons;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date dateBegin;
+    private Date checkIn;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date dateEnd;
+    private Date checkOut;
 }

@@ -3,6 +3,7 @@ package com.hotelbooking.service.impl;
 import com.hotelbooking.entity.Hotel;
 import com.hotelbooking.entity.Room;
 import com.hotelbooking.entity.RoomCategory;
+import com.hotelbooking.entity.dto.RoomListDTO;
 import com.hotelbooking.entity.request.RoomRequest;
 import com.hotelbooking.exceptions.DataNotFoundException;
 import com.hotelbooking.repository.HotelRepository;
@@ -10,6 +11,9 @@ import com.hotelbooking.repository.RoomCategoryRepository;
 import com.hotelbooking.repository.RoomRepository;
 import com.hotelbooking.service.RoomService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +30,15 @@ public class RoomServiceImpl implements RoomService{
     public List<Room> getAllRooms() {
         List<Room> rooms = (List<Room>) roomRepository.findAll();
         return rooms;
+    }
+
+    @Override
+    public RoomListDTO getAllHotelRooms(int hotelId, int page, int size) {
+        Page<Room> resultPage = roomRepository.findHotelRoomsPage(hotelId, new PageRequest(page, size));
+        resultPage.getTotalElements();
+        List<Room> rooms = resultPage.getContent();
+        long totalElements = resultPage.getTotalElements();
+        return new RoomListDTO(rooms, totalElements);
     }
 
     @Override

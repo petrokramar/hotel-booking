@@ -213,11 +213,71 @@ VALUES('30', 'City 30 Hotel 30', '30', 'THREE_STARS');
 -- ALTER SEQUENCE hotels_id_seq RESTART WITH 4;
 
 INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
-VALUES('1', '101', '1', '1', '300', '1');
+VALUES('1', '101', '1', '3', '100', '1');
 INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
-VALUES('2', '201', '2', '2', '200', '2');
+VALUES('2', '102', '1', '3', '100', '1');
 INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
-VALUES('3', '301', '3', '3', '100', '3');
+VALUES('3', '103', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('4', '104', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('5', '105', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('6', '106', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('7', '107', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('8', '108', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('9', '109', '1', '3', '100', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('10', '110', '1', '3', '100', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('11', '111', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('12', '112', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('13', '113', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('14', '114', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('15', '115', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('16', '116', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('17', '117', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('18', '118', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('19', '119', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('20', '120', '1', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('21', '121', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('22', '122', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('23', '123', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('24', '124', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('25', '125', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('26', '126', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('27', '127', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('28', '128', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('29', '129', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('30', '130', '1', '1', '300', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('31', '101', '2', '1', '300', '1');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('32', '201', '3', '2', '200', '2');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('33', '301', '4', '3', '100', '3');
 
 INSERT INTO booking(id, room_id, user_username, total_sum, persons, check_in, check_out)
 VALUES('1', '1', 'BobMarley', '300', '1', '2018-02-25', '2018-02-28');

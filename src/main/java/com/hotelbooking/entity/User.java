@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
-@Entity(name = "users")
+@Entity
 @Table(name = "users", schema = "BOOKING_HOTELS_SCHEMA")
 @AllArgsConstructor
 @NoArgsConstructor

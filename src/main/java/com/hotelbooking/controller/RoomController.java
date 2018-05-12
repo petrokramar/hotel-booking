@@ -1,6 +1,7 @@
 package com.hotelbooking.controller;
 
 import com.hotelbooking.entity.Room;
+import com.hotelbooking.entity.dto.RoomListDTO;
 import com.hotelbooking.entity.request.RoomRequest;
 import com.hotelbooking.service.RoomService;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,14 @@ public class RoomController {
     @GetMapping()
     public ResponseEntity<List<Room>> getRooms() {
         List<Room> rooms = roomService.getAllRooms();
+        return ResponseEntity.ok(rooms);
+    }
+
+    @GetMapping(params = {"hotelId", "page", "size"})
+    public ResponseEntity<RoomListDTO> getHotelRooms(@RequestParam( "hotelId" ) int hotelId,
+                                                     @RequestParam( "page" ) int page,
+                                                     @RequestParam( "size" ) int size) {
+        RoomListDTO rooms = roomService.getAllHotelRooms(hotelId, page, size);
         return ResponseEntity.ok(rooms);
     }
 

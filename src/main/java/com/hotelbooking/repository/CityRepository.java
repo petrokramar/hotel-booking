@@ -15,5 +15,4 @@ public interface CityRepository extends CrudRepository<City, Integer> {
 
     @Query("Select c from City c where lower(c.name) like lower(concat('%', :filter,'%'))")
     Page<City> findCityPage(@Param(value = "filter") String filter, Pageable pageable);
-
 }

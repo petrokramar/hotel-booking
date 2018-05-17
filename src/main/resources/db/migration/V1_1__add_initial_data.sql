@@ -4,6 +4,66 @@ INSERT INTO users(username, password, enabled, first_name, last_name)
 VALUES('JamesBond', '{noop}1', 'true', 'James', 'Bond');
 INSERT INTO users(username, password, enabled, first_name, last_name)
 VALUES('JohnLennon', '{noop}1', 'false', 'John', 'Lennon');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user1', '{noop}1', 'true', 'firstname user 1', 'lastname user 1');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user2', '{noop}1', 'true', 'firstname user 2', 'lastname user 2');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user3', '{noop}1', 'true', 'firstname user 3', 'lastname user 3');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user4', '{noop}1', 'true', 'firstname user 4', 'lastname user 4');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user5', '{noop}1', 'true', 'firstname user 5', 'lastname user 5');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user6', '{noop}1', 'true', 'firstname user 6', 'lastname user 6');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user7', '{noop}1', 'true', 'firstname user 7', 'lastname user 7');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user8', '{noop}1', 'true', 'firstname user 8', 'lastname user 8');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user9', '{noop}1', 'true', 'firstname user 9', 'lastname user 9');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user10', '{noop}1', 'true', 'firstname user 10', 'lastname user 10');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user11', '{noop}1', 'true', 'firstname user 11', 'lastname user 11');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user12', '{noop}1', 'true', 'firstname user 12', 'lastname user 12');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user13', '{noop}1', 'true', 'firstname user 13', 'lastname user 13');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user14', '{noop}1', 'true', 'firstname user 14', 'lastname user 14');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user15', '{noop}1', 'true', 'firstname user 15', 'lastname user 15');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user16', '{noop}1', 'true', 'firstname user 16', 'lastname user 16');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user17', '{noop}1', 'true', 'firstname user 17', 'lastname user 17');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user18', '{noop}1', 'true', 'firstname user 18', 'lastname user 18');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user19', '{noop}1', 'true', 'firstname user 19', 'lastname user 19');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user20', '{noop}1', 'true', 'firstname user 20', 'lastname user 20');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user21', '{noop}1', 'true', 'firstname user 21', 'lastname user 21');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user22', '{noop}1', 'true', 'firstname user 22', 'lastname user 22');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user23', '{noop}1', 'true', 'firstname user 23', 'lastname user 23');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user24', '{noop}1', 'true', 'firstname user 24', 'lastname user 24');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user25', '{noop}1', 'true', 'firstname user 25', 'lastname user 25');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user26', '{noop}1', 'true', 'firstname user 26', 'lastname user 26');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user27', '{noop}1', 'true', 'firstname user 27', 'lastname user 27');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user28', '{noop}1', 'true', 'firstname user 28', 'lastname user 28');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user29', '{noop}1', 'true', 'firstname user 29', 'lastname user 29');
+INSERT INTO users(username, password, enabled, first_name, last_name)
+VALUES('user30', '{noop}1', 'true', 'firstname user 30', 'lastname user 30');
 
 INSERT INTO authorities(username, authority)
 VALUES('BobMarley', 'ROLE_ADMIN');
@@ -17,6 +77,66 @@ INSERT INTO authorities(username, authority)
 VALUES('JamesBond', 'ROLE_USER');
 INSERT INTO authorities(username, authority)
 VALUES('JohnLennon', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user1', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user2', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user3', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user4', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user5', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user6', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user7', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user8', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user9', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user10', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user11', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user12', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user13', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user14', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user15', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user16', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user17', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user18', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user19', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user20', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user21', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user22', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user23', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user24', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user25', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user26', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user27', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user28', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user29', 'ROLE_USER');
+INSERT INTO authorities(username, authority)
+VALUES('user30', 'ROLE_USER');
 
 INSERT INTO room_categories(id, name, description)
 VALUES('1', 'First', 'First category');
@@ -278,8 +398,12 @@ INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
 VALUES('32', '201', '3', '2', '200', '2');
 INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
 VALUES('33', '301', '4', '3', '100', '3');
+INSERT INTO rooms(id, number, hotel_id, room_category_id, price, persons)
+VALUES('34', '302', '4', '3', '100', '3');
 
 INSERT INTO booking(id, room_id, user_username, total_sum, persons, check_in, check_out)
 VALUES('1', '1', 'BobMarley', '300', '1', '2018-02-25', '2018-02-28');
 INSERT INTO booking(id, room_id, user_username, total_sum, persons, check_in, check_out)
 VALUES('2', '2', 'JamesBond', '200', '2', '2018-02-28', '2018-03-05');
+INSERT INTO booking(id, room_id, user_username, total_sum, persons, check_in, check_out)
+VALUES('3', '33', 'user1', '100', '3', '2018-05-10', '2018-05-17');

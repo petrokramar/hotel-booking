@@ -5,10 +5,12 @@ import com.hotelbooking.entity.dto.RoomListDTO;
 import com.hotelbooking.entity.request.RoomRequest;
 import com.hotelbooking.service.RoomService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,18 @@ public class RoomController {
                                                      @RequestParam( "page" ) int page,
                                                      @RequestParam( "size" ) int size) {
         RoomListDTO rooms = roomService.getAllHotelRooms(hotelId, page, size);
+        return ResponseEntity.ok(rooms);
+    }
+
+    @GetMapping(params = {"hotelId", "checkIn", "checkOut", "page", "size" })
+    public ResponseEntity<RoomListDTO> getHotelFreeRooms(
+            @RequestParam( "hotelId" ) int hotelId,
+            @RequestParam( "checkIn" ) @DateTimeFormat(pattern="yyyy-MM-dd") Date checkIn,
+            @RequestParam( "checkOut" ) @DateTimeFormat(pattern="yyyy-MM-dd") Date checkOut,
+            @RequestParam( "page" ) int page,
+            @RequestParam( "size" ) int size)
+    {
+        RoomListDTO rooms = roomService.getAllHotelFreeRooms(hotelId, checkIn, checkOut, page, size);
         return ResponseEntity.ok(rooms);
     }
 

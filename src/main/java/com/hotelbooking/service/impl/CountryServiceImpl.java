@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -47,10 +48,8 @@ public class CountryServiceImpl implements CountryService{
     @Override
     public Country getCountry(int id) {
         Country country = countryRepository.findOne(id);
-        if (country == null) {
-            throw new DataNotFoundException(String.format("Country id= %s not found", id));
-        }
-        return country;
+        return Optional.ofNullable(country).orElseThrow(() ->
+                new DataNotFoundException(String.format("Country id= %s not found", id)));
     }
 
     @Override

@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -31,10 +32,8 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking getBooking(int id) {
         Booking booking = bookingRepository.findOne(id);
-        if (booking == null) {
-            throw new DataNotFoundException(String.format("Booking id= %s not found", id));
-        }
-        return booking;
+        return Optional.ofNullable(booking).orElseThrow(() ->
+                new DataNotFoundException(String.format("Booking id= %s not found", id)));
     }
 
     @Override

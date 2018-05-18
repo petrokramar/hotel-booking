@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -45,10 +46,8 @@ public class CityServiceImpl implements CityService{
     @Override
     public City getCity(int id) {
         City city = cityRepository.findOne(id);
-        if (city == null) {
-            throw new DataNotFoundException(String.format("City id= %s not found", id));
-        }
-        return city;
+        return Optional.ofNullable(city).orElseThrow(() ->
+                new DataNotFoundException(String.format("City id= %s not found", id)));
     }
 
     @Override

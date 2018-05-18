@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -57,10 +58,8 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Hotel getHotel(int id) {
         Hotel hotel = hotelRepository.findOne(id);
-        if (hotel == null) {
-            throw new DataNotFoundException(String.format("Hotel id= %s not found", id));
-        }
-        return hotel;
+        return Optional.ofNullable(hotel).orElseThrow(() ->
+                new DataNotFoundException(String.format("Hotel id= %s not found", id)));
     }
 
     @Override

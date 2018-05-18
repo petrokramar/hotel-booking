@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -55,10 +56,8 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public Room getRoom(int id) {
         Room room = roomRepository.findOne(id);
-        if (room == null) {
-            throw new DataNotFoundException(String.format("Room id= %s not found", id));
-        }
-        return room;
+        return Optional.ofNullable(room).orElseThrow(() ->
+                new DataNotFoundException(String.format("Room id= %s not found", id)));
     }
 
     @Override

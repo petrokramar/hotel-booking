@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,9 +25,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUser(String username) {
         User user = userRepository.findOne(username);
-        if (user == null) {
-            throw new DataNotFoundException(String.format("User username= %s not found", username));
-        }
-        return user;
+        return Optional.ofNullable(user).orElseThrow(() ->
+                new DataNotFoundException(String.format("User username= %s not found", username)));
     }
 }

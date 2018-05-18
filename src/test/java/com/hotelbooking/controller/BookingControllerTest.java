@@ -99,10 +99,10 @@ public class BookingControllerTest {
     public void saveBooking() throws Exception {
 
         // given
-        DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         format.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date dateBegin = format.parse("01-04-2018");
-        Date dateEnd = format.parse("10-04-2018");
+        Date dateBegin = format.parse("2018-04-01");
+        Date dateEnd = format.parse("2018-04-10");
         BookingRequest request = new BookingRequest(BOOKING_ONE_ID, ROOM_ID, "username", BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
         Country country = new Country(COUNTRY_ID, "Country name");
@@ -121,7 +121,7 @@ public class BookingControllerTest {
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
         given(bookingService.saveBooking(request)).willReturn(booking);
         String requestJson = "{\"id\":\"1\",\"roomId\":\"5\",\"username\":\"username\",\"totalSum\":\"100\"," +
-                "\"persons\":\"2\",\"checkIn\":\"01-04-2018\",\"checkOut\":\"10-04-2018\"}";
+                "\"persons\":\"2\",\"checkIn\":\"2018-04-01\",\"checkOut\":\"2018-04-10\"}";
 
         // when
         String result = mockMvc.perform(post(BOOKING_URL)

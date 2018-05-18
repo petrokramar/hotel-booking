@@ -42,13 +42,13 @@ public class RoomControllerTest{
     private final int HOTEL_ID = 6;
     private final int ROOM_CATEGORY_ID = 7;
     private final int ROOM_ONE_NUMBER = 33;
-    private final int ROOM_ONE_PRICE = 100;
+    private final int ROOM_ONE_PRICE = 10000;
     private final int ROOM_ONE_PERSONS = 2;
     private final int ROOM_TWO_NUMBER = 44;
-    private final int ROOM_TWO_PRICE = 200;
+    private final int ROOM_TWO_PRICE = 20000;
     private final int ROOM_TWO_PERSONS = 3;
     private final int ROOM_THREE_NUMBER = 55;
-    private final int ROOM_THREE_PRICE = 300;
+    private final int ROOM_THREE_PRICE = 30000;
     private final int ROOM_THREE_PERSONS = 4;
 
 
@@ -100,7 +100,7 @@ public class RoomControllerTest{
                 ROOM_ONE_PERSONS);
         given(service.saveRoom(request)).willReturn(room);
         String requestJson = "{\"id\":\"1\",\"number\":\"33\",\"hotelId\":\"6\",\"roomCategoryId\":\"7\"," +
-                "\"price\":\"100\",\"persons\":\"2\"}";
+                "\"price\":\"10000\",\"persons\":\"2\"}";
 
         // when
         String result = mockMvc.perform(post(ROOMS_URL)

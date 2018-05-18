@@ -32,9 +32,9 @@ public class RoomServiceTest {
     private final int ROOM_ONE_NUMBER = 1;
     private final int ROOM_TWO_NUMBER = 2;
     private final int ROOM_THREE_NUMBER = 3;
-    private final int ROOM_ONE_PRICE = 100;
-    private final int ROOM_TWO_PRICE = 200;
-    private final int ROOM_THREE_PRICE = 300;
+    private final int ROOM_ONE_PRICE = 10000;
+    private final int ROOM_TWO_PRICE = 20000;
+    private final int ROOM_THREE_PRICE = 30000;
     private final int ROOM_ONE_NUMBER_OF_PERSONS = 2;
     private final int ROOM_TWO_NUMBER_OF_PERSONS = 3;
     private final int ROOM_THREE_NUMBER_OF_PERSONS = 4;

@@ -37,10 +37,10 @@ public class BookingServiceTest {
     private final int ROOM_CATEGORY_ID = 6;
     private final int ROLE_ID = 7;
     private final int ROOM_ONE_NUMBER = 11;
-    private final int ROOM_ONE_PRICE = 100;
+    private final int ROOM_ONE_PRICE = 10000;
     private final int ROOM_ONE_NUMBER_OF_PERSONS = 2;
     private final boolean USER_ENABLED = true;
-    private final int BOOKING_ONE_TOTAL_SUM = 100;
+    private final int BOOKING_ONE_TOTAL_SUM = 10000;
     private final int BOOKING_ONE_NUMBER_OF_PERSONS = 2;
 
     private BookingRepository repository;

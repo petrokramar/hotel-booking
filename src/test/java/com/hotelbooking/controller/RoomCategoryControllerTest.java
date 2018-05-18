@@ -39,7 +39,7 @@ public class RoomCategoryControllerTest{
     private final int ROOM_CATEGORY_THREE_ID = 3;
 
     @MockBean
-    private RoomCategoryService roomCategoryService;
+    private RoomCategoryService service;
 
     @Inject
     private MockMvc mockMvc;
@@ -55,7 +55,7 @@ public class RoomCategoryControllerTest{
                 "Room category two description"));
         roomCategories.add(new RoomCategory(ROOM_CATEGORY_THREE_ID, "Room category three name",
                 "Room category three description"));
-        given(roomCategoryService.getAllRoomCategories()).willReturn(roomCategories);
+        given(service.getAllRoomCategories()).willReturn(roomCategories);
 
         // when
         String result = mockMvc.perform(get(ROOM_CATEGORIES_URL)
@@ -66,8 +66,8 @@ public class RoomCategoryControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(roomCategories);
-        verify(roomCategoryService).getAllRoomCategories();
-        verifyNoMoreInteractions(roomCategoryService);
+        verify(service).getAllRoomCategories();
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class RoomCategoryControllerTest{
                 "Room category description" );
         RoomCategoryRequest request = new RoomCategoryRequest(ROOM_CATEGORY_ONE_ID, "Room category name",
                 "Room category description");
-        given(roomCategoryService.saveRoomCategory(request)).willReturn(roomCategory);
+        given(service.saveRoomCategory(request)).willReturn(roomCategory);
         String requestJson =
                 "{\"id\":\"1\",\"name\":\"Room category name\",\"description\":\"Room category description\"}";
 
@@ -92,8 +92,8 @@ public class RoomCategoryControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(roomCategory);
-        verify(roomCategoryService).saveRoomCategory(request);
-        verifyNoMoreInteractions(roomCategoryService);
+        verify(service).saveRoomCategory(request);
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class RoomCategoryControllerTest{
         // given
         RoomCategory roomCategory = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category name",
                 "Room category description" );
-        given(roomCategoryService.getRoomCategory(ROOM_CATEGORY_ONE_ID)).willReturn(roomCategory);
+        given(service.getRoomCategory(ROOM_CATEGORY_ONE_ID)).willReturn(roomCategory);
 
         // when
         String result = mockMvc.perform(get(ROOM_CATEGORIES_URL.concat("/").concat("1"))
@@ -113,7 +113,7 @@ public class RoomCategoryControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(roomCategory);
-        verify(roomCategoryService).getRoomCategory(ROOM_CATEGORY_ONE_ID);
-        verifyNoMoreInteractions(roomCategoryService);
+        verify(service).getRoomCategory(ROOM_CATEGORY_ONE_ID);
+        verifyNoMoreInteractions(service);
     }
 }

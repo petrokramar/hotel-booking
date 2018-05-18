@@ -13,7 +13,6 @@ import com.hotelbooking.service.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -24,19 +23,19 @@ import java.util.Optional;
 @AllArgsConstructor
 public class RoomServiceImpl implements RoomService{
 
-    private RoomRepository roomRepository;
+    private RoomRepository repository;
     private HotelRepository hotelRepository;
     private RoomCategoryRepository roomCategoryRepository;
 
     @Override
     public List<Room> getAllRooms() {
-        List<Room> rooms = (List<Room>) roomRepository.findAll();
+        List<Room> rooms = (List<Room>) repository.findAll();
         return rooms;
     }
 
     @Override
     public RoomListDTO getAllHotelRooms(int hotelId, int page, int size) {
-        Page<Room> resultPage = roomRepository.findHotelRoomsPage(hotelId, new PageRequest(page, size));
+        Page<Room> resultPage = repository.findHotelRoomsPage(hotelId, new PageRequest(page, size));
         resultPage.getTotalElements();
         List<Room> rooms = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -45,7 +44,7 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public RoomListDTO getAllHotelFreeRooms(int hotelId, Date checkIn, Date checkOut, int page, int size) {
-        Page<Room> resultPage = roomRepository.findHotelFreeRoomsPage(hotelId, checkIn, checkOut,
+        Page<Room> resultPage = repository.findHotelFreeRoomsPage(hotelId, checkIn, checkOut,
                 new PageRequest(page, size));
         resultPage.getTotalElements();
         List<Room> rooms = resultPage.getContent();
@@ -55,14 +54,14 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public Room getRoom(int id) {
-        Room room = roomRepository.findOne(id);
+        Room room = repository.findOne(id);
         return Optional.ofNullable(room).orElseThrow(() ->
                 new DataNotFoundException(String.format("Room id= %s not found", id)));
     }
 
     @Override
     public boolean checkRoomIsFree(int id, Date checkIn, Date checkOut) {
-        return roomRepository.checkRoomIsFree(id, checkIn, checkOut);
+        return repository.checkRoomIsFree(id, checkIn, checkOut);
     }
 
     @Override
@@ -71,6 +70,6 @@ public class RoomServiceImpl implements RoomService{
         RoomCategory roomCategory = roomCategoryRepository.findOne(request.getRoomCategoryId());
         Room room = new Room(request.getId(), request.getNumber(), hotel, roomCategory, request.getPrice(),
                 request.getPersons());
-        return roomRepository.save(room);
+        return repository.save(room);
     }
 }

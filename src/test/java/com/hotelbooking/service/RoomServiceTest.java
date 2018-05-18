@@ -38,17 +38,18 @@ public class RoomServiceTest {
     private final int ROOM_ONE_NUMBER_OF_PERSONS = 2;
     private final int ROOM_TWO_NUMBER_OF_PERSONS = 3;
     private final int ROOM_THREE_NUMBER_OF_PERSONS = 4;
+
     private HotelRepository hotelRepository;
     private RoomCategoryRepository roomCategoryRepository;
-    private RoomRepository roomRepository;
-    private RoomService roomService;
+    private RoomRepository repository;
+    private RoomService service;
 
     @Before
     public void setUp() {
-        roomRepository = mock(RoomRepository.class);
+        repository = mock(RoomRepository.class);
         hotelRepository = mock(HotelRepository.class);
         roomCategoryRepository = mock(RoomCategoryRepository.class);
-        roomService = new RoomServiceImpl(roomRepository, hotelRepository, roomCategoryRepository);
+        service = new RoomServiceImpl(repository, hotelRepository, roomCategoryRepository);
     }
 
     @Test
@@ -71,15 +72,15 @@ public class RoomServiceTest {
         Room roomThree = new Room(ROOM_THREE_ID, ROOM_THREE_NUMBER, hotel, roomCategory, ROOM_THREE_PRICE,
                 ROOM_THREE_NUMBER_OF_PERSONS);
         expectedRooms.add(roomThree);
-        given(roomRepository.findAll()).willReturn(expectedRooms);
+        given(repository.findAll()).willReturn(expectedRooms);
 
         //when
-        List<Room> actualRooms = roomService.getAllRooms();
+        List<Room> actualRooms = service.getAllRooms();
 
         //then
         assertEquals(expectedRooms, actualRooms);
-        verify(roomRepository).findAll();
-        verifyNoMoreInteractions(roomRepository);
+        verify(repository).findAll();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -93,25 +94,25 @@ public class RoomServiceTest {
                 "Room category description" );
         Room expectedRoom = new Room(ROOM_ONE_ID, ROOM_ONE_NUMBER, hotel, roomCategory, ROOM_ONE_PRICE,
                 ROOM_ONE_NUMBER_OF_PERSONS);
-        given(roomRepository.findOne(ROOM_ONE_ID)).willReturn(expectedRoom);
+        given(repository.findOne(ROOM_ONE_ID)).willReturn(expectedRoom);
 
         //when
-        Room actualRoom = roomService.getRoom(ROOM_ONE_ID);
+        Room actualRoom = service.getRoom(ROOM_ONE_ID);
 
         //then
         assertEquals(expectedRoom, actualRoom);
-        verify(roomRepository).findOne(ROOM_ONE_ID);
-        verifyNoMoreInteractions(roomRepository);
+        verify(repository).findOne(ROOM_ONE_ID);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getRoomNotFound() {
 
         // given
-        given(roomRepository.findOne(ROOM_ONE_ID)).willReturn(null);
+        given(repository.findOne(ROOM_ONE_ID)).willReturn(null);
 
         //when
-        Room room = roomService.getRoom(ROOM_ONE_ID);
+        Room room = service.getRoom(ROOM_ONE_ID);
 
         fail();
     }
@@ -131,10 +132,10 @@ public class RoomServiceTest {
                 ROOM_ONE_NUMBER_OF_PERSONS);
         given(hotelRepository.findOne(HOTEL_ID)).willReturn(hotel);
         given(roomCategoryRepository.findOne(ROOM_CATEGORY_ID)).willReturn(roomCategory);
-        given(roomRepository.save(expectedRoom)).willReturn(expectedRoom);
+        given(repository.save(expectedRoom)).willReturn(expectedRoom);
 
         //when
-        Room actualRoom = roomService.saveRoom(request);
+        Room actualRoom = service.saveRoom(request);
 
         //then
         assertEquals(expectedRoom, actualRoom);
@@ -142,7 +143,7 @@ public class RoomServiceTest {
         verifyNoMoreInteractions(hotelRepository);
         verify(roomCategoryRepository).findOne(ROOM_CATEGORY_ID);
         verifyNoMoreInteractions(roomCategoryRepository);
-        verify(roomRepository).save(expectedRoom);
-        verifyNoMoreInteractions(roomRepository);
+        verify(repository).save(expectedRoom);
+        verifyNoMoreInteractions(repository);
     }
 }

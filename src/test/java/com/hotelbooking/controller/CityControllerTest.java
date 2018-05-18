@@ -41,7 +41,7 @@ public class CityControllerTest{
     private final int COUNTRY_ID = 4;
 
     @MockBean
-    private CityService cityService;
+    private CityService service;
 
     @Inject
     private MockMvc mockMvc;
@@ -55,7 +55,7 @@ public class CityControllerTest{
         cities.add(new City(CITY_ONE_ID, "City one name", country));
         cities.add(new City(CITY_TWO_ID, "City two name", country));
         cities.add(new City(CITY_THREE_ID, "City three name", country));
-        given(cityService.getAllCities()).willReturn(cities);
+        given(service.getAllCities()).willReturn(cities);
 
         // when
         String result = mockMvc.perform(get(CITIES_URL)
@@ -66,8 +66,8 @@ public class CityControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(cities);
-        verify(cityService).getAllCities();
-        verifyNoMoreInteractions(cityService);
+        verify(service).getAllCities();
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class CityControllerTest{
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ONE_ID, "City name", country);
         CityRequest request = new CityRequest(CITY_ONE_ID, "City name", COUNTRY_ID);
-        given(cityService.saveCity(request)).willReturn(city);
+        given(service.saveCity(request)).willReturn(city);
         String requestJson = "{\"id\":\"1\",\"name\":\"City name\",\"countryId\":\"4\"}";
 
         // when
@@ -90,8 +90,8 @@ public class CityControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(city);
-        verify(cityService).saveCity(request);
-        verifyNoMoreInteractions(cityService);
+        verify(service).saveCity(request);
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class CityControllerTest{
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ONE_ID, "City name", country);
-        given(cityService.getCity(CITY_ONE_ID)).willReturn(city);
+        given(service.getCity(CITY_ONE_ID)).willReturn(city);
 
         // when
         String result = mockMvc.perform(get(CITIES_URL.concat("/").concat("1"))
@@ -111,7 +111,7 @@ public class CityControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(city);
-        verify(cityService).getCity(CITY_ONE_ID);
-        verifyNoMoreInteractions(cityService);
+        verify(service).getCity(CITY_ONE_ID);
+        verifyNoMoreInteractions(service);
     }
 }

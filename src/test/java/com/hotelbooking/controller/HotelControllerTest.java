@@ -44,7 +44,7 @@ public class HotelControllerTest{
     private final int CITY_ID = 5;
 
     @MockBean
-    private HotelService hotelService;
+    private HotelService service;
 
     @Inject
     private MockMvc mockMvc;
@@ -59,7 +59,7 @@ public class HotelControllerTest{
         hotels.add(new Hotel(HOTEL_ONE_ID, "Hotel one name", city, HotelCategory.THREE_STARS));
         hotels.add(new Hotel(HOTEL_TWO_ID, "Hotel two name",  city, HotelCategory.FOUR_STARS));
         hotels.add(new Hotel(HOTEL_THREE_ID, "Hotel three name", city, HotelCategory.FIVE_STARS));
-        given(hotelService.getAllHotels()).willReturn(hotels);
+        given(service.getAllHotels()).willReturn(hotels);
 
         // when
         String result = mockMvc.perform(get(HOTELS_URL)
@@ -70,8 +70,8 @@ public class HotelControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(hotels);
-        verify(hotelService).getAllHotels();
-        verifyNoMoreInteractions(hotelService);
+        verify(service).getAllHotels();
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class HotelControllerTest{
         Hotel hotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.THREE_STARS);
         HotelRequest request = new HotelRequest(HOTEL_ONE_ID, "Hotel name", CITY_ID,
                 HotelCategory.THREE_STARS.name());
-        given(hotelService.saveHotel(request)).willReturn(hotel);
+        given(service.saveHotel(request)).willReturn(hotel);
         String requestJson = "{\"id\":\"1\",\"name\":\"Hotel name\",\"cityId\":\"5\",\"category\":\"THREE_STARS\"}";
 
         // when
@@ -96,8 +96,8 @@ public class HotelControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(hotel);
-        verify(hotelService).saveHotel(request);
-        verifyNoMoreInteractions(hotelService);
+        verify(service).saveHotel(request);
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class HotelControllerTest{
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel hotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.THREE_STARS);
-        given(hotelService.getHotel(HOTEL_ONE_ID)).willReturn(hotel);
+        given(service.getHotel(HOTEL_ONE_ID)).willReturn(hotel);
 
         // when
         String result = mockMvc.perform(get(HOTELS_URL.concat("/").concat("1"))
@@ -118,7 +118,7 @@ public class HotelControllerTest{
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(hotel);
-        verify(hotelService).getHotel(HOTEL_ONE_ID);
-        verifyNoMoreInteractions(hotelService);
+        verify(service).getHotel(HOTEL_ONE_ID);
+        verifyNoMoreInteractions(service);
     }
 }

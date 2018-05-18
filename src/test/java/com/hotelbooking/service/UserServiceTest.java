@@ -27,13 +27,14 @@ public class UserServiceTest {
     private final int ROLE_THREE_ID = 3;
     private final boolean USER_ENABLED = true;
     private final boolean USER_NOT_ENABLED = false;
-    private UserRepository userRepository;
-    private UserService userService;
+
+    private UserRepository repository;
+    private UserService service;
 
     @Before
     public void setUp() {
-        userRepository = mock(UserRepository.class);
-        userService = new UserServiceImpl(userRepository);
+        repository = mock(UserRepository.class);
+        service = new UserServiceImpl(repository);
     }
 
     @Test
@@ -63,15 +64,15 @@ public class UserServiceTest {
                 "First name userThree","Last name userThree", rolesUserThree);
         expectedUsers.add(userThree);
 
-        given(userRepository.findAll()).willReturn(expectedUsers);
+        given(repository.findAll()).willReturn(expectedUsers);
 
         //when
-        List<User> actualUsers = userService.getAllUsers();
+        List<User> actualUsers = service.getAllUsers();
 
         //then
         assertEquals(expectedUsers, actualUsers);
-        verify(userRepository).findAll();
-        verifyNoMoreInteractions(userRepository);
+        verify(repository).findAll();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -85,25 +86,25 @@ public class UserServiceTest {
         roles.add(roleTwo);
         User expectedUser = new User("username", "password", USER_ENABLED,
                 "First name","Last name", roles);
-        given(userRepository.findOne("user1")).willReturn(expectedUser);
+        given(repository.findOne("user1")).willReturn(expectedUser);
 
         //when
-        User actualUser = userService.getUser("user1");
+        User actualUser = service.getUser("user1");
 
         //then
         assertEquals(expectedUser, actualUser);
-        verify(userRepository).findOne("user1");
-        verifyNoMoreInteractions(userRepository);
+        verify(repository).findOne("user1");
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getUserNotFound() {
 
         // given
-        given(userRepository.findOne("username")).willReturn(null);
+        given(repository.findOne("username")).willReturn(null);
 
         //when
-        User user = userService.getUser("username");
+        User user = service.getUser("username");
 
         fail();
     }

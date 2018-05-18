@@ -27,14 +27,14 @@ public class CityServiceTest {
     private final int CITY_THREE_ID = 3;
     private final int COUNTRY_ID = 4;
     private CountryRepository countryRepository;
-    private CityRepository cityRepository;
-    private CityService cityService;
+    private CityRepository repository;
+    private CityService service;
 
     @Before
     public void setUp() {
         countryRepository = mock(CountryRepository.class);
-        cityRepository = mock(CityRepository.class);
-        cityService = new CityServiceImpl(cityRepository, countryRepository);
+        repository = mock(CityRepository.class);
+        service = new CityServiceImpl(repository, countryRepository);
     }
 
     @Test
@@ -49,15 +49,15 @@ public class CityServiceTest {
         expectedCities.add(cityTwo);
         City cityThree = new City(CITY_THREE_ID, "City three name", country);
         expectedCities.add(cityThree);
-        given(cityRepository.findAllByOrderByName()).willReturn(expectedCities);
+        given(repository.findAllByOrderByName()).willReturn(expectedCities);
 
         //when
-        List<City> actualCities = cityService.getAllCities();
+        List<City> actualCities = service.getAllCities();
 
         //then
         assertEquals(expectedCities, actualCities);
-        verify(cityRepository).findAllByOrderByName();
-        verifyNoMoreInteractions(cityRepository);
+        verify(repository).findAllByOrderByName();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -66,25 +66,25 @@ public class CityServiceTest {
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
         City expectedCity = new City(CITY_ONE_ID, "City name", country);
-        given(cityRepository.findOne(CITY_ONE_ID)).willReturn(expectedCity);
+        given(repository.findOne(CITY_ONE_ID)).willReturn(expectedCity);
 
         //when
-        City actualCity = cityService.getCity(CITY_ONE_ID);
+        City actualCity = service.getCity(CITY_ONE_ID);
 
         //then
         assertEquals(expectedCity, actualCity);
-        verify(cityRepository).findOne(CITY_ONE_ID);
-        verifyNoMoreInteractions(cityRepository);
+        verify(repository).findOne(CITY_ONE_ID);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getCityNotFound() {
 
         // given
-        given(cityRepository.findOne(CITY_ONE_ID)).willReturn(null);
+        given(repository.findOne(CITY_ONE_ID)).willReturn(null);
 
         //when
-        City city = cityService.getCity(CITY_ONE_ID);
+        City city = service.getCity(CITY_ONE_ID);
 
         fail();
     }
@@ -97,16 +97,16 @@ public class CityServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City expectedCity = new City(CITY_ONE_ID, "City name", country);
         given(countryRepository.findOne(COUNTRY_ID)).willReturn(country);
-        given(cityRepository.save(expectedCity)).willReturn(expectedCity);
+        given(repository.save(expectedCity)).willReturn(expectedCity);
 
         //when
-        City actualCity = cityService.saveCity(request);
+        City actualCity = service.saveCity(request);
 
         //then
         assertEquals(expectedCity, actualCity);
         verify(countryRepository).findOne(COUNTRY_ID);
         verifyNoMoreInteractions(countryRepository);
-        verify(cityRepository).save(expectedCity);
-        verifyNoMoreInteractions(cityRepository);
+        verify(repository).save(expectedCity);
+        verifyNoMoreInteractions(repository);
     }
 }

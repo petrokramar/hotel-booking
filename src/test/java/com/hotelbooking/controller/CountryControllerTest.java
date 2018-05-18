@@ -38,7 +38,7 @@ public class CountryControllerTest {
     private final int COUNTRY_THREE_ID = 3;
 
     @MockBean
-    private CountryService countryService;
+    private CountryService service;
 
     @Inject
     private MockMvc mockMvc;
@@ -51,7 +51,7 @@ public class CountryControllerTest {
         countries.add(new Country(COUNTRY_ONE_ID, "Country one name"));
         countries.add(new Country(COUNTRY_TWO_ID, "Country two name"));
         countries.add(new Country(COUNTRY_THREE_ID, "Country three name"));
-        given(countryService.getAllCountries()).willReturn(countries);
+        given(service.getAllCountries()).willReturn(countries);
 
         // when
         String result = mockMvc.perform(get(COUNTRIES_URL)
@@ -62,8 +62,8 @@ public class CountryControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(countries);
-        verify(countryService).getAllCountries();
-        verifyNoMoreInteractions(countryService);
+        verify(service).getAllCountries();
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CountryControllerTest {
 
         // given
         Country country = new Country(COUNTRY_ONE_ID, "Country name");
-        given(countryService.getCountry(COUNTRY_ONE_ID)).willReturn(country);
+        given(service.getCountry(COUNTRY_ONE_ID)).willReturn(country);
 
         // when
         String result = mockMvc.perform(get(COUNTRIES_URL.concat("/").concat("1"))
@@ -82,8 +82,8 @@ public class CountryControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(country);
-        verify(countryService).getCountry(COUNTRY_ONE_ID);
-        verifyNoMoreInteractions(countryService);
+        verify(service).getCountry(COUNTRY_ONE_ID);
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class CountryControllerTest {
         // given
         Country country = new Country(COUNTRY_ONE_ID, "Country name");
         CountryRequest request = new CountryRequest(COUNTRY_ONE_ID, "Country name");
-        given(countryService.saveCountry(request)).willReturn(country);
+        given(service.saveCountry(request)).willReturn(country);
         String requestJson = "{\"id\":\"1\",\"name\":\"Country name\"}";
 
         // when
@@ -105,7 +105,7 @@ public class CountryControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(country);
-        verify(countryService).saveCountry(request);
-        verifyNoMoreInteractions(countryService);
+        verify(service).saveCountry(request);
+        verifyNoMoreInteractions(service);
     }
 }

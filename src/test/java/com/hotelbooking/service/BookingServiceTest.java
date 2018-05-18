@@ -43,17 +43,17 @@ public class BookingServiceTest {
     private final int BOOKING_ONE_TOTAL_SUM = 100;
     private final int BOOKING_ONE_NUMBER_OF_PERSONS = 2;
 
-    private BookingRepository bookingRepository;
+    private BookingRepository repository;
     private UserRepository userRepository;
     private RoomRepository roomRepository;
-    private BookingService bookingService;
+    private BookingService service;
 
     @Before
     public void setUp() {
-        bookingRepository = mock(BookingRepository.class);
+        repository = mock(BookingRepository.class);
         userRepository = mock(UserRepository.class);
         roomRepository = mock(RoomRepository.class);
-        bookingService = new BookingServiceImpl(bookingRepository, userRepository, roomRepository);
+        service = new BookingServiceImpl(repository, userRepository, roomRepository);
     }
 
     @Test
@@ -78,15 +78,15 @@ public class BookingServiceTest {
         Booking bookingOne = new Booking(BOOKING_ONE_ID, roomOne, userOne, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, new Date(), new Date());
         expectedBooking.add(bookingOne);
-        given(bookingRepository.findAll()).willReturn(expectedBooking);
+        given(repository.findAll()).willReturn(expectedBooking);
 
         //when
-        List<Booking> actualBooking = bookingService.getAllBooking();
+        List<Booking> actualBooking = service.getAllBooking();
 
         //then
         assertEquals(expectedBooking, actualBooking);
-        verify(bookingRepository).findAll();
-        verifyNoMoreInteractions(bookingRepository);
+        verify(repository).findAll();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -110,25 +110,25 @@ public class BookingServiceTest {
         Date dateEnd = format.parse("10-04-2018");
         Booking expectedBooking = new Booking(BOOKING_ONE_ID, roomOne, user, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
-        given(bookingRepository.findOne(BOOKING_ONE_ID)).willReturn(expectedBooking);
+        given(repository.findOne(BOOKING_ONE_ID)).willReturn(expectedBooking);
 
         //when
-        Booking actualBooking = bookingService.getBooking(BOOKING_ONE_ID);
+        Booking actualBooking = service.getBooking(BOOKING_ONE_ID);
 
         //then
         assertEquals(expectedBooking, actualBooking);
-        verify(bookingRepository).findOne(BOOKING_ONE_ID);
-        verifyNoMoreInteractions(bookingRepository);
+        verify(repository).findOne(BOOKING_ONE_ID);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getBookingNotFound() {
 
         // given
-        given(bookingRepository.findOne(BOOKING_ONE_ID)).willReturn(null);
+        given(repository.findOne(BOOKING_ONE_ID)).willReturn(null);
 
         //when
-        Booking booking = bookingService.getBooking(BOOKING_ONE_ID);
+        Booking booking = service.getBooking(BOOKING_ONE_ID);
 
         fail();
     }
@@ -159,10 +159,10 @@ public class BookingServiceTest {
 
         given(userRepository.findOne("username")).willReturn(user);
         given(roomRepository.findOne(ROOM_ID)).willReturn(room);
-        given(bookingRepository.save(expectedBooking)).willReturn(expectedBooking);
+        given(repository.save(expectedBooking)).willReturn(expectedBooking);
 
         //when
-        Booking actualBooking = bookingService.saveBooking(request);
+        Booking actualBooking = service.saveBooking(request);
 
         //then
         assertEquals(expectedBooking, actualBooking);
@@ -170,7 +170,7 @@ public class BookingServiceTest {
         verifyNoMoreInteractions(userRepository);
         verify(roomRepository).findOne(ROOM_ID);
         verifyNoMoreInteractions(roomRepository);
-        verify(bookingRepository).save(expectedBooking);
-        verifyNoMoreInteractions(bookingRepository);
+        verify(repository).save(expectedBooking);
+        verifyNoMoreInteractions(repository);
     }
 }

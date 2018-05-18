@@ -19,19 +19,19 @@ import java.util.Optional;
 @AllArgsConstructor
 public class BookingServiceImpl implements BookingService {
 
-    private BookingRepository bookingRepository;
+    private BookingRepository repository;
     private UserRepository userRepository;
     private RoomRepository roomRepository;
 
     @Override
     public List<Booking> getAllBooking() {
-        List<Booking> booking = (List<Booking>) bookingRepository.findAll();
+        List<Booking> booking = (List<Booking>) repository.findAll();
         return booking;
     }
 
     @Override
     public Booking getBooking(int id) {
-        Booking booking = bookingRepository.findOne(id);
+        Booking booking = repository.findOne(id);
         return Optional.ofNullable(booking).orElseThrow(() ->
                 new DataNotFoundException(String.format("Booking id= %s not found", id)));
     }
@@ -42,6 +42,6 @@ public class BookingServiceImpl implements BookingService {
         Room room = roomRepository.findOne(request.getRoomId());
         Booking booking = new Booking(request.getId(), room, user, request.getTotalSum(), request.getPersons(),
                 request.getCheckIn(), request.getCheckOut());
-        return bookingRepository.save(booking);
+        return repository.save(booking);
     }
 }

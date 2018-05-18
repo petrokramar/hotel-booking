@@ -21,12 +21,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CityServiceImpl implements CityService{
 
-    private CityRepository cityRepository;
+    private CityRepository repository;
     private CountryRepository countryRepository;
 
     @Override
     public List<City> getAllCities() {
-        return cityRepository.findAllByOrderByName();
+        return repository.findAllByOrderByName();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class CityServiceImpl implements CityService{
         if ("desc".equalsIgnoreCase(sortOrder)) {
             sortDirection = Sort.Direction.DESC;
         }
-        Page< City > resultPage = cityRepository.findCityPage(filter,
+        Page< City > resultPage = repository.findCityPage(filter,
                 new PageRequest(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
         List<City> cities = resultPage.getContent();
@@ -45,7 +45,7 @@ public class CityServiceImpl implements CityService{
 
     @Override
     public City getCity(int id) {
-        City city = cityRepository.findOne(id);
+        City city = repository.findOne(id);
         return Optional.ofNullable(city).orElseThrow(() ->
                 new DataNotFoundException(String.format("City id= %s not found", id)));
     }
@@ -55,6 +55,6 @@ public class CityServiceImpl implements CityService{
 
         Country country = countryRepository.findOne(request.getCountryId());
         City city = new City(request.getId(), request.getName(), country);
-        return cityRepository.save(city);
+        return repository.save(city);
     }
 }

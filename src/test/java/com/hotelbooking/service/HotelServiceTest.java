@@ -29,15 +29,15 @@ public class HotelServiceTest {
     private final int HOTEL_THREE_ID = 3;
     private final int COUNTRY_ID = 4;
     private final int CITY_ID = 5;
-    private HotelRepository hotelRepository;
+    private HotelRepository repository;
     private CityRepository cityRepository;
-    private HotelService hotelService;
+    private HotelService service;
 
     @Before
     public void setUp() {
         cityRepository = mock(CityRepository.class);
-        hotelRepository = mock(HotelRepository.class);
-        hotelService = new HotelServiceImpl(hotelRepository, cityRepository);
+        repository = mock(HotelRepository.class);
+        service = new HotelServiceImpl(repository, cityRepository);
     }
 
     @Test
@@ -54,15 +54,15 @@ public class HotelServiceTest {
         expectedHotels.add(hotelTwo);
         Hotel hotelThree = new Hotel(HOTEL_THREE_ID, "Hotel name 3", city, HotelCategory.FIVE_STARS);
         expectedHotels.add(hotelThree);
-        given(hotelRepository.findAll()).willReturn(expectedHotels);
+        given(repository.findAll()).willReturn(expectedHotels);
 
         //when
-        List<Hotel> actualHotels = hotelService.getAllHotels();
+        List<Hotel> actualHotels = service.getAllHotels();
 
         //then
         assertEquals(expectedHotels, actualHotels);
-        verify(hotelRepository).findAll();
-        verifyNoMoreInteractions(hotelRepository);
+        verify(repository).findAll();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -72,25 +72,25 @@ public class HotelServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel expectedHotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
-        given(hotelRepository.findOne(HOTEL_ONE_ID)).willReturn(expectedHotel);
+        given(repository.findOne(HOTEL_ONE_ID)).willReturn(expectedHotel);
 
         //when
-        Hotel actualHotel = hotelService.getHotel(HOTEL_ONE_ID);
+        Hotel actualHotel = service.getHotel(HOTEL_ONE_ID);
 
         //then
         assertEquals(expectedHotel, actualHotel);
-        verify(hotelRepository).findOne(HOTEL_ONE_ID);
-        verifyNoMoreInteractions(hotelRepository);
+        verify(repository).findOne(HOTEL_ONE_ID);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getHotelNotFound() {
 
         // given
-        given(hotelRepository.findOne(HOTEL_ONE_ID)).willReturn(null);
+        given(repository.findOne(HOTEL_ONE_ID)).willReturn(null);
 
         //when
-        Hotel hotel = hotelService.getHotel(HOTEL_ONE_ID);
+        Hotel hotel = service.getHotel(HOTEL_ONE_ID);
 
         fail();
     }
@@ -104,16 +104,16 @@ public class HotelServiceTest {
         City city = new City(CITY_ID, "City name", country);
         Hotel expectedHotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
         given(cityRepository.findOne(CITY_ID)).willReturn(city);
-        given(hotelRepository.save(expectedHotel)).willReturn(expectedHotel);
+        given(repository.save(expectedHotel)).willReturn(expectedHotel);
 
         //when
-        Hotel actualHotel = hotelService.saveHotel(request);
+        Hotel actualHotel = service.saveHotel(request);
 
         //then
         assertEquals(expectedHotel, actualHotel);
         verify(cityRepository).findOne(CITY_ID);
         verifyNoMoreInteractions(cityRepository);
-        verify(hotelRepository).save(expectedHotel);
-        verifyNoMoreInteractions(hotelRepository);
+        verify(repository).save(expectedHotel);
+        verifyNoMoreInteractions(repository);
     }
 }

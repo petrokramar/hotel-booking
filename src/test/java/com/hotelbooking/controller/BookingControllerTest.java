@@ -49,7 +49,7 @@ public class BookingControllerTest {
     private final int BOOKING_ONE_NUMBER_OF_PERSONS = 2;
 
     @MockBean
-    private BookingService bookingService;
+    private BookingService service;
 
     @Inject
     private MockMvc mockMvc;
@@ -80,7 +80,7 @@ public class BookingControllerTest {
         Booking bookingOne = new Booking(BOOKING_ONE_ID, roomOne, userOne, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
         booking.add(bookingOne);
-        given(bookingService.getAllBooking()).willReturn(booking);
+        given(service.getAllBooking()).willReturn(booking);
 
         // when
         String result = mockMvc.perform(get(BOOKING_URL)
@@ -91,8 +91,8 @@ public class BookingControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(booking);
-        verify(bookingService).getAllBooking();
-        verifyNoMoreInteractions(bookingService);
+        verify(service).getAllBooking();
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class BookingControllerTest {
                 "First name","Last name", roles);
         Booking booking = new Booking(BOOKING_ONE_ID, room, user, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
-        given(bookingService.saveBooking(request)).willReturn(booking);
+        given(service.saveBooking(request)).willReturn(booking);
         String requestJson = "{\"id\":\"1\",\"roomId\":\"5\",\"username\":\"username\",\"totalSum\":\"100\"," +
                 "\"persons\":\"2\",\"checkIn\":\"2018-04-01\",\"checkOut\":\"2018-04-10\"}";
 
@@ -133,8 +133,8 @@ public class BookingControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(booking);
-        verify(bookingService).saveBooking(request);
-        verifyNoMoreInteractions(bookingService);
+        verify(service).saveBooking(request);
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -155,7 +155,7 @@ public class BookingControllerTest {
                 ROOM_ONE_NUMBER_OF_PERSONS);
         Booking booking = new Booking(BOOKING_ONE_ID, roomOne, user, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, new Date(), new Date());
-        given(bookingService.getBooking(BOOKING_ONE_ID)).willReturn(booking);
+        given(service.getBooking(BOOKING_ONE_ID)).willReturn(booking);
 
         // when
         String result = mockMvc.perform(get(BOOKING_URL.concat("/").concat("1"))
@@ -166,7 +166,7 @@ public class BookingControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(booking);
-        verify(bookingService).getBooking(BOOKING_ONE_ID);
-        verifyNoMoreInteractions(bookingService);
+        verify(service).getBooking(BOOKING_ONE_ID);
+        verifyNoMoreInteractions(service);
     }
 }

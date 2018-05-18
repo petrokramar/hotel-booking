@@ -14,17 +14,17 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Override
     public List<User> getAllUsers() {
-        List<User> users = (List<User>) userRepository.findAll();
+        List<User> users = (List<User>) repository.findAll();
         return users;
     }
 
     @Override
     public User getUser(String username) {
-        User user = userRepository.findOne(username);
+        User user = repository.findOne(username);
         return Optional.ofNullable(user).orElseThrow(() ->
                 new DataNotFoundException(String.format("User username= %s not found", username)));
     }

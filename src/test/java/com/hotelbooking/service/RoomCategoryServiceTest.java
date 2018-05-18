@@ -23,13 +23,14 @@ public class RoomCategoryServiceTest {
     private final int ROOM_CATEGORY_ONE_ID = 1;
     private final int ROOM_CATEGORY_TWO_ID = 2;
     private final int ROOM_CATEGORY_THREE_ID = 3;
-    private RoomCategoryRepository roomCategoryRepository;
-    private RoomCategoryService roomCategoryService;
+
+    private RoomCategoryRepository repository;
+    private RoomCategoryService service;
 
     @Before
     public void setUp() {
-        roomCategoryRepository = mock(RoomCategoryRepository.class);
-        roomCategoryService = new RoomCategoryServiceImpl(roomCategoryRepository);
+        repository = mock(RoomCategoryRepository.class);
+        service = new RoomCategoryServiceImpl(repository);
     }
 
 
@@ -47,15 +48,15 @@ public class RoomCategoryServiceTest {
         RoomCategory roomCategoryThree = new RoomCategory(ROOM_CATEGORY_THREE_ID, "Room category three name",
                 "Room category three description" );
         expectedRoomCategories.add(roomCategoryThree);
-        given(roomCategoryRepository.findAllByOrderByName()).willReturn(expectedRoomCategories);
+        given(repository.findAllByOrderByName()).willReturn(expectedRoomCategories);
 
         //when
-        List<RoomCategory> actualRoomCategories = roomCategoryService.getAllRoomCategories();
+        List<RoomCategory> actualRoomCategories = service.getAllRoomCategories();
 
         //then
         assertEquals(expectedRoomCategories, actualRoomCategories);
-        verify(roomCategoryRepository).findAllByOrderByName();
-        verifyNoMoreInteractions(roomCategoryRepository);
+        verify(repository).findAllByOrderByName();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -64,25 +65,25 @@ public class RoomCategoryServiceTest {
         // given
         RoomCategory expectedRoomCategory = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category name",
                 "Room category description" );
-        given(roomCategoryRepository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(expectedRoomCategory);
+        given(repository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(expectedRoomCategory);
 
         //when
-        RoomCategory actualRoomCategory = roomCategoryService.getRoomCategory(ROOM_CATEGORY_ONE_ID);
+        RoomCategory actualRoomCategory = service.getRoomCategory(ROOM_CATEGORY_ONE_ID);
 
         //then
         assertEquals(expectedRoomCategory, actualRoomCategory);
-        verify(roomCategoryRepository).findOne(ROOM_CATEGORY_ONE_ID);
-        verifyNoMoreInteractions(roomCategoryRepository);
+        verify(repository).findOne(ROOM_CATEGORY_ONE_ID);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getRoomCategoryNotFound() {
 
         // given
-        given(roomCategoryRepository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(null);
+        given(repository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(null);
 
         //when
-        RoomCategory roomCategory = roomCategoryService.getRoomCategory(ROOM_CATEGORY_ONE_ID);
+        RoomCategory roomCategory = service.getRoomCategory(ROOM_CATEGORY_ONE_ID);
 
         fail();
     }
@@ -95,14 +96,14 @@ public class RoomCategoryServiceTest {
                 "Room category description");
         RoomCategory expectedRoomCategory = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category name",
                 "Room category description" );
-        given(roomCategoryRepository.save(expectedRoomCategory)).willReturn(expectedRoomCategory);
+        given(repository.save(expectedRoomCategory)).willReturn(expectedRoomCategory);
 
         //when
-        RoomCategory actualRoomCategory = roomCategoryService.saveRoomCategory(request);
+        RoomCategory actualRoomCategory = service.saveRoomCategory(request);
 
         //then
         assertEquals(expectedRoomCategory, actualRoomCategory);
-        verify(roomCategoryRepository).save(expectedRoomCategory);
-        verifyNoMoreInteractions(roomCategoryRepository);
+        verify(repository).save(expectedRoomCategory);
+        verifyNoMoreInteractions(repository);
     }
 }

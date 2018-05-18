@@ -41,7 +41,7 @@ public class UserControllerTest {
     private final boolean USER_NOT_ENABLED = false;
 
     @MockBean
-    private UserService userService;
+    private UserService service;
 
     @Inject
     private MockMvc mockMvc;
@@ -72,7 +72,7 @@ public class UserControllerTest {
         User userThree = new User("userThree", "password userThree", USER_NOT_ENABLED,
                 "First name userThree","Last name userThree", rolesUserThree);
         expectedUsers.add(userThree);
-        given(userService.getAllUsers()).willReturn(expectedUsers);
+        given(service.getAllUsers()).willReturn(expectedUsers);
 
         // when
         String result = mockMvc.perform(get(USERS_URL)
@@ -83,8 +83,8 @@ public class UserControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(expectedUsers);
-        verify(userService).getAllUsers();
-        verifyNoMoreInteractions(userService);
+        verify(service).getAllUsers();
+        verifyNoMoreInteractions(service);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class UserControllerTest {
         roles.add(roleTwo);
         User user = new User("username", "password", USER_ENABLED,
                 "First name","Last name", roles);
-        given(userService.getUser("username")).willReturn(user);
+        given(service.getUser("username")).willReturn(user);
 
         // when
         String result = mockMvc.perform(get(USERS_URL.concat("/").concat("username"))
@@ -109,7 +109,7 @@ public class UserControllerTest {
 
         // then
         assertThatJson(result).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(user);
-        verify(userService).getUser("username");
-        verifyNoMoreInteractions(userService);
+        verify(service).getUser("username");
+        verifyNoMoreInteractions(service);
     }
 }

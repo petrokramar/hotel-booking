@@ -23,13 +23,13 @@ public class CountryServiceTest {
     private final int COUNTRY_ONE_ID = 1;
     private final int COUNTRY_TWO_ID = 2;
     private final int COUNTRY_THREE_ID = 3;
-    private CountryRepository countryRepository;
-    private CountryService countryService;
+    private CountryRepository repository;
+    private CountryService service;
 
     @Before
     public void setUp() {
-        countryRepository = mock(CountryRepository.class);
-        countryService = new CountryServiceImpl(countryRepository);
+        repository = mock(CountryRepository.class);
+        service = new CountryServiceImpl(repository);
     }
 
     @Test
@@ -43,15 +43,15 @@ public class CountryServiceTest {
         expectedCountries.add(countryTwo);
         Country countryThree = new Country(COUNTRY_THREE_ID, "Country three name");
         expectedCountries.add(countryThree);
-        given(countryRepository.findAllByOrderByName()).willReturn(expectedCountries);
+        given(repository.findAllByOrderByName()).willReturn(expectedCountries);
 
         //when
-        List<Country> actualCountries = countryService.getAllCountries();
+        List<Country> actualCountries = service.getAllCountries();
 
         //then
         assertEquals(expectedCountries, actualCountries);
-        verify(countryRepository).findAllByOrderByName();
-        verifyNoMoreInteractions(countryRepository);
+        verify(repository).findAllByOrderByName();
+        verifyNoMoreInteractions(repository);
     }
 
     @Test
@@ -59,25 +59,25 @@ public class CountryServiceTest {
 
         // given
         Country expectedCountry = new Country(COUNTRY_ONE_ID, "Country name");
-        given(countryRepository.findOne(COUNTRY_ONE_ID)).willReturn(expectedCountry);
+        given(repository.findOne(COUNTRY_ONE_ID)).willReturn(expectedCountry);
 
         //when
-        Country actualCountry = countryService.getCountry(COUNTRY_ONE_ID);
+        Country actualCountry = service.getCountry(COUNTRY_ONE_ID);
 
         //then
         assertEquals(expectedCountry, actualCountry);
-        verify(countryRepository).findOne(COUNTRY_ONE_ID);
-        verifyNoMoreInteractions(countryRepository);
+        verify(repository).findOne(COUNTRY_ONE_ID);
+        verifyNoMoreInteractions(repository);
     }
 
     @Test(expected = DataNotFoundException.class)
     public void getCountryNotFound() {
 
         // given
-        given(countryRepository.findOne(COUNTRY_ONE_ID)).willReturn(null);
+        given(repository.findOne(COUNTRY_ONE_ID)).willReturn(null);
 
         //when
-        Country country = countryService.getCountry(COUNTRY_ONE_ID);
+        Country country = service.getCountry(COUNTRY_ONE_ID);
 
         fail();
     }
@@ -88,14 +88,14 @@ public class CountryServiceTest {
         // given
         CountryRequest request = new CountryRequest(COUNTRY_ONE_ID, "Country name");
         Country expectedCountry = new Country(request.getId(), request.getName());
-        given(countryRepository.save(expectedCountry)).willReturn(expectedCountry);
+        given(repository.save(expectedCountry)).willReturn(expectedCountry);
 
         //when
-        Country actualCountry = countryService.saveCountry(request);
+        Country actualCountry = service.saveCountry(request);
 
         //then
         assertEquals(expectedCountry, actualCountry);
-        verify(countryRepository).save(expectedCountry);
-        verifyNoMoreInteractions(countryRepository);
+        verify(repository).save(expectedCountry);
+        verifyNoMoreInteractions(repository);
     }
 }

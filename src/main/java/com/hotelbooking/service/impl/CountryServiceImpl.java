@@ -19,11 +19,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CountryServiceImpl implements CountryService{
 
-    private CountryRepository countryRepository;
+    private CountryRepository repository;
 
     @Override
     public List<Country> getAllCountries() {
-        return countryRepository.findAllByOrderByName();
+        return repository.findAllByOrderByName();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class CountryServiceImpl implements CountryService{
         if ("desc".equalsIgnoreCase(sortOrder)) {
             sortDirection = Sort.Direction.DESC;
         }
-        Page< Country > resultPage = countryRepository.findCountryPage(filter,
+        Page< Country > resultPage = repository.findCountryPage(filter,
         new PageRequest(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
         List<Country> countries = resultPage.getContent();
@@ -42,12 +42,12 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     public Long countAllCountries() {
-        return countryRepository.count();
+        return repository.count();
     }
 
     @Override
     public Country getCountry(int id) {
-        Country country = countryRepository.findOne(id);
+        Country country = repository.findOne(id);
         return Optional.ofNullable(country).orElseThrow(() ->
                 new DataNotFoundException(String.format("Country id= %s not found", id)));
     }
@@ -57,6 +57,6 @@ public class CountryServiceImpl implements CountryService{
         int id = request.getId();
         String name = request.getName();
         Country country = new Country(id, name);
-        return countryRepository.save(country);
+        return repository.save(country);
     }
 }

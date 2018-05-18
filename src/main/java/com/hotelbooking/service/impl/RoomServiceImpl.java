@@ -61,6 +61,11 @@ public class RoomServiceImpl implements RoomService{
     }
 
     @Override
+    public boolean checkRoomIsFree(int id, Date checkIn, Date checkOut) {
+        return roomRepository.checkRoomIsFree(id, checkIn, checkOut);
+    }
+
+    @Override
     public Room saveRoom(RoomRequest request) {
         Hotel hotel = hotelRepository.findOne(request.getHotelId());
         RoomCategory roomCategory = roomCategoryRepository.findOne(request.getRoomCategoryId());

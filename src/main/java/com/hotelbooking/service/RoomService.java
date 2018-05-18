@@ -17,5 +17,7 @@ public interface RoomService {
 
     Room getRoom(int id);
 
+    boolean checkRoomIsFree(int id, Date checkIn, Date checkOut);
+
     Room saveRoom(RoomRequest country);
 }

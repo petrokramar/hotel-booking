@@ -20,4 +20,10 @@ public interface RoomRepository extends CrudRepository<Room, Integer> {
                                       @Param(value = "checkIn") Date checkIn,
                                       @Param(value = "checkOut") Date checkOut,
                                       Pageable pageable);
+
+    @Query("Select (case when count(b) = 0 then true else false end) from Booking b " +
+            "where (b.room.id = :id and b.checkIn < :checkOut and b.checkOut > :checkIn)")
+    boolean checkRoomIsFree(@Param(value = "id") int id,
+                            @Param(value = "checkIn") Date checkIn,
+                            @Param(value = "checkOut") Date checkOut);
 }

@@ -46,6 +46,16 @@ public class RoomController {
         return ResponseEntity.ok(rooms);
     }
 
+    @GetMapping(value = "/{id}", params = {"checkIn", "checkOut" })
+    public ResponseEntity<Boolean> checkRoomIsFree(
+            @PathVariable int id,
+            @RequestParam( "checkIn" ) @DateTimeFormat(pattern="yyyy-MM-dd") Date checkIn,
+            @RequestParam( "checkOut" ) @DateTimeFormat(pattern="yyyy-MM-dd") Date checkOut)
+    {
+        Boolean roomIsFree= roomService.checkRoomIsFree(id, checkIn, checkOut);
+        return ResponseEntity.ok(roomIsFree);
+    }
+
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Room> saveRoom(@Valid @RequestBody RoomRequest request) {
         Room room = roomService.saveRoom(request);

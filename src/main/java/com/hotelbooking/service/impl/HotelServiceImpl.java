@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,6 +38,16 @@ public class HotelServiceImpl implements HotelService {
         }
         Page< Hotel > resultPage = hotelRepository.findHotelPage(filter,
                 new PageRequest(page, size, sortDirection, "name"));
+        resultPage.getTotalElements();
+        List<Hotel> hotels = resultPage.getContent();
+        long totalElements = resultPage.getTotalElements();
+        return new HotelListDTO(hotels, totalElements);
+    }
+
+    @Override
+    public HotelListDTO getHotelsWithFreeRoomsPage(int cityId, Date checkIn, Date checkOut, int page, int size) {
+        Page< Hotel > resultPage = hotelRepository.findHotelsWithFreeRoomsPage(cityId, checkIn, checkOut,
+                new PageRequest(page, size));
         resultPage.getTotalElements();
         List<Hotel> hotels = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();

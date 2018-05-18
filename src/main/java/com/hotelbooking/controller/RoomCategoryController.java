@@ -15,23 +15,23 @@ import java.util.List;
 @RequestMapping(value = "/roomCategories", produces = "application/json")
 public class RoomCategoryController {
 
-    private RoomCategoryService roomCategoryService;
+    private RoomCategoryService service;
 
     @GetMapping()
     public ResponseEntity<List<RoomCategory>> getAllRoomCategories() {
-        List<RoomCategory> roomCategories = roomCategoryService.getAllRoomCategories();
+        List<RoomCategory> roomCategories = service.getAllRoomCategories();
         return ResponseEntity.ok(roomCategories);
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<RoomCategory> saveRoomCategory(@Valid @RequestBody RoomCategoryRequest request) {
-        RoomCategory roomCategory = roomCategoryService.saveRoomCategory(request);
+        RoomCategory roomCategory = service.saveRoomCategory(request);
         return ResponseEntity.ok(roomCategory);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<RoomCategory> getRoomCategory(@PathVariable int id) {
-        RoomCategory roomCategory = roomCategoryService.getRoomCategory(id);
+        RoomCategory roomCategory = service.getRoomCategory(id);
         return ResponseEntity.ok(roomCategory);
     }
 }

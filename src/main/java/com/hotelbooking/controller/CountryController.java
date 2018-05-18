@@ -16,11 +16,11 @@ import java.util.List;
 @RequestMapping(value = "/countries", produces = "application/json")
 public class CountryController {
 
-    private CountryService countryService;
+    private CountryService service;
 
     @GetMapping
     public ResponseEntity<List<Country>> getAllCountries() {
-        List<Country> countries = countryService.getAllCountries();
+        List<Country> countries = service.getAllCountries();
         return ResponseEntity.ok(countries);
     }
 
@@ -29,25 +29,25 @@ public class CountryController {
                                                            @RequestParam( "sortOrder" ) String sortOrder,
                                                            @RequestParam( "page" ) int page,
                                                            @RequestParam( "size" ) int size) {
-        CountryListDTO countries = countryService.getCountriesPage(filter, sortOrder, page, size);
+        CountryListDTO countries = service.getCountriesPage(filter, sortOrder, page, size);
         return ResponseEntity.ok(countries);
     }
 
     @GetMapping(value = "/count")
     public ResponseEntity<Long> countAllCountries() {
-        Long total = countryService.countAllCountries();
+        Long total = service.countAllCountries();
         return ResponseEntity.ok(total);
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Country> saveCountry(@Valid @RequestBody CountryRequest request) {
-        Country country = countryService.saveCountry(request);
+        Country country = service.saveCountry(request);
         return ResponseEntity.ok(country);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Country> getСountry(@PathVariable int id) {
-        Country country = countryService.getCountry(id);
+        Country country = service.getCountry(id);
         return ResponseEntity.ok(country);
     }
 }

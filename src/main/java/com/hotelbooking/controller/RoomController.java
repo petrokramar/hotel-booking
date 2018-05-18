@@ -18,11 +18,11 @@ import java.util.List;
 @RequestMapping(value = "/rooms", produces = "application/json")
 public class RoomController {
 
-    private RoomService roomService;
+    private RoomService service;
 
     @GetMapping()
     public ResponseEntity<List<Room>> getRooms() {
-        List<Room> rooms = roomService.getAllRooms();
+        List<Room> rooms = service.getAllRooms();
         return ResponseEntity.ok(rooms);
     }
 
@@ -30,7 +30,7 @@ public class RoomController {
     public ResponseEntity<RoomListDTO> getHotelRooms(@RequestParam( "hotelId" ) int hotelId,
                                                      @RequestParam( "page" ) int page,
                                                      @RequestParam( "size" ) int size) {
-        RoomListDTO rooms = roomService.getAllHotelRooms(hotelId, page, size);
+        RoomListDTO rooms = service.getAllHotelRooms(hotelId, page, size);
         return ResponseEntity.ok(rooms);
     }
 
@@ -42,7 +42,7 @@ public class RoomController {
             @RequestParam( "page" ) int page,
             @RequestParam( "size" ) int size)
     {
-        RoomListDTO rooms = roomService.getAllHotelFreeRooms(hotelId, checkIn, checkOut, page, size);
+        RoomListDTO rooms = service.getAllHotelFreeRooms(hotelId, checkIn, checkOut, page, size);
         return ResponseEntity.ok(rooms);
     }
 
@@ -52,19 +52,19 @@ public class RoomController {
             @RequestParam( "checkIn" ) @DateTimeFormat(pattern="yyyy-MM-dd") Date checkIn,
             @RequestParam( "checkOut" ) @DateTimeFormat(pattern="yyyy-MM-dd") Date checkOut)
     {
-        Boolean roomIsFree= roomService.checkRoomIsFree(id, checkIn, checkOut);
+        Boolean roomIsFree= service.checkRoomIsFree(id, checkIn, checkOut);
         return ResponseEntity.ok(roomIsFree);
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Room> saveRoom(@Valid @RequestBody RoomRequest request) {
-        Room room = roomService.saveRoom(request);
+        Room room = service.saveRoom(request);
         return ResponseEntity.ok(room);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Room> getRoomCategory(@PathVariable int id) {
-        Room room = roomService.getRoom(id);
+        Room room = service.getRoom(id);
         return ResponseEntity.ok(room);
     }
 

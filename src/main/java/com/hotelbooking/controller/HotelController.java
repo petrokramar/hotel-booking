@@ -18,11 +18,11 @@ import java.util.List;
 @RequestMapping(value = "/hotels", produces = "application/json")
 public class HotelController {
 
-    private HotelService hotelService;
+    private HotelService service;
 
     @GetMapping()
     public ResponseEntity<List<Hotel>> getHotels() {
-        List<Hotel> hotels = hotelService.getAllHotels();
+        List<Hotel> hotels = service.getAllHotels();
         return ResponseEntity.ok(hotels);
     }
 
@@ -31,7 +31,7 @@ public class HotelController {
                                                       @RequestParam("sortOrder") String sortOrder,
                                                       @RequestParam("page") int page,
                                                       @RequestParam("size") int size) {
-        HotelListDTO hotels = hotelService.getHotelsPage(filter, sortOrder, page, size);
+        HotelListDTO hotels = service.getHotelsPage(filter, sortOrder, page, size);
         return ResponseEntity.ok(hotels);
     }
 
@@ -41,19 +41,19 @@ public class HotelController {
                                        @RequestParam("checkOut") @DateTimeFormat(pattern = "yyyy-MM-dd") Date checkOut,
                                        @RequestParam("page") int page,
                                        @RequestParam("size") int size) {
-        HotelListDTO hotels = hotelService.getHotelsWithFreeRoomsPage(cityId, checkIn, checkOut, page, size);
+        HotelListDTO hotels = service.getHotelsWithFreeRoomsPage(cityId, checkIn, checkOut, page, size);
         return ResponseEntity.ok(hotels);
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Hotel> saveHotel(@Valid @RequestBody HotelRequest request) {
-        Hotel hotel = hotelService.saveHotel(request);
+        Hotel hotel = service.saveHotel(request);
         return ResponseEntity.ok(hotel);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Hotel> getHotel(@PathVariable int id) {
-        Hotel hotel = hotelService.getHotel(id);
+        Hotel hotel = service.getHotel(id);
         return ResponseEntity.ok(hotel);
     }
 }

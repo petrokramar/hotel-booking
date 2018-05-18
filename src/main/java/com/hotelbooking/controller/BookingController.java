@@ -15,23 +15,23 @@ import java.util.List;
 @RequestMapping(value = "/booking", produces = "application/json")
 public class BookingController {
 
-    private BookingService bookingService;
+    private BookingService service;
 
     @GetMapping()
     public ResponseEntity<List<Booking>> getAllBooking() {
-        List<Booking> booking = bookingService.getAllBooking();
+        List<Booking> booking = service.getAllBooking();
         return ResponseEntity.ok(booking);
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Booking> saveBooking(@Valid @RequestBody BookingRequest request) {
-        Booking booking = bookingService.saveBooking(request);
+        Booking booking = service.saveBooking(request);
         return ResponseEntity.ok(booking);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Booking> getBooking(@PathVariable int id) {
-        Booking booking = bookingService.getBooking(id);
+        Booking booking = service.getBooking(id);
         return ResponseEntity.ok(booking);
     }
 

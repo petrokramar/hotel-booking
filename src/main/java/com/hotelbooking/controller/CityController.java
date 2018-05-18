@@ -16,11 +16,11 @@ import java.util.List;
 @RequestMapping(value = "/cities", produces = "application/json")
 public class CityController {
 
-    private CityService cityService;
+    private CityService service;
 
     @GetMapping()
     public ResponseEntity<List<City>> getAllCities() {
-        List<City> countries = cityService.getAllCities();
+        List<City> countries = service.getAllCities();
         return ResponseEntity.ok(countries);
     }
 
@@ -29,19 +29,19 @@ public class CityController {
                                                      @RequestParam( "sortOrder" ) String sortOrder,
                                                      @RequestParam( "page" ) int page,
                                                      @RequestParam( "size" ) int size) {
-        CityListDTO cities = cityService.getCitiesPage(filter, sortOrder, page, size);
+        CityListDTO cities = service.getCitiesPage(filter, sortOrder, page, size);
         return ResponseEntity.ok(cities);
     }
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<City> saveCity(@Valid @RequestBody CityRequest request) {
-        City city = cityService.saveCity(request);
+        City city = service.saveCity(request);
         return ResponseEntity.ok(city);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<City> getCity(@PathVariable int id) {
-        City city = cityService.getCity(id);
+        City city = service.getCity(id);
         return ResponseEntity.ok(city);
     }
 }

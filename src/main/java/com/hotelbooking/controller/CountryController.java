@@ -46,8 +46,8 @@ public class CountryController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Country> getСountry(@PathVariable String id) {
-        Country country = countryService.getCountry(Integer.parseInt(id));
+    public ResponseEntity<Country> getСountry(@PathVariable int id) {
+        Country country = countryService.getCountry(id);
         return ResponseEntity.ok(country);
     }
 }

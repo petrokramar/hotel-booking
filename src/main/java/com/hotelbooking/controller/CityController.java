@@ -40,8 +40,8 @@ public class CityController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<City> getCity(@PathVariable String id) {
-        City city = cityService.getCity(Integer.parseInt(id));
+    public ResponseEntity<City> getCity(@PathVariable int id) {
+        City city = cityService.getCity(id);
         return ResponseEntity.ok(city);
     }
 }

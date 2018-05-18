@@ -63,8 +63,8 @@ public class RoomController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Room> getRoomCategory(@PathVariable String id) {
-        Room room = roomService.getRoom(Integer.parseInt(id));
+    public ResponseEntity<Room> getRoomCategory(@PathVariable int id) {
+        Room room = roomService.getRoom(id);
         return ResponseEntity.ok(room);
     }
 

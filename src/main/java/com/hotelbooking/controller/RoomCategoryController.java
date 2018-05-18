@@ -30,8 +30,8 @@ public class RoomCategoryController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<RoomCategory> getRoomCategory(@PathVariable String id) {
-        RoomCategory roomCategory = roomCategoryService.getRoomCategory(Integer.parseInt(id));
+    public ResponseEntity<RoomCategory> getRoomCategory(@PathVariable int id) {
+        RoomCategory roomCategory = roomCategoryService.getRoomCategory(id);
         return ResponseEntity.ok(roomCategory);
     }
 }

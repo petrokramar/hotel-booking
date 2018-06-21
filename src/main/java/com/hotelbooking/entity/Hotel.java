@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Getter
 @EqualsAndHashCode
+@ToString
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

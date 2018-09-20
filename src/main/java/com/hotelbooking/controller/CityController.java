@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/cities", produces = "application/json")
+@RequestMapping(value = "/api/cities", produces = "application/json")
 public class CityController {
 
     private CityService service;

@@ -15,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +35,7 @@ public class CityServiceImpl implements CityService{
             sortDirection = Sort.Direction.DESC;
         }
         Page< City > resultPage = repository.findCityPage(filter,
-                new PageRequest(page, size, sortDirection, "name"));
+                PageRequest.of(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
         List<City> cities = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -45,15 +44,15 @@ public class CityServiceImpl implements CityService{
 
     @Override
     public City getCity(int id) {
-        City city = repository.findOne(id);
-        return Optional.ofNullable(city).orElseThrow(() ->
-                new DataNotFoundException(String.format("City id= %s not found", id)));
+        return repository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(String.format("City id= %s not found", id)));
     }
 
     @Override
     public City saveCity(CityRequest request) {
-
-        Country country = countryRepository.findOne(request.getCountryId());
+        int countryId = request.getCountryId();
+        Country country = countryRepository.findById(countryId)
+                .orElseThrow(() -> new DataNotFoundException(String.format("Country id= %s not found", countryId)));
         City city = new City(request.getId(), request.getName(), country);
         return repository.save(city);
     }

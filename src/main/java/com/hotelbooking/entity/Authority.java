@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @ToString
 public class Authority {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
     private String authority;

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -35,7 +34,7 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public RoomListDTO getAllHotelRooms(int hotelId, int page, int size) {
-        Page<Room> resultPage = repository.findHotelRoomsPage(hotelId, new PageRequest(page, size));
+        Page<Room> resultPage = repository.findHotelRoomsPage(hotelId, PageRequest.of(page, size));
         resultPage.getTotalElements();
         List<Room> rooms = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -45,7 +44,7 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public RoomListDTO getAllHotelFreeRooms(int hotelId, Date checkIn, Date checkOut, int page, int size) {
         Page<Room> resultPage = repository.findHotelFreeRoomsPage(hotelId, checkIn, checkOut,
-                new PageRequest(page, size));
+                PageRequest.of(page, size));
         resultPage.getTotalElements();
         List<Room> rooms = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -54,9 +53,8 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public Room getRoom(int id) {
-        Room room = repository.findOne(id);
-        return Optional.ofNullable(room).orElseThrow(() ->
-                new DataNotFoundException(String.format("Room id= %s not found", id)));
+        return repository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(String.format("Room id= %s not found", id)));
     }
 
     @Override
@@ -66,8 +64,12 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public Room saveRoom(RoomRequest request) {
-        Hotel hotel = hotelRepository.findOne(request.getHotelId());
-        RoomCategory roomCategory = roomCategoryRepository.findOne(request.getRoomCategoryId());
+        int hotelId = request.getHotelId();
+        int roomCategoryId = request.getRoomCategoryId();
+        Hotel hotel = hotelRepository.findById(hotelId)
+                .orElseThrow(() -> new DataNotFoundException(String.format("Hotel id= %s not found", hotelId)));
+        RoomCategory roomCategory = roomCategoryRepository.findById(roomCategoryId).orElseThrow(() ->
+                new DataNotFoundException(String.format("Room category id= %s not found", roomCategoryId)));
         Room room = new Room(request.getId(), request.getNumber(), hotel, roomCategory, request.getPrice(),
                 request.getPersons());
         return repository.save(room);

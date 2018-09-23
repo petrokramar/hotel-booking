@@ -24,11 +24,8 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 
     @Override
     public RoomCategory getRoomCategory(int id) {
-        RoomCategory roomCategory = repository.findOne(id);
-        if (roomCategory == null) {
-            throw new DataNotFoundException(String.format("Room category id= %s not found", id));
-        }
-        return roomCategory;
+        return repository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(String.format("Room category id= %s not found", id)));
     }
 
     @Override

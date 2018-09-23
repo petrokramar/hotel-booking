@@ -1,3 +1,4 @@
+SET SCHEMA BOOKING_HOTELS_SCHEMA;
 INSERT INTO users(username, password, enabled, first_name, last_name)
 VALUES('BobMarley', '{noop}1', 'true', 'Bob', 'Marley');
 INSERT INTO users(username, password, enabled, first_name, last_name)
@@ -144,7 +145,6 @@ INSERT INTO room_categories(id, name, description)
 VALUES('2', 'Second', 'Second category');
 INSERT INTO room_categories(id, name, description)
 VALUES('3', 'Third', 'Third category');
--- ALTER SEQUENCE room_category_id_seq RESTART WITH 4;
 
 INSERT INTO countries(id, name)
 VALUES('1', 'Egypt');

@@ -13,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,7 +32,7 @@ public class CountryServiceImpl implements CountryService{
             sortDirection = Sort.Direction.DESC;
         }
         Page< Country > resultPage = repository.findCountryPage(filter,
-        new PageRequest(page, size, sortDirection, "name"));
+        PageRequest.of(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
         List<Country> countries = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -47,9 +46,8 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     public Country getCountry(int id) {
-        Country country = repository.findOne(id);
-        return Optional.ofNullable(country).orElseThrow(() ->
-                new DataNotFoundException(String.format("Country id= %s not found", id)));
+        return repository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(String.format("Country id= %s not found", id)));
     }
 
     @Override

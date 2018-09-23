@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -38,7 +37,7 @@ public class HotelServiceImpl implements HotelService {
             sortDirection = Sort.Direction.DESC;
         }
         Page< Hotel > resultPage = repository.findHotelPage(filter,
-                new PageRequest(page, size, sortDirection, "name"));
+                PageRequest.of(page, size, sortDirection, "name"));
         resultPage.getTotalElements();
         List<Hotel> hotels = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -48,7 +47,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public HotelListDTO getHotelsWithFreeRoomsPage(int cityId, Date checkIn, Date checkOut, int page, int size) {
         Page< Hotel > resultPage = repository.findHotelsWithFreeRoomsPage(cityId, checkIn, checkOut,
-                new PageRequest(page, size));
+                PageRequest.of(page, size));
         resultPage.getTotalElements();
         List<Hotel> hotels = resultPage.getContent();
         long totalElements = resultPage.getTotalElements();
@@ -57,15 +56,15 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Hotel getHotel(int id) {
-        Hotel hotel = repository.findOne(id);
-        return Optional.ofNullable(hotel).orElseThrow(() ->
-                new DataNotFoundException(String.format("Hotel id= %s not found", id)));
+        return repository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(String.format("Hotel id= %s not found", id)));
     }
 
     @Override
     public Hotel saveHotel(HotelRequest request) {
-
-        City city = cityRepository.findOne(request.getCityId());
+        int cityId = request.getCityId();
+        City city = cityRepository.findById(cityId)
+                .orElseThrow(() -> new DataNotFoundException(String.format("City id= %s not found", cityId)));
         HotelCategory  hotelCategory = HotelCategory.valueOf(request.getCategory());
         Hotel hotel = new Hotel(request.getId(), request.getName(), city , hotelCategory);
         return repository.save(hotel);
